@@ -12,6 +12,9 @@
             padding: 20px;
             display: flex;
             justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
         }
 
         .container {
@@ -60,29 +63,28 @@
             transition: border-color 0.3s;
         }
 
-        select:focus {
-            border-color: #28a745;
-        }
-
         .half-option {
             background: #f1f8f1;
             padding: 15px;
             border-radius: 8px;
             border: 1px dashed #28a745;
             margin-top: 15px;
-            display: none; /* Escondido por padrão */
+            display: none;
         }
 
+        /* Botão Confirmar que abre o PIX */
         .btn-confirm {
             display: block;
             width: 100%;
             background-color: #28a745;
             color: white;
-            border: none;
+            text-align: center;
+            text-decoration: none;
             padding: 15px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: bold;
             border-radius: 8px;
+            border: none;
             cursor: pointer;
             margin-top: 20px;
             transition: background 0.3s;
@@ -117,53 +119,7 @@
             </select>
         </div>
 
-        <div class="option-group" id="sabor1-container">
+        <div class="option-group">
             <label id="label-sabor1">Escolha o Sabor:</label>
             <select name="sabor1">
                 <option value="calabresa">Calabresa Clássica</option>
-                <option value="chocolate">Chocolate Belga com Morango</option>
-                <option value="frango">Frango com Catupiry</option>
-                <option value="americano">Americana (Bacon, Ovos e Mussarela)</option>
-            </select>
-        </div>
-
-        <div class="half-option" id="sabor2-container">
-            <label>Escolha o 2º Sabor:</label>
-            <select name="sabor2">
-                <option value="calabresa">Calabresa Clássica</option>
-                <option value="chocolate">Chocolate Belga com Morango</option>
-                <option value="frango">Frango com Catupiry</option>
-                <option value="americano">Americana (Bacon, Ovos e Mussarela)</option>
-            </select>
-        </div>
-
-        <button type="button" class="btn-confirm" onclick=href="pix.jpeg">
-            Confirmar Pedido
-        </button>
-    </form>
-
-    <a href="index.html" class="back-link">← Voltar ao cardápio</a>
-</div>
-
-<script>
-    function toggleMeioAMeio() {
-        const tipo = document.getElementById('tipo').value;
-        const sabor2Container = document.getElementById('sabor2-container');
-        const labelSabor1 = document.getElementById('label-sabor1');
-
-        if (tipo === 'meio') {
-            sabor2Container.style.display = 'block';
-            labelSabor1.innerText = 'Escolha o 1º Sabor:';
-        } else {
-            sabor2Container.style.display = 'none';
-            labelSabor1.innerText = 'Escolha o Sabor:';
-        }
-    }
-</script>
-<div style="margin-top: 10px;">
-    <a href="pix.jpeg" target="_blank" style="display: block; width: 100%; background-color: #32bcad; color: white; border: none; padding: 15px; font-size: 1.1rem; font-weight: bold; border-radius: 8px; cursor: pointer; text-align: center; text-decoration: none; transition: background 0.3s;">
-        Pagar com PIX (Ver QR Code)
-    </a>
-</div>
-</body>
-</html>
