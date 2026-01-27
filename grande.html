@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pizza Grande - Sabores</title>
+    <title>Pizza Grande - Finalizar Pedido</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f8f9fa;
-            color: #333;
-            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -19,37 +17,38 @@
 
         .container {
             background: white;
-            max-width: 500px;
-            width: 100%;
+            max-width: 450px;
+            width: 90%;
             padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            text-align: center;
         }
 
         h1 {
-            text-align: center;
             color: #d9534f;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
-        .status-badge {
-            display: block;
-            text-align: center;
-            background: #eee;
-            padding: 5px;
+        .info-pizza {
+            background: #f1f1f1;
+            padding: 8px;
             border-radius: 20px;
             font-size: 0.9rem;
+            display: inline-block;
             margin-bottom: 25px;
+            width: 100%;
         }
 
-        .option-group {
+        .form-group {
+            text-align: left;
             margin-bottom: 20px;
         }
 
         label {
-            display: block;
             font-weight: bold;
-            margin-bottom: 10px;
+            display: block;
+            margin-bottom: 8px;
         }
 
         select {
@@ -57,50 +56,42 @@
             padding: 12px;
             border: 2px solid #ddd;
             border-radius: 8px;
-            background-color: #fff;
             font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s;
+            background: #fff;
         }
 
-        .half-option {
-            background: #f1f8f1;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px dashed #28a745;
-            margin-top: 15px;
-            display: none;
-        }
-
-        /* Botão Confirmar que abre o PIX */
-        .btn-confirm {
+        /* Estilo do Botão Confirmar Pedido */
+        .btn-confirmar {
             display: block;
             width: 100%;
             background-color: #28a745;
             color: white;
-            text-align: center;
             text-decoration: none;
             padding: 15px;
             font-size: 1.2rem;
             font-weight: bold;
-            border-radius: 8px;
+            border-radius: 10px;
+            transition: transform 0.2s, background 0.3s;
             border: none;
             cursor: pointer;
-            margin-top: 20px;
-            transition: background 0.3s;
+            margin-top: 10px;
         }
 
-        .btn-confirm:hover {
+        .btn-confirmar:hover {
             background-color: #218838;
+            transform: scale(1.02);
         }
 
-        .back-link {
+        .btn-confirmar:active {
+            transform: scale(0.98);
+        }
+
+        .footer-link {
             display: block;
-            text-align: center;
-            margin-top: 15px;
-            color: #666;
+            margin-top: 20px;
+            color: #888;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
     </style>
 </head>
@@ -108,18 +99,32 @@
 
 <div class="container">
     <h1>Pizza Grande</h1>
-    <span class="status-badge">Tamanho: 35cm (8 fatias)</span>
+    <div class="info-pizza">Tamanho: 35cm (8 fatias)</div>
 
-    <form>
-        <div class="option-group">
-            <label for="tipo">Deseja dividir o sabor?</label>
-            <select id="tipo" onchange="toggleMeioAMeio()">
-                <option value="inteira">Sabor Inteiro</option>
-                <option value="meio">Meio a Meio (2 Sabores)</option>
-            </select>
-        </div>
+    <div class="form-group">
+        <label>Deseja dividir o sabor?</label>
+        <select id="tipo-sabor">
+            <option>Sabor Inteiro</option>
+            <option>Meio a Meio</option>
+        </select>
+    </div>
 
-        <div class="option-group">
-            <label id="label-sabor1">Escolha o Sabor:</label>
-            <select name="sabor1">
-                <option value="calabresa">Calabresa Clássica</option>
+    <div class="form-group">
+        <label>Escolha o Sabor:</label>
+        <select>
+            <option>Calabresa Clássica</option>
+            <option>Frango com Catupiry</option>
+            <option>Chocolate Belga</option>
+            <option>Americana</option>
+        </select>
+    </div>
+
+    <a href="pix.jpeg" target="_blank" class="btn-confirmar">
+        Confirmar Pedido
+    </a>
+
+    <a href="index.html" class="footer-link">← Voltar ao cardápio</a>
+</div>
+
+</body>
+</html>
