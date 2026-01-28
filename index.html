@@ -54,7 +54,7 @@
         .contact-info {
             display: flex;
             flex-direction: column;
-            gap: 8px; /* Aumentei o espaço para caber o botão */
+            gap: 8px;
             font-size: 0.9rem;
             color: #fff;
             width: 100%;
@@ -202,14 +202,14 @@
 
         /* --- ESTILOS DO MODAL (JANELA DE LOGIN) --- */
         .modal {
-            display: none; /* Escondido por padrão */
+            display: none;
             position: fixed;
             z-index: 100;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.8); /* Fundo escuro */
+            background-color: rgba(0,0,0,0.8);
             backdrop-filter: blur(5px);
             justify-content: center;
             align-items: center;
@@ -220,7 +220,7 @@
             padding: 30px;
             border-radius: 15px;
             width: 90%;
-            max-width: 400px;
+            max-width: 380px;
             text-align: center;
             position: relative;
             box-shadow: 0 15px 35px rgba(0,0,0,0.5);
@@ -246,7 +246,7 @@
         .tabs {
             display: flex;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             border-bottom: 2px solid #eee;
         }
 
@@ -259,6 +259,7 @@
             cursor: pointer;
             color: #777;
             border-bottom: 3px solid transparent;
+            width: 50%;
         }
 
         .tab-link.active {
@@ -271,6 +272,15 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+            text-align: left;
+        }
+
+        .input-group label {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
+            display: block;
         }
 
         .input-group input {
@@ -292,6 +302,7 @@
             cursor: pointer;
             font-size: 1rem;
             transition: background 0.2s;
+            margin-top: 10px;
         }
 
         .btn-submit:hover {
@@ -299,10 +310,10 @@
         }
 
         .form-section {
-            display: none; /* Esconde as seções por padrão */
+            display: none;
         }
         .form-section.active {
-            display: block; /* Mostra a ativa */
+            display: block;
         }
         /* ----------------------------------------- */
 
@@ -383,4 +394,104 @@
 
         <div class="card">
             <h2>Tamanho Família</h2>
-            <img src
+            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=1000&auto=format&fit=crop" alt="Pizza Família">
+            <div class="controls">
+                <button class="btn-qty btn-minus">-</button>
+                <span class="qty-display">1</span>
+                <button class="btn-qty btn-plus">+</button>
+            </div>
+            <a href="familia.html" class="btn-select">Selecionar</a>
+        </div>
+    </div>
+
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharModal()">&times;</span>
+            
+            <div class="tabs">
+                <button class="tab-link active" onclick="mostrarForm('login', this)">Já tenho conta</button>
+                <button class="tab-link" onclick="mostrarForm('cadastro', this)">Cadastrar</button>
+            </div>
+
+            <div id="login" class="form-section active">
+                <form class="auth-form" onsubmit="event.preventDefault(); alert('Login realizado!'); fecharModal();">
+                    <div class="input-group">
+                        <label>E-mail</label>
+                        <input type="email" placeholder="seu@email.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Senha</label>
+                        <input type="password" placeholder="Sua senha" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Entrar</button>
+                </form>
+            </div>
+
+            <div id="cadastro" class="form-section">
+                <form class="auth-form" onsubmit="event.preventDefault(); alert('Conta criada com sucesso!'); fecharModal();">
+                    <div class="input-group">
+                        <label>Seu Gmail</label>
+                        <input type="email" placeholder="exemplo@gmail.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Crie uma Senha</label>
+                        <input type="password" placeholder="Mínimo 6 caracteres" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Criar Conta</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // --- Scripts dos Botões de Quantidade ---
+        const minusButtons = document.querySelectorAll('.btn-minus');
+        const plusButtons = document.querySelectorAll('.btn-plus');
+
+        minusButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const display = this.parentElement.querySelector('.qty-display');
+                let currentQty = parseInt(display.innerText);
+                if (currentQty > 0) {
+                    display.innerText = currentQty - 1;
+                }
+            });
+        });
+
+        plusButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const display = this.parentElement.querySelector('.qty-display');
+                let currentQty = parseInt(display.innerText);
+                display.innerText = currentQty + 1;
+            });
+        });
+
+        // --- Scripts do Modal ---
+        const modal = document.getElementById('authModal');
+
+        function abrirModal() {
+            modal.style.display = 'flex';
+        }
+
+        function fecharModal() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                fecharModal();
+            }
+        }
+
+        function mostrarForm(nomeForm, btn) {
+            document.querySelectorAll('.form-section').forEach(f => f.classList.remove('active'));
+            document.querySelectorAll('.tab-link').forEach(t => t.classList.remove('active'));
+
+            document.getElementById(nomeForm).classList.add('active');
+            btn.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
