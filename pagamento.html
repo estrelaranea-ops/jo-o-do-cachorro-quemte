@@ -28,7 +28,7 @@
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             text-align: center;
-            max-width: 700px; /* Aumentei a largura para caber lado a lado */
+            max-width: 700px;
             width: 100%;
         }
 
@@ -50,9 +50,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 30px; /* Espaço entre o QR Code e o Valor */
+            gap: 30px;
             margin-bottom: 20px;
-            text-align: left; /* Alinha texto da direita */
+            text-align: left;
         }
 
         /* Coluna da Esquerda (QR Code) */
@@ -67,18 +67,18 @@
             padding: 5px;
             border-radius: 15px;
             background: white;
-            line-height: 0; /* Remove espaço extra embaixo da imagem */
+            line-height: 0;
         }
 
         .qr-container img {
             width: 100%;
-            max-width: 200px; /* Ajustei tamanho */
+            max-width: 200px;
             height: auto;
         }
 
         /* Coluna da Direita (Infos) */
         .info-side {
-            flex: 1.2; /* Um pouco maior que o QR */
+            flex: 1.2;
             display: flex;
             flex-direction: column;
             gap: 15px;
@@ -87,14 +87,13 @@
         /* Responsividade para Celular */
         @media (max-width: 600px) {
             .payment-layout {
-                flex-direction: column; /* Volta a ficar um embaixo do outro */
+                flex-direction: column;
                 text-align: center;
             }
             .info-side {
                 width: 100%;
             }
         }
-        /* -------------------------- */
 
         /* Estilo da Chave Pix */
         .chave-label {
@@ -147,7 +146,7 @@
 
         /* Box do Valor */
         .box-valor {
-            background-color: #fff3cd; /* Fundo amarelinho */
+            background-color: #fff3cd;
             border: 2px dashed #d9534f;
             padding: 15px;
             border-radius: 10px;
@@ -200,9 +199,9 @@
             <div class="info-side">
                 
                 <div>
-                    <span class="chave-label">Chave Pix (Telefone/CPF/Aleatória):</span>
+                    <span class="chave-label">Chave Pix (Telefone):</span>
                     <div class="chave-wrapper">
-                        <span class="chave-pix" id="textoChave">11243449960</span>
+                        <span class="chave-pix" id="textoChave">1134349960</span>
                         <button class="btn-copiar" onclick="copiarChave(this)">
                             <i class="far fa-copy"></i>
                         </button>
