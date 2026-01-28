@@ -20,11 +20,14 @@
             min-height: 100vh;
             margin: 0;
             padding: 20px;
+            position: relative; /* Necessário para o posicionamento absoluto funcionar bem */
         }
 
-        /* --- LOGO E CONTATO --- */
+        /* --- LOGO E CONTATO (ALTERADO PARA O CANTO) --- */
         .logo-container {
-            margin-top: 20px;
+            position: absolute; /* Fixa no canto */
+            top: 30px;          /* Distância do topo */
+            left: 30px;         /* Distância da esquerda */
             background: rgba(0, 0, 0, 0.85);
             padding: 15px 30px;
             border-radius: 30px;
@@ -35,10 +38,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            margin-bottom: 40px;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
+            /* Margens removidas pois agora é position absolute */
         }
 
         .logo-text {
@@ -91,7 +91,7 @@
             align-items: center;
             justify-content: center;
             gap: 5px;
-            width: 100%; /* Ocupa a largura disponível */
+            width: 100%; 
         }
 
         .btn-account:hover {
@@ -104,6 +104,8 @@
         .main-container {
             max-width: 900px;
             width: 100%;
+            /* Adicionado margem superior para não ficar embaixo da logo no PC */
+            margin-top: 200px; 
         }
 
         /* TÍTULO DA SEÇÃO */
@@ -143,6 +145,11 @@
             transition: transform 0.3s ease;
         }
         .card:hover { transform: translateY(-8px); }
+
+        /* Estilo diferente para pizzas doces (opcional, borda marrom) */
+        .card.sweet {
+            border-bottom: 6px solid #795548; 
+        }
 
         .card h2 {
             font-size: 1.4rem;
@@ -241,8 +248,10 @@
         @media (max-width: 768px) {
             .pizza-grid { grid-template-columns: 1fr; }
             .drinks-grid { grid-template-columns: 1fr; }
-            .logo-container { position: relative; }
-            body { flex-direction: column; }
+            /* No celular, a logo volta a ser relativa para ficar em cima de tudo */
+            .logo-container { position: relative; top: auto; left: auto; margin-bottom: 30px; }
+            .main-container { margin-top: 0; }
+            body { flex-direction: column; padding-top: 30px; }
         }
     </style>
 </head>
@@ -320,6 +329,51 @@
                 </div>
                 <a href="familia.html" class="btn-select">Selecionar</a>
             </div>
+
+            <div class="card sweet">
+                <h2>Chocolate ao Leite</h2>
+                <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=1000&auto=format&fit=crop" alt="Pizza Chocolate">
+                <div class="controls">
+                    <button class="btn-qty btn-minus">-</button>
+                    <span class="qty-display">1</span>
+                    <button class="btn-qty btn-plus">+</button>
+                </div>
+                <a href="chocolate-leite.html" class="btn-select">Selecionar</a>
+            </div>
+
+            <div class="card sweet">
+                <h2>Choc. Branco c/ Morango</h2>
+                <img src="https://images.unsplash.com/photo-1593560704563-f176a2eb61db?q=80&w=1000&auto=format&fit=crop" alt="Pizza Chocolate Branco">
+                <div class="controls">
+                    <button class="btn-qty btn-minus">-</button>
+                    <span class="qty-display">1</span>
+                    <button class="btn-qty btn-plus">+</button>
+                </div>
+                <a href="chocolate-branco.html" class="btn-select">Selecionar</a>
+            </div>
+
+            <div class="card sweet">
+                <h2>Prestígio (Coco)</h2>
+                <img src="https://thumbs.dreamstime.com/b/pizza-doce-de-chocolate-com-coco-ralado-sobre-fundo-madeira-217426733.jpg" alt="Pizza Prestígio">
+                <div class="controls">
+                    <button class="btn-qty btn-minus">-</button>
+                    <span class="qty-display">1</span>
+                    <button class="btn-qty btn-plus">+</button>
+                </div>
+                <a href="prestigio.html" class="btn-select">Selecionar</a>
+            </div>
+
+            <div class="card sweet">
+                <h2>Chocolate com M&Ms</h2>
+                <img src="https://pizzariadodudu.com.br/wp-content/uploads/2023/05/pizza-confeti.jpg" alt="Pizza M&Ms">
+                <div class="controls">
+                    <button class="btn-qty btn-minus">-</button>
+                    <span class="qty-display">1</span>
+                    <button class="btn-qty btn-plus">+</button>
+                </div>
+                <a href="mms.html" class="btn-select">Selecionar</a>
+            </div>
+
         </div>
     </div>
 
@@ -400,7 +454,7 @@
     </div>
 
     <script>
-        // Scripts das Pizzas (Quantidade)
+        // Scripts das Pizzas (Quantidade) - Funciona para as novas também automaticamente
         const minusButtons = document.querySelectorAll('.btn-minus');
         const plusButtons = document.querySelectorAll('.btn-plus');
 
