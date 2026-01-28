@@ -23,40 +23,39 @@
             position: relative;
         }
 
-        /* --- LOGO E CONTATO (MAIOR E NO CANTO) --- */
+        /* --- LOGO E CONTATO (NO CANTO) --- */
         .logo-container {
             position: absolute;
             top: 30px;
             left: 30px;
-            background: rgba(0, 0, 0, 0.9); /* Um pouco mais escuro */
-            padding: 25px 40px; /* AUMENTADO O TAMANHO (padding) */
+            background: rgba(0, 0, 0, 0.85);
+            padding: 15px 30px;
             border-radius: 30px;
-            border: 3px solid #ffc107; /* Borda um pouco mais grossa */
-            box-shadow: 0 6px 20px rgba(0,0,0,0.7);
+            border: 2px solid #ffc107;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
             z-index: 10;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            min-width: 250px; /* Garante uma largura mínima */
         }
 
         .logo-text {
             font-family: 'Pacifico', cursive;
-            font-size: 2.2rem; /* FONTE MAIOR */
+            font-size: 1.8rem;
             color: #d9534f;
             text-shadow: 2px 2px 0px #000;
             margin: 0;
             border-bottom: 2px solid #ffc107;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
         }
 
         .contact-info {
             display: flex;
             flex-direction: column;
-            gap: 12px; /* Mais espaço entre os itens */
-            font-size: 1.1rem; /* FONTE DOS CONTATOS MAIOR */
+            gap: 8px;
+            font-size: 0.9rem;
             color: #fff;
             width: 100%;
         }
@@ -65,7 +64,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             text-decoration: none;
             color: #fff;
             font-weight: bold;
@@ -73,24 +72,24 @@
         }
 
         .contact-item:hover { color: #ffc107; }
-        .contact-item i { color: #ffc107; font-size: 1.3rem; }
+        .contact-item i { color: #ffc107; font-size: 1.1rem; }
 
         /* BOTÕES DO CABEÇALHO */
         .btn-account {
-            margin-top: 10px;
+            margin-top: 5px;
             background-color: transparent;
-            border: 2px solid #fff; /* Borda mais visível */
+            border: 1px solid #fff;
             color: #fff;
-            padding: 10px 20px; /* Botão um pouco maior */
-            border-radius: 25px;
+            padding: 8px 15px;
+            border-radius: 20px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.85rem;
             font-weight: bold;
             transition: all 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 5px;
             width: 100%; 
         }
 
@@ -104,17 +103,17 @@
         .main-container {
             max-width: 900px;
             width: 100%;
-            margin-top: 150px; /* Ajuste para não cobrir o conteúdo em telas largas */
+            margin-top: 200px; 
         }
 
-        /* TÍTULO DA SEÇÃO */
+        /* TÍTULO DA SEÇÃO E BOTÃO DE BEBIDAS */
         .menu-header {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             background: rgba(255, 255, 255, 0.9);
-            padding: 15px;
+            padding: 10px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
@@ -122,7 +121,7 @@
         .section-title {
             color: #d9534f;
             font-family: 'Pacifico', cursive;
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin: 0;
         }
 
@@ -144,11 +143,6 @@
             transition: transform 0.3s ease;
         }
         .card:hover { transform: translateY(-8px); }
-
-        /* Borda marrom para pizzas doces */
-        .card.sweet {
-            border-bottom: 6px solid #795548; 
-        }
 
         .card h2 {
             font-size: 1.4rem;
@@ -179,316 +173,4 @@
         .modal-content.wide { max-width: 800px; }
         
         @keyframes slideDown { from {transform: translateY(-50px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
-        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 28px; cursor: pointer; color: #aaa; z-index: 10; }
-
-        /* CARDÁPIO DE BEBIDAS (MODAL) */
-        .drinks-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .drink-card {
-            background: #f8f9fa;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            transition: transform 0.2s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .drink-card:hover { border-color: #28a745; transform: scale(1.02); }
-
-        .drink-card img { width: 100px; height: 100px; object-fit: contain; margin-bottom: 10px; }
-        .drink-card h4 { margin: 5px 0; font-size: 1.1rem; color: #333; }
-        .drink-card .price { color: #28a745; font-weight: 800; font-size: 1.2rem; display: block; margin-bottom: 10px; }
-        
-        .btn-buy-drink {
-            display: block;
-            width: 100%;
-            background-color: #28a745;
-            color: white;
-            text-decoration: none;
-            padding: 10px 0;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: background 0.3s;
-        }
-        .btn-buy-drink:hover { background-color: #218838; }
-
-        .drink-category {
-            font-size: 1.3rem;
-            color: #d9534f;
-            margin-top: 25px;
-            margin-bottom: 10px;
-            border-bottom: 2px solid #ffc107;
-            display: inline-block;
-            padding-bottom: 5px;
-            width: 100%;
-            text-align: left;
-            font-family: 'Pacifico', cursive;
-        }
-
-        /* LOGIN STYLES */
-        .tabs { display: flex; justify-content: center; margin-bottom: 25px; border-bottom: 2px solid #eee; }
-        .tab-link { background: none; border: none; padding: 10px 20px; font-size: 1rem; font-weight: bold; cursor: pointer; color: #777; border-bottom: 3px solid transparent; width: 50%; }
-        .tab-link.active { color: #d9534f; border-bottom: 3px solid #d9534f; }
-        .auth-form { display: flex; flex-direction: column; gap: 15px; text-align: left; }
-        .input-group label { font-size: 0.9rem; font-weight: bold; color: #555; margin-bottom: 5px; display: block; }
-        .input-group input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
-        .btn-submit { background-color: #ffc107; color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        .form-section { display: none; }
-        .form-section.active { display: block; }
-
-        /* RESPONSIVIDADE */
-        @media (max-width: 768px) {
-            .pizza-grid { grid-template-columns: 1fr; }
-            .drinks-grid { grid-template-columns: 1fr; }
-            
-            /* No celular, ajustamos para não ocupar a tela toda */
-            .logo-container { 
-                position: relative; 
-                top: auto; 
-                left: auto; 
-                margin-bottom: 30px; 
-                width: 90%; 
-            }
-            .main-container { margin-top: 0; }
-            body { flex-direction: column; padding-top: 30px; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="logo-container">
-        <h1 class="logo-text">Pizzaria do Ranea</h1>
-        <div class="contact-info">
-            <div class="contact-item">
-                <i class="fas fa-phone-alt"></i>
-                <span>(41) 98788-4999</span>
-            </div>
-            <a href="https://instagram.com/gaabbzyx" target="_blank" class="contact-item">
-                <i class="fab fa-instagram"></i>
-                <span>@gaabbzyx</span>
-            </a>
-            
-            <button class="btn-account" onclick="abrirModal('authModal')">
-                <i class="fas fa-user-circle"></i> Entrar / Cadastrar
-            </button>
-
-            <button class="btn-account" onclick="abrirModal('drinksModal')">
-                <i class="fas fa-glass-cheers"></i> Cardápio de Bebidas
-            </button>
-        </div>
-    </div>
-
-    <div class="main-container">
-        
-        <div class="menu-header">
-            <h2 class="section-title">Nossas Pizzas</h2>
-        </div>
-
-        <div class="pizza-grid">
-            <div class="card">
-                <h2>Pizza Pequena</h2>
-                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1000&auto=format&fit=crop" alt="Pizza Pequena">
-                <div class="controls">
-                    <button class="btn-qty btn-minus">-</button>
-                    <span class="qty-display">1</span>
-                    <button class="btn-qty btn-plus">+</button>
-                </div>
-                <a href="pequena.html" class="btn-select">Selecionar</a>
-            </div>
-
-            <div class="card">
-                <h2>Pizza Média</h2>
-                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1000&auto=format&fit=crop" alt="Pizza Média">
-                <div class="controls">
-                    <button class="btn-qty btn-minus">-</button>
-                    <span class="qty-display">1</span>
-                    <button class="btn-qty btn-plus">+</button>
-                </div>
-                <a href="media.html" class="btn-select">Selecionar</a>
-            </div>
-
-            <div class="card">
-                <h2>Pizza Grande</h2>
-                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1000&auto=format&fit=crop" alt="Pizza Grande">
-                <div class="controls">
-                    <button class="btn-qty btn-minus">-</button>
-                    <span class="qty-display">1</span>
-                    <button class="btn-qty btn-plus">+</button>
-                </div>
-                <a href="grande.html" class="btn-select">Selecionar</a>
-            </div>
-
-            <div class="card">
-                <h2>Tamanho Família</h2>
-                <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=1000&auto=format&fit=crop" alt="Pizza Família">
-                <div class="controls">
-                    <button class="btn-qty btn-minus">-</button>
-                    <span class="qty-display">1</span>
-                    <button class="btn-qty btn-plus">+</button>
-                </div>
-                <a href="familia.html" class="btn-select">Selecionar</a>
-            </div>
-
-            <div class="card sweet">
-                <h2>Chocolate Preto</h2>
-                <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=1000&auto=format&fit=crop" alt="Pizza Chocolate Preto">
-                <div class="controls">
-                    <button class="btn-qty btn-minus">-</button>
-                    <span class="qty-display">1</span>
-                    <button class="btn-qty btn-plus">+</button>
-                </div>
-                <a href="chocolate-preto.html" class="btn-select">Selecionar</a>
-            </div>
-
-            <div class="card sweet">
-                <h2>Chocolate Branco</h2>
-                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1000&auto=format&fit=crop" alt="Pizza Chocolate Branco">
-                <div class="controls">
-                    <button class="btn-qty btn-minus">-</button>
-                    <span class="qty-display">1</span>
-                    <button class="btn-qty btn-plus">+</button>
-                </div>
-                <a href="chocolate-branco.html" class="btn-select">Selecionar</a>
-            </div>
-
-            <div class="card sweet">
-                <h2>Chocolate com Morango</h2>
-                <img src="https://images.unsplash.com/photo-1607532941433-304659e8198a?q=80&w=1000&auto=format&fit=crop" alt="Pizza Morango">
-                <div class="controls">
-                    <button class="btn-qty btn-minus">-</button>
-                    <span class="qty-display">1</span>
-                    <button class="btn-qty btn-plus">+</button>
-                </div>
-                <a href="morango.html" class="btn-select">Selecionar</a>
-            </div>
-
-            <div class="card sweet">
-                <h2>Chocolate com M&Ms</h2>
-                <img src="https://images.unsplash.com/photo-1499195333224-3ce974eecb47?q=80&w=1000&auto=format&fit=crop" alt="Pizza M&Ms">
-                <div class="controls">
-                    <button class="btn-qty btn-minus">-</button>
-                    <span class="qty-display">1</span>
-                    <button class="btn-qty btn-plus">+</button>
-                </div>
-                <a href="mms.html" class="btn-select">Selecionar</a>
-            </div>
-
-        </div>
-    </div>
-
-    <div id="drinksModal" class="modal">
-        <div class="modal-content wide">
-            <span class="close-btn" onclick="fecharModal('drinksModal')">&times;</span>
-            <h2 style="color:#d9534f; margin-top:0; font-family:'Pacifico', cursive;">Bebidas Geladas</h2>
-            <div class="drink-category">Refrigerantes</div>
-            <div class="drinks-grid">
-                <div class="drink-card">
-                    <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=200&auto=format&fit=crop" alt="Coca Cola">
-                    <h4>Coca-Cola 2L</h4>
-                    <span class="price">R$ 14,00</span>
-                    <a href="pagamento.html?valor=14,00" class="btn-buy-drink">Pedir</a>
-                </div>
-                <div class="drink-card">
-                    <img src="https://images.unsplash.com/photo-1581006852262-e4307cf6283a?q=80&w=200&auto=format&fit=crop" alt="Guaraná">
-                    <h4>Guaraná 2L</h4>
-                    <span class="price">R$ 12,00</span>
-                    <a href="pagamento.html?valor=12,00" class="btn-buy-drink">Pedir</a>
-                </div>
-                <div class="drink-card">
-                    <img src="https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?q=80&w=200&auto=format&fit=crop" alt="Fanta">
-                    <h4>Fanta Laranja 2L</h4>
-                    <span class="price">R$ 12,00</span>
-                    <a href="pagamento.html?valor=12,00" class="btn-buy-drink">Pedir</a>
-                </div>
-                <div class="drink-card">
-                    <img src="https://images.unsplash.com/photo-1624517452488-04869289c4ca?q=80&w=200&auto=format&fit=crop" alt="Sprite">
-                    <h4>Sprite 2L</h4>
-                    <span class="price">R$ 12,00</span>
-                    <a href="pagamento.html?valor=12,00" class="btn-buy-drink">Pedir</a>
-                </div>
-            </div>
-            <div class="drink-category">Sucos & Cervejas</div>
-            <div class="drinks-grid">
-                <div class="drink-card">
-                    <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=200&auto=format&fit=crop" alt="Suco de Uva">
-                    <h4>Suco de Uva 1L</h4>
-                    <span class="price">R$ 18,00</span>
-                    <a href="pagamento.html?valor=18,00" class="btn-buy-drink">Pedir</a>
-                </div>
-                <div class="drink-card">
-                    <img src="https://images.unsplash.com/photo-1618885481221-ef050069b273?q=80&w=200&auto=format&fit=crop" alt="Heineken">
-                    <h4>Heineken (Long)</h4>
-                    <span class="price">R$ 12,00</span>
-                    <a href="pagamento.html?valor=12,00" class="btn-buy-drink">Pedir</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="authModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="fecharModal('authModal')">&times;</span>
-            <div class="tabs">
-                <button class="tab-link active" onclick="mostrarForm('login', this)">Já tenho conta</button>
-                <button class="tab-link" onclick="mostrarForm('cadastro', this)">Cadastrar</button>
-            </div>
-            <div id="login" class="form-section active">
-                <form class="auth-form" onsubmit="event.preventDefault(); alert('Login realizado!'); fecharModal('authModal');">
-                    <div class="input-group"><label>E-mail</label><input type="email" placeholder="seu@email.com" required></div>
-                    <div class="input-group"><label>Senha</label><input type="password" placeholder="Sua senha" required></div>
-                    <button type="submit" class="btn-submit">Entrar</button>
-                </form>
-            </div>
-            <div id="cadastro" class="form-section">
-                <form class="auth-form" onsubmit="event.preventDefault(); alert('Conta criada!'); fecharModal('authModal');">
-                    <div class="input-group"><label>Seu Gmail</label><input type="email" placeholder="exemplo@gmail.com" required></div>
-                    <div class="input-group"><label>Crie uma Senha</label><input type="password" placeholder="Mínimo 6 caracteres" required></div>
-                    <button type="submit" class="btn-submit">Criar Conta</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Scripts das Pizzas
-        const minusButtons = document.querySelectorAll('.btn-minus');
-        const plusButtons = document.querySelectorAll('.btn-plus');
-
-        minusButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const display = this.parentElement.querySelector('.qty-display');
-                let currentQty = parseInt(display.innerText);
-                if (currentQty > 0) display.innerText = currentQty - 1;
-            });
-        });
-
-        plusButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const display = this.parentElement.querySelector('.qty-display');
-                let currentQty = parseInt(display.innerText);
-                display.innerText = currentQty + 1;
-            });
-        });
-
-        // Scripts Modais
-        function abrirModal(id) { document.getElementById(id).style.display = 'flex'; }
-        function fecharModal(id) { document.getElementById(id).style.display = 'none'; }
-        window.onclick = function(event) { if (event.target.classList.contains('modal')) event.target.style.display = 'none'; }
-        function mostrarForm(nomeForm, btn) {
-            document.querySelectorAll('.form-section').forEach(f => f.classList.remove('active'));
-            document.querySelectorAll('.tab-link').forEach(t => t.classList.remove('active'));
-            document.getElementById(nomeForm).classList.add('active');
-            btn.classList.add('active');
-        }
-    </script>
-
-</body>
-</html>
+        .
