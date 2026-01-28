@@ -28,7 +28,7 @@
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             text-align: center;
-            max-width: 700px;
+            max-width: 750px;
             width: 100%;
         }
 
@@ -45,7 +45,7 @@
             margin-bottom: 25px;
         }
 
-        /* --- LAYOUT LADO A LADO --- */
+        /* --- LAYOUT: QR CODE NA ESQUERDA, DADOS NA DIREITA --- */
         .payment-layout {
             display: flex;
             align-items: center;
@@ -55,7 +55,7 @@
             text-align: left;
         }
 
-        /* Coluna da Esquerda (QR Code) */
+        /* Área da Imagem (Esquerda) */
         .qr-side {
             flex: 1;
             display: flex;
@@ -72,20 +72,22 @@
 
         .qr-container img {
             width: 100%;
-            max-width: 200px;
+            max-width: 220px; /* Tamanho da imagem */
             height: auto;
+            border-radius: 10px;
         }
 
-        /* Coluna da Direita (Infos) */
+        /* Área dos Dados (Direita) */
         .info-side {
-            flex: 1.2;
+            flex: 1.3;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
+            justify-content: center;
         }
 
-        /* Responsividade para Celular */
-        @media (max-width: 600px) {
+        /* Responsividade: Celular fica um embaixo do outro */
+        @media (max-width: 650px) {
             .payment-layout {
                 flex-direction: column;
                 text-align: center;
@@ -97,7 +99,7 @@
 
         /* Estilo da Chave Pix */
         .chave-label {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: #666;
             margin-bottom: 5px;
             display: block;
@@ -106,7 +108,7 @@
 
         .chave-wrapper {
             background: #f1f1f1;
-            padding: 8px 12px;
+            padding: 10px 15px;
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -116,7 +118,7 @@
 
         .chave-pix {
             font-family: monospace;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #333;
             font-weight: bold;
             overflow: hidden;
@@ -129,11 +131,13 @@
             background: #333;
             color: #fff;
             border: none;
-            padding: 6px 12px;
+            padding: 8px 15px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            font-weight: bold;
             transition: background 0.3s;
+            white-space: nowrap;
         }
 
         .btn-copiar:hover {
@@ -154,7 +158,7 @@
         }
 
         .label-total {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             color: #777;
             font-weight: bold;
@@ -162,7 +166,7 @@
         }
 
         .valor-final {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: #28a745;
             font-weight: 800;
             margin: 0;
@@ -192,7 +196,7 @@
             
             <div class="qr-side">
                 <div class="qr-container">
-                    <img src="QRcode.jpeg" alt="QR Code Pix">
+                    <img src="WhatsApp Image 2026-01-28 at 02.59.09.jpeg" alt="QR Code Pix">
                 </div>
             </div>
 
@@ -203,7 +207,7 @@
                     <div class="chave-wrapper">
                         <span class="chave-pix" id="textoChave">1134349960</span>
                         <button class="btn-copiar" onclick="copiarChave(this)">
-                            <i class="far fa-copy"></i>
+                            <i class="far fa-copy"></i> Copiar
                         </button>
                     </div>
                 </div>
@@ -220,6 +224,7 @@
     </div>
 
     <script>
+        // Pega o valor da URL
         function carregarValor() {
             const urlParams = new URLSearchParams(window.location.search);
             let valor = urlParams.get('valor');
@@ -227,6 +232,7 @@
             document.getElementById('display-valor').innerText = "R$ " + valor;
         }
 
+        // Função de Copiar
         function copiarChave(botao) {
             const chave = document.getElementById('textoChave').innerText;
             const tempInput = document.createElement("input");
@@ -237,7 +243,7 @@
             document.body.removeChild(tempInput);
 
             const htmlOriginal = botao.innerHTML;
-            botao.innerHTML = '<i class="fas fa-check"></i>';
+            botao.innerHTML = '<i class="fas fa-check"></i> Copiado!';
             botao.classList.add('copiado');
 
             setTimeout(() => {
