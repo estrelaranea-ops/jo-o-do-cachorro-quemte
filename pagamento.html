@@ -9,6 +9,7 @@
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
+            /* Mesmo fundo de pizza realista */
             background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?q=80&w=2560&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
@@ -33,7 +34,7 @@
 
         h1 {
             font-family: 'Pacifico', cursive;
-            color: #d9534f;
+            color: #d9534f; /* Vermelho */
             margin-top: 0;
             font-size: 2rem;
         }
@@ -45,7 +46,7 @@
 
         /* Moldura do QR Code */
         .qr-container {
-            border: 4px solid #ffc107;
+            border: 4px solid #ffc107; /* Borda Amarela */
             padding: 10px;
             border-radius: 15px;
             display: inline-block;
@@ -60,6 +61,7 @@
             display: block;
         }
 
+        /* --- TEXTO DO VALOR AUTOMÁTICO --- */
         .box-valor {
             background-color: #f8f9fa;
             border: 2px dashed #d9534f;
@@ -79,10 +81,11 @@
 
         .valor-final {
             font-size: 2.2rem;
-            color: #28a745;
+            color: #28a745; /* Verde Dinheiro */
             font-weight: 800;
             margin: 0;
         }
+        /* --------------------------------- */
 
         .btn-voltar {
             display: inline-block;
@@ -102,11 +105,10 @@
 
     <div class="card-pagamento">
         <h1>Hora do Pix!</h1>
-        
         <p class="instrucao">Escaneie o QR Code abaixo para pagar.</p>
 
         <div class="qr-container">
-            <img src="QRcode.jpeg" alt="QR Code Pix">
+            <img src="WhatsApp Image 2026-01-28 at 00.58.55.jpeg" alt="QR Code Pix">
         </div>
 
         <div class="box-valor">
@@ -118,17 +120,22 @@
     </div>
 
     <script>
+        // Função para pegar o valor da URL
         function carregarValor() {
+            // Pega os parâmetros da URL (ex: ?valor=50,00)
             const urlParams = new URLSearchParams(window.location.search);
             let valor = urlParams.get('valor');
 
+            // Se não tiver valor na URL, coloca um padrão
             if (!valor) {
                 valor = "0,00"; 
             }
 
+            // Escreve o valor na tela
             document.getElementById('display-valor').innerText = "R$ " + valor;
         }
 
+        // Roda a função assim que a página abre
         carregarValor();
     </script>
 
