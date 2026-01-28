@@ -29,14 +29,14 @@
             top: 20px;
             left: 20px;
             background: rgba(0, 0, 0, 0.85);
-            padding: 15px 30px; /* Aumentei um pouco o padding vertical */
-            border-radius: 30px; /* Ajustei a borda para ficar harmônica com o tamanho maior */
+            padding: 15px 30px;
+            border-radius: 30px;
             border: 2px solid #ffc107;
             box-shadow: 0 4px 15px rgba(0,0,0,0.6);
             z-index: 10;
             display: flex;
-            flex-direction: column; /* Coloca um item embaixo do outro */
-            align-items: center; /* Centraliza tudo */
+            flex-direction: column;
+            align-items: center;
             text-align: center;
         }
 
@@ -48,15 +48,16 @@
             margin: 0;
             border-bottom: 2px solid #ffc107;
             padding-bottom: 5px;
-            margin-bottom: 10px; /* Espaço entre a logo e os contatos */
+            margin-bottom: 10px;
         }
 
         .contact-info {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 8px; /* Aumentei o espaço para caber o botão */
             font-size: 0.9rem;
             color: #fff;
+            width: 100%;
         }
 
         .contact-item {
@@ -75,8 +76,32 @@
         }
 
         .contact-item i {
-            color: #ffc107; /* Ícones em amarelo */
+            color: #ffc107;
             font-size: 1.1rem;
+        }
+
+        /* BOTÃO DE LOGIN/CADASTRO NO HEADER */
+        .btn-account {
+            margin-top: 5px;
+            background-color: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .btn-account:hover {
+            background-color: #ffc107;
+            color: #000;
+            border-color: #ffc107;
         }
         /* --------------------- */
 
@@ -86,7 +111,7 @@
             gap: 30px;
             max-width: 900px;
             width: 100%;
-            margin-top: 140px; /* Aumentei a margem para não bater na logo que cresceu */
+            margin-top: 140px;
         }
 
         .card {
@@ -175,7 +200,112 @@
             color: #ffc107;
         }
 
-        /* Responsividade */
+        /* --- ESTILOS DO MODAL (JANELA DE LOGIN) --- */
+        .modal {
+            display: none; /* Escondido por padrão */
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8); /* Fundo escuro */
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {transform: translateY(-50px); opacity: 0;}
+            to {transform: translateY(0); opacity: 1;}
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #aaa;
+        }
+        .close-btn:hover { color: #000; }
+
+        /* Abas de troca (Entrar / Cadastrar) */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .tab-link {
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: #777;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-link.active {
+            color: #d9534f;
+            border-bottom: 3px solid #d9534f;
+        }
+
+        /* Formulários */
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        .btn-submit {
+            background-color: #ffc107;
+            color: #000;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+
+        .btn-submit:hover {
+            background-color: #e0a800;
+        }
+
+        .form-section {
+            display: none; /* Esconde as seções por padrão */
+        }
+        .form-section.active {
+            display: block; /* Mostra a ativa */
+        }
+        /* ----------------------------------------- */
+
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
@@ -210,6 +340,10 @@
                 <i class="fab fa-instagram"></i>
                 <span>@gaabbzyx</span>
             </a>
+            
+            <button class="btn-account" onclick="abrirModal()">
+                <i class="fas fa-user-circle"></i> Entrar / Cadastrar
+            </button>
         </div>
     </div>
 
@@ -249,38 +383,4 @@
 
         <div class="card">
             <h2>Tamanho Família</h2>
-            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=1000&auto=format&fit=crop" alt="Pizza Família">
-            <div class="controls">
-                <button class="btn-qty btn-minus">-</button>
-                <span class="qty-display">1</span>
-                <button class="btn-qty btn-plus">+</button>
-            </div>
-            <a href="familia.html" class="btn-select">Selecionar</a>
-        </div>
-    </div>
-
-    <script>
-        const minusButtons = document.querySelectorAll('.btn-minus');
-        const plusButtons = document.querySelectorAll('.btn-plus');
-
-        minusButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const display = this.parentElement.querySelector('.qty-display');
-                let currentQty = parseInt(display.innerText);
-                if (currentQty > 0) {
-                    display.innerText = currentQty - 1;
-                }
-            });
-        });
-
-        plusButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const display = this.parentElement.querySelector('.qty-display');
-                let currentQty = parseInt(display.innerText);
-                display.innerText = currentQty + 1;
-            });
-        });
-    </script>
-
-</body>
-</html>
+            <img src
