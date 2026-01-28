@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Imagem de fundo 4K realista com sobreposição escura para contraste */
+            /* Fundo 4K realista */
             background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?q=80&w=2560&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
@@ -21,12 +21,12 @@
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.98); /* Leve transparência */
+            background: rgba(255, 255, 255, 0.98);
             max-width: 450px;
             width: 100%;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5); /* Sombra mais forte */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
             text-align: center;
             box-sizing: border-box;
         }
@@ -37,11 +37,11 @@
             margin-top: 0;
         }
 
-        /* --- ALTERAÇÃO AQUI: Texto Vermelho --- */
+        /* Estilo Vermelho e Rosa para o Tamanho */
         .info-pizza {
-            background: #ffe6e6; /* Fundo rosa bem clarinho */
-            color: #cc0000; /* Texto Vermelho Escuro/Vibrante */
-            font-weight: 800; /* Negrito forte */
+            background: #ffe6e6;
+            color: #cc0000;
+            font-weight: 800;
             padding: 10px;
             border-radius: 20px;
             font-size: 1rem;
@@ -51,7 +51,6 @@
             box-sizing: border-box;
             border: 1px solid #ffcccc;
         }
-        /* ------------------------------------- */
 
         .form-group {
             text-align: left;
@@ -85,6 +84,54 @@
             display: none;
             margin-top: 15px;
             border-top: 1px dashed #ccc;
+            padding-top: 15px;
+        }
+
+        /* --- BOTÕES DE QUANTIDADE --- */
+        .qtd-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .btn-qtd {
+            width: 40px;
+            height: 40px;
+            background: #ffc107;
+            border: none;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-qtd:hover {
+            background: #e0a800;
+            transform: scale(1.1);
+        }
+
+        #qtd-numero {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* --- EXIBIÇÃO DO TOTAL --- */
+        .total-box {
+            font-size: 1.4rem;
+            color: #28a745;
+            font-weight: 800;
+            margin-bottom: 20px;
+            border-top: 2px dashed #ddd;
             padding-top: 15px;
         }
 
@@ -125,14 +172,10 @@
             box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
         }
 
-        .btn-confirmar:active {
-            transform: scale(0.98) translateY(0);
-        }
-
         .footer-link {
             display: block;
             margin-top: 20px;
-            color: #555; /* Escureci um pouco para ler melhor no fundo branco */
+            color: #555;
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: bold;
@@ -148,7 +191,7 @@
 
 <div class="container">
     <h1>Pizza Pequena</h1>
-    <div class="info-pizza">Tamanho: 25cm (4 fatias)</div>
+    <div class="info-pizza">Tamanho: 25cm (4 fatias) - R$ 25,00 un.</div>
 
     <form>
         <div class="form-group">
@@ -179,11 +222,24 @@
             </select>
         </div>
 
+        <div class="form-group">
+            <label>Quantidade:</label>
+            <div class="qtd-wrapper">
+                <button type="button" class="btn-qtd" onclick="mudarQtd(-1)">-</button>
+                <span id="qtd-numero">1</span>
+                <button type="button" class="btn-qtd" onclick="mudarQtd(1)">+</button>
+            </div>
+        </div>
+
         <div class="pizza-preview">
             <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=1000&auto=format&fit=crop" alt="Pizza Realista Pequena">
         </div>
 
-        <a href="pix.jpeg" target="_blank" class="btn-confirmar">
+        <div class="total-box">
+            Total: R$ <span id="valor-total">25,00</span>
+        </div>
+
+        <a href="#" id="link-confirmar" class="btn-confirmar">
             Confirmar Pedido
         </a>
     </form>
@@ -192,6 +248,10 @@
 </div>
 
 <script>
+    // --- CONFIGURAÇÃO: PREÇO DA PEQUENA ---
+    const precoUnitario = 25.00;
+    let quantidade = 1;
+
     function toggleMeioAMeio() {
         const tipo = document.getElementById('tipo-sabor').value;
         const sabor2 = document.getElementById('sabor2-container');
@@ -205,6 +265,32 @@
             label1.innerText = 'Escolha o Sabor:';
         }
     }
+
+    // Função que altera a quantidade
+    function mudarQtd(delta) {
+        quantidade += delta;
+        if (quantidade < 1) quantidade = 1; // Impede que fique 0
+        atualizarTotal();
+    }
+
+    // Função que calcula o preço e atualiza o botão
+    function atualizarTotal() {
+        let total = quantidade * precoUnitario;
+        
+        // Formata para o padrão brasileiro (troca ponto por vírgula)
+        let totalFormatado = total.toFixed(2).replace('.', ',');
+
+        // Atualiza o texto na tela
+        document.getElementById('qtd-numero').innerText = quantidade;
+        document.getElementById('valor-total').innerText = totalFormatado;
+
+        // Atualiza o link do botão para a página de pagamento
+        let linkBtn = document.getElementById('link-confirmar');
+        linkBtn.href = "pagamento.html?valor=" + totalFormatado;
+    }
+
+    // Executa assim que a página abre
+    atualizarTotal();
 </script>
 
 </body>
