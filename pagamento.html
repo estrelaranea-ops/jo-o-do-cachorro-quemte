@@ -7,6 +7,7 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Fundo 4K realista */
             background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?q=80&w=2560&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
@@ -36,6 +37,7 @@
             margin-top: 0;
         }
 
+        /* Estilo Vermelho e Rosa para o Tamanho e Preço Unitário */
         .info-pizza {
             background: #ffe6e6;
             color: #cc0000;
@@ -85,7 +87,7 @@
             padding-top: 15px;
         }
 
-        /* --- CONTROLE DE QUANTIDADE --- */
+        /* --- BOTÕES DE QUANTIDADE --- */
         .qtd-wrapper {
             display: flex;
             align-items: center;
@@ -107,6 +109,9 @@
             font-size: 1.2rem;
             cursor: pointer;
             transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-qtd:hover {
@@ -129,7 +134,6 @@
             border-top: 2px dashed #ddd;
             padding-top: 15px;
         }
-        /* ------------------------- */
 
         .pizza-preview {
             margin: 25px 0;
@@ -187,7 +191,7 @@
 
 <div class="container">
     <h1>Pizza Pequena</h1>
-    <div class="info-pizza">Tamanho: 25cm (4 fatias) - R$ 25,00</div>
+    <div class="info-pizza">Tamanho: 25cm - R$ 25,00 un.</div>
 
     <form>
         <div class="form-group">
@@ -219,7 +223,7 @@
         </div>
 
         <div class="form-group">
-            <label>Quantidade de Pizzas:</label>
+            <label>Quantidade:</label>
             <div class="qtd-wrapper">
                 <button type="button" class="btn-qtd" onclick="mudarQtd(-1)">-</button>
                 <span id="qtd-numero">1</span>
@@ -244,8 +248,8 @@
 </div>
 
 <script>
-    // PREÇO DA PIZZA PEQUENA
-    const precoUnitario = 25.00;
+    // --- CONFIGURAÇÃO DO PREÇO ---
+    const precoUnitario = 25.00; // Valor da Pizza Pequena
     let quantidade = 1;
 
     function toggleMeioAMeio() {
@@ -262,30 +266,31 @@
         }
     }
 
-    // Função para alterar quantidade e recalcular preço
+    // Função que controla a quantidade
     function mudarQtd(delta) {
         quantidade += delta;
-        if (quantidade < 1) quantidade = 1; // Não deixa baixar de 1
+        if (quantidade < 1) quantidade = 1; // Impede que fique zero ou negativo
         atualizarTotal();
     }
 
+    // Função que faz a conta e atualiza o link
     function atualizarTotal() {
-        // Calcula o novo total
+        // Cálculo
         let total = quantidade * precoUnitario;
         
-        // Formata para o padrão brasileiro (ex: 50,00)
+        // Formatação (troca ponto por vírgula)
         let totalFormatado = total.toFixed(2).replace('.', ',');
 
-        // Atualiza o texto na tela
+        // Atualiza na tela
         document.getElementById('qtd-numero').innerText = quantidade;
         document.getElementById('valor-total').innerText = totalFormatado;
 
-        // Atualiza o link do botão "Confirmar" para levar o preço certo
+        // Atualiza o botão para levar o valor correto para a próxima página
         let linkBtn = document.getElementById('link-confirmar');
         linkBtn.href = "pagamento.html?valor=" + totalFormatado;
     }
 
-    // Roda uma vez ao abrir a página para garantir que o link esteja certo
+    // Inicia a função ao carregar a página
     atualizarTotal();
 </script>
 
