@@ -13,21 +13,24 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
+            padding: 20px; /* Adicionado padding para telas pequenas não colarem na borda */
         }
 
         .container {
             background: white;
             max-width: 450px;
-            width: 90%;
+            width: 100%; /* Mudado para 100% para respeitar o max-width e padding do body */
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             text-align: center;
+            box-sizing: border-box; /* Garante que o padding não estoure a largura */
         }
 
         h1 {
             color: #d9534f;
             margin-bottom: 5px;
+            margin-top: 0;
         }
 
         .info-pizza {
@@ -38,6 +41,7 @@
             display: inline-block;
             margin-bottom: 25px;
             width: 100%;
+            box-sizing: border-box;
         }
 
         .form-group {
@@ -49,6 +53,7 @@
             font-weight: bold;
             display: block;
             margin-bottom: 8px;
+            color: #333;
         }
 
         select {
@@ -59,6 +64,12 @@
             font-size: 1rem;
             background: #fff;
             outline: none;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        
+        select:focus {
+            border-color: #ffc107; /* Foco amarelo */
         }
 
         /* Isso aqui garante que o 2º sabor fique escondido até ser chamado */
@@ -69,11 +80,27 @@
             padding-top: 15px;
         }
 
+        /* --- NOVA ÁREA DA IMAGEM --- */
+        .pizza-preview {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .pizza-preview img {
+            width: 100%;
+            max-height: 220px; /* Altura máxima para não ocupar muito espaço */
+            object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+        /* -------------------------- */
+
+        /* --- BOTÃO AMARELO --- */
         .btn-confirmar {
             display: block;
             width: 100%;
-            background-color: #28a745;
-            color: white;
+            background-color: #ffc107; /* Cor Amarela */
+            color: #000; /* Texto Preto para contraste */
             text-decoration: none;
             padding: 15px;
             font-size: 1.2rem;
@@ -82,18 +109,21 @@
             transition: transform 0.2s, background 0.3s;
             border: none;
             cursor: pointer;
-            margin-top: 10px;
             box-sizing: border-box;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .btn-confirmar:hover {
-            background-color: #218838;
-            transform: scale(1.02);
+            background-color: #e0a800; /* Amarelo mais escuro no hover */
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
         }
 
         .btn-confirmar:active {
-            transform: scale(0.98);
+            transform: scale(0.98) translateY(0);
         }
+        /* -------------------- */
 
         .footer-link {
             display: block;
@@ -101,6 +131,11 @@
             color: #888;
             text-decoration: none;
             font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+        
+        .footer-link:hover {
+            color: #d9534f;
         }
     </style>
 </head>
@@ -137,6 +172,10 @@
                 <option>Chocolate Belga</option>
                 <option>Americana</option>
             </select>
+        </div>
+
+        <div class="pizza-preview">
+            <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=1000&auto=format&fit=crop" alt="Pizza Realista Pequena">
         </div>
 
         <a href="pix.jpeg" target="_blank" class="btn-confirmar">
