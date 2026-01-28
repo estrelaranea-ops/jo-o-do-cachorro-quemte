@@ -116,28 +116,4 @@
             <p class="valor-final" id="display-valor">R$ --,--</p>
         </div>
 
-        <a href="index.html" class="btn-voltar">Voltar ao Início</a>
-    </div>
-
-    <script>
-        // Função para pegar o valor da URL
-        function carregarValor() {
-            // Pega os parâmetros da URL (ex: ?valor=50,00)
-            const urlParams = new URLSearchParams(window.location.search);
-            let valor = urlParams.get('valor');
-
-            // Se não tiver valor na URL, coloca um padrão
-            if (!valor) {
-                valor = "0,00"; 
-            }
-
-            // Escreve o valor na tela
-            document.getElementById('display-valor').innerText = "R$ " + valor;
-        }
-
-        // Roda a função assim que a página abre
-        carregarValor();
-    </script>
-
-</body>
-</html>
+        <a href="index.html" class="btn-voltar
