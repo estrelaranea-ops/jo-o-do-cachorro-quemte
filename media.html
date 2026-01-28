@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Fundo 4K realista (mesmo padrão das outras) */
+            /* Fundo 4K realista (mesmo da grande para manter o padrão) */
             background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?q=80&w=2560&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
@@ -39,9 +39,9 @@
 
         /* Estilo Vermelho e Rosa para o Tamanho */
         .info-pizza {
-            background: #ffe6e6;
-            color: #cc0000;
-            font-weight: 800;
+            background: #ffe6e6; /* Rosa claro */
+            color: #cc0000; /* Vermelho vibrante */
+            font-weight: 800; /* Negrito */
             padding: 10px;
             border-radius: 20px;
             font-size: 1rem;
@@ -121,4 +121,94 @@
         .btn-confirmar:hover {
             background-color: #e0a800;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
+        }
+
+        .btn-confirmar:active {
+            transform: scale(0.98) translateY(0);
+        }
+
+        .footer-link {
+            display: block;
+            margin-top: 20px;
+            color: #555;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        
+        .footer-link:hover {
+            color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Pizza Média</h1>
+    <div class="info-pizza">Tamanho: 30cm (6 fatias)</div>
+
+    <form>
+        <div class="form-group">
+            <label>Deseja dividir o sabor?</label>
+            <select id="tipo-sabor" onchange="toggleMeioAMeio()">
+                <option value="inteiro">Sabor Inteiro</option>
+                <option value="meio">Meio a Meio</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label id="label-sabor1">Escolha o Sabor:</label>
+            <select>
+                <option>Calabresa Clássica</option>
+                <option>Frango com Catupiry</option>
+                <option>Chocolate Belga</option>
+                <option>Americana</option>
+                <option>Portuguesa</option>
+                <option>Marguerita</option>
+            </select>
+        </div>
+
+        <div class="form-group half-option" id="sabor2-container">
+            <label>Escolha o 2º Sabor:</label>
+            <select>
+                <option>Calabresa Clássica</option>
+                <option>Frango com Catupiry</option>
+                <option>Chocolate Belga</option>
+                <option>Americana</option>
+                <option>Portuguesa</option>
+                <option>Marguerita</option>
+            </select>
+        </div>
+
+        <div class="pizza-preview">
+            <img src="https://images.unsplash.com/photo-1590947132387-155cc02f3212?q=80&w=1000&auto=format&fit=crop" alt="Pizza Realista Média">
+        </div>
+
+        <a href="pagamento.html?valor=35,00" class="btn-confirmar">
+            Confirmar Pedido
+        </a>
+    </form>
+
+    <a href="index.html" class="footer-link">← Voltar ao cardápio</a>
+</div>
+
+<script>
+    function toggleMeioAMeio() {
+        const tipo = document.getElementById('tipo-sabor').value;
+        const sabor2 = document.getElementById('sabor2-container');
+        const label1 = document.getElementById('label-sabor1');
+
+        if (tipo === 'meio') {
+            sabor2.style.display = 'block';
+            label1.innerText = 'Escolha o 1º Sabor:';
+        } else {
+            sabor2.style.display = 'none';
+            label1.innerText = 'Escolha o Sabor:';
+        }
+    }
+</script>
+
+</body>
+</html>
