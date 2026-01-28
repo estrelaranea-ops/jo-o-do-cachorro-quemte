@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            /* Fundo realista escurecido para destacar o cardápio */
+            /* Fundo com imagem de forno/pizza escurecida */
             background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1974&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
@@ -28,7 +28,7 @@
             position: absolute;
             top: 20px;
             left: 20px;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             padding: 10px 25px;
             border-radius: 50px;
             border: 2px solid #ffc107; /* Borda Amarela */
@@ -40,9 +40,9 @@
             font-family: 'Pacifico', cursive;
             font-size: 1.8rem;
             color: #d9534f; /* Vermelho */
-            text-shadow: 2px 2px 0px #000; /* Sombra Preta */
+            text-shadow: 2px 2px 0px #000;
             margin: 0;
-            border-bottom: 2px solid #ffc107; /* Sublinhado Amarelo */
+            border-bottom: 2px solid #ffc107;
         }
         /* ------------ */
 
@@ -52,7 +52,7 @@
             gap: 30px;
             max-width: 900px;
             width: 100%;
-            margin-top: 80px; /* Espaço extra para a logo */
+            margin-top: 80px;
         }
 
         .card {
@@ -61,7 +61,7 @@
             padding: 20px;
             text-align: center;
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            border-bottom: 6px solid #d9534f; /* Detalhe Vermelho */
+            border-bottom: 6px solid #d9534f; /* Detalhe Vermelho na base */
             transition: transform 0.3s ease;
         }
 
@@ -80,12 +80,12 @@
 
         .card img {
             width: 100%;
-            height: 200px; /* Aumentei um pouco a altura */
+            height: 200px;
             object-fit: cover;
             border-radius: 10px;
             margin-bottom: 15px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            border: 2px solid #eee;
+            border: 1px solid #ddd;
         }
 
         .controls {
@@ -121,7 +121,7 @@
             transform: scale(1.1);
         }
 
-        /* Botão Selecionar (Vermelho) */
+        /* Botão Selecionar (Vermelho e Amarelo) */
         .btn-select {
             display: inline-block;
             background-color: #d9534f;
@@ -134,12 +134,13 @@
             letter-spacing: 1px;
             box-shadow: 0 4px 6px rgba(217, 83, 79, 0.3);
             transition: background 0.3s, transform 0.2s;
+            border: 2px solid #b52b27;
         }
 
         .btn-select:hover {
             background-color: #c9302c;
             transform: scale(1.05);
-            color: #ffc107; /* Texto vira amarelo ao passar o mouse */
+            color: #ffc107; /* Texto vira amarelo */
         }
 
         /* Responsividade */
@@ -181,7 +182,7 @@
 
         <div class="card">
             <h2>Pizza Média</h2>
-            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1000&auto=format&fit=crop" alt="Pizza Média">
+            <img src="https://images.unsplash.com/photo-1593560708920-631629e9d113?q=80&w=1000&auto=format&fit=crop" alt="Pizza Média">
             <div class="controls">
                 <button class="btn-qty btn-minus">-</button>
                 <span class="qty-display">1</span>
@@ -192,7 +193,7 @@
 
         <div class="card">
             <h2>Pizza Grande</h2>
-            <img src="https://images.unsplash.com/photo-1593560708920-631629e9d113?q=80&w=1000&auto=format&fit=crop" alt="Pizza Grande">
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1000&auto=format&fit=crop" alt="Pizza Grande">
             <div class="controls">
                 <button class="btn-qty btn-minus">-</button>
                 <span class="qty-display">1</span>
@@ -214,11 +215,9 @@
     </div>
 
     <script>
-        // Seleciona todos os botões de menos e mais
         const minusButtons = document.querySelectorAll('.btn-minus');
         const plusButtons = document.querySelectorAll('.btn-plus');
 
-        // Função para diminuir a quantidade
         minusButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const display = this.parentElement.querySelector('.qty-display');
@@ -229,7 +228,6 @@
             });
         });
 
-        // Função para aumentar a quantidade
         plusButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const display = this.parentElement.querySelector('.qty-display');
