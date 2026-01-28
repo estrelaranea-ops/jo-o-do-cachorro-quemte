@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pizza Pequena - Finalizar Pedido</title>
+    <title>Pizza Grande - Finalizar Pedido</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -37,7 +37,7 @@
             margin-top: 0;
         }
 
-        /* Estilo Vermelho e Rosa para o Tamanho e Preço Unitário */
+        /* Estilo para Tamanho e Preço Unitário */
         .info-pizza {
             background: #ffe6e6;
             color: #cc0000;
@@ -190,8 +190,8 @@
 <body>
 
 <div class="container">
-    <h1>Pizza Pequena</h1>
-    <div class="info-pizza">Tamanho: 25cm - R$ 25,00 un.</div>
+    <h1>Pizza Grande</h1>
+    <div class="info-pizza">Tamanho: 35cm (8 fatias) - R$ 45,00 un.</div>
 
     <form>
         <div class="form-group">
@@ -209,6 +209,8 @@
                 <option>Frango com Catupiry</option>
                 <option>Chocolate Belga</option>
                 <option>Americana</option>
+                <option>Portuguesa</option>
+                <option>Marguerita</option>
             </select>
         </div>
 
@@ -219,6 +221,8 @@
                 <option>Frango com Catupiry</option>
                 <option>Chocolate Belga</option>
                 <option>Americana</option>
+                <option>Portuguesa</option>
+                <option>Marguerita</option>
             </select>
         </div>
 
@@ -232,11 +236,11 @@
         </div>
 
         <div class="pizza-preview">
-            <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=1000&auto=format&fit=crop" alt="Pizza Realista Pequena">
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1000&auto=format&fit=crop" alt="Pizza Realista Grande">
         </div>
 
         <div class="total-box">
-            Total: R$ <span id="valor-total">25,00</span>
+            Total: R$ <span id="valor-total">45,00</span>
         </div>
 
         <a href="#" id="link-confirmar" class="btn-confirmar">
@@ -248,8 +252,8 @@
 </div>
 
 <script>
-    // --- CONFIGURAÇÃO DO PREÇO ---
-    const precoUnitario = 25.00; // Valor da Pizza Pequena
+    // --- PREÇO DA PIZZA GRANDE ---
+    const precoUnitario = 45.00; 
     let quantidade = 1;
 
     function toggleMeioAMeio() {
@@ -269,11 +273,11 @@
     // Função que controla a quantidade
     function mudarQtd(delta) {
         quantidade += delta;
-        if (quantidade < 1) quantidade = 1; // Impede que fique zero ou negativo
+        if (quantidade < 1) quantidade = 1; 
         atualizarTotal();
     }
 
-    // Função que faz a conta e atualiza o link
+    // Função que calcula o total e atualiza o link
     function atualizarTotal() {
         // Cálculo
         let total = quantidade * precoUnitario;
@@ -285,7 +289,7 @@
         document.getElementById('qtd-numero').innerText = quantidade;
         document.getElementById('valor-total').innerText = totalFormatado;
 
-        // Atualiza o botão para levar o valor correto para a próxima página
+        // Atualiza o botão para levar o valor correto para a página de pagamento
         let linkBtn = document.getElementById('link-confirmar');
         linkBtn.href = "pagamento.html?valor=" + totalFormatado;
     }
