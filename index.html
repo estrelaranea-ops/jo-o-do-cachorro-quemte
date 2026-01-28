@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pizzaria do Ranea</title>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            /* Fundo com imagem de forno/pizza escurecida */
             background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1974&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
@@ -23,28 +23,62 @@
             position: relative;
         }
 
-        /* --- LOGO --- */
+        /* --- LOGO E CONTATO --- */
         .logo-container {
             position: absolute;
             top: 20px;
             left: 20px;
             background: rgba(0, 0, 0, 0.85);
-            padding: 10px 25px;
-            border-radius: 50px;
-            border: 2px solid #ffc107; /* Borda Amarela */
+            padding: 15px 30px; /* Aumentei um pouco o padding vertical */
+            border-radius: 30px; /* Ajustei a borda para ficar harmônica com o tamanho maior */
+            border: 2px solid #ffc107;
             box-shadow: 0 4px 15px rgba(0,0,0,0.6);
             z-index: 10;
+            display: flex;
+            flex-direction: column; /* Coloca um item embaixo do outro */
+            align-items: center; /* Centraliza tudo */
+            text-align: center;
         }
 
         .logo-text {
             font-family: 'Pacifico', cursive;
             font-size: 1.8rem;
-            color: #d9534f; /* Vermelho */
+            color: #d9534f;
             text-shadow: 2px 2px 0px #000;
             margin: 0;
             border-bottom: 2px solid #ffc107;
+            padding-bottom: 5px;
+            margin-bottom: 10px; /* Espaço entre a logo e os contatos */
         }
-        /* ------------ */
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            font-size: 0.9rem;
+            color: #fff;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .contact-item:hover {
+            color: #ffc107;
+        }
+
+        .contact-item i {
+            color: #ffc107; /* Ícones em amarelo */
+            font-size: 1.1rem;
+        }
+        /* --------------------- */
 
         .container {
             display: grid;
@@ -52,7 +86,7 @@
             gap: 30px;
             max-width: 900px;
             width: 100%;
-            margin-top: 80px;
+            margin-top: 140px; /* Aumentei a margem para não bater na logo que cresceu */
         }
 
         .card {
@@ -61,7 +95,7 @@
             padding: 20px;
             text-align: center;
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            border-bottom: 6px solid #d9534f; /* Detalhe Vermelho na base */
+            border-bottom: 6px solid #d9534f;
             transition: transform 0.3s ease;
         }
 
@@ -99,7 +133,6 @@
             color: #222;
         }
 
-        /* Botões +/- (Amarelo e Preto) */
         .btn-qty {
             background-color: #ffc107;
             color: #000;
@@ -121,7 +154,6 @@
             transform: scale(1.1);
         }
 
-        /* Botão Selecionar (Vermelho e Amarelo) */
         .btn-select {
             display: inline-block;
             background-color: #d9534f;
@@ -140,20 +172,23 @@
         .btn-select:hover {
             background-color: #c9302c;
             transform: scale(1.05);
-            color: #ffc107; /* Texto vira amarelo */
+            color: #ffc107;
         }
 
         /* Responsividade */
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
+                margin-top: 20px;
             }
             .logo-container {
                 position: relative;
                 top: 0;
                 left: 0;
-                margin-bottom: 20px;
-                display: inline-block;
+                margin-bottom: 30px;
+                display: flex;
+                width: auto;
+                max-width: 90%;
             }
             body {
                 flex-direction: column;
@@ -166,6 +201,16 @@
 
     <div class="logo-container">
         <h1 class="logo-text">Pizzaria do Ranea</h1>
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-phone-alt"></i>
+                <span>(41) 98788-4999</span>
+            </div>
+            <a href="https://instagram.com/gaabbzyx" target="_blank" class="contact-item">
+                <i class="fab fa-instagram"></i>
+                <span>@gaabbzyx</span>
+            </a>
+        </div>
     </div>
 
     <div class="container">
