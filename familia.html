@@ -7,37 +7,49 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
+            /* Fundo 4K realista (mantendo o padrão visual) */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?q=80&w=2560&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
+            padding: 20px;
         }
 
         .container {
-            background: white;
+            background: rgba(255, 255, 255, 0.98);
             max-width: 450px;
-            width: 90%;
+            width: 100%;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
             text-align: center;
+            box-sizing: border-box;
         }
 
         h1 {
             color: #d9534f;
             margin-bottom: 5px;
+            margin-top: 0;
         }
 
+        /* Estilo Vermelho e Rosa para o Tamanho */
         .info-pizza {
-            background: #f1f1f1;
-            padding: 8px;
+            background: #ffe6e6;
+            color: #cc0000;
+            font-weight: 800;
+            padding: 10px;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 1rem;
             display: inline-block;
             margin-bottom: 25px;
             width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ffcccc;
         }
 
         .form-group {
@@ -49,6 +61,7 @@
             font-weight: bold;
             display: block;
             margin-bottom: 8px;
+            color: #333;
         }
 
         select {
@@ -59,9 +72,14 @@
             font-size: 1rem;
             background: #fff;
             outline: none;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        
+        select:focus {
+            border-color: #ffc107;
         }
 
-        /* Estilo para esconder o 2º sabor inicialmente */
         .half-option {
             display: none;
             margin-top: 15px;
@@ -69,86 +87,14 @@
             padding-top: 15px;
         }
 
-        .btn-confirmar {
-            display: block;
+        .pizza-preview {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .pizza-preview img {
             width: 100%;
-            background-color: #28a745;
-            color: white;
-            text-decoration: none;
-            padding: 15px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 10px;
-            transition: transform 0.2s, background 0.3s;
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
-            box-sizing: border-box;
-        }
-
-        .btn-confirmar:hover {
-            background-color: #218838;
-            transform: scale(1.02);
-        }
-
-        .btn-confirmar:active {
-            transform: scale(0.98);
-        }
-
-        .footer-link {
-            display: block;
-            margin-top: 20px;
-            color: #888;
-            text-decoration: none;
-            font-size: 0.85rem;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h1>Tamanho Família</h1>
-    <div class="info-pizza">Tamanho: 45cm (12 fatias)</div>
-
-    <form>
-        <div class="form-group">
-            <label>Deseja dividir o sabor?</label>
-            <select id="tipo-sabor" onchange="toggleMeioAMeio()">
-                <option value="inteiro">Sabor Inteiro</option>
-                <option value="meio">Meio a Meio</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label id="label-sabor1">Escolha o Sabor:</label>
-            <select>
-                <option>Calabresa Clássica</option>
-                <option>Frango com Catupiry</option>
-                <option>Chocolate Belga</option>
-                <option>Americana</option>
-            </select>
-        </div>
-
-        <div class="form-group half-option" id="sabor2-container">
-            <label>Escolha o 2º Sabor:</label>
-            <select>
-                <option>Calabresa Clássica</option>
-                <option>Frango com Catupiry</option>
-                <option>Chocolate Belga</option>
-                <option>Americana</option>
-            </select>
-        </div>
-
-        <a href="pix.jpeg" target="_blank" class="btn-confirmar">
-            Confirmar Pedido
-        </a>
-    </form>
-
-    <a href="index.html" class="footer-link">← Voltar ao cardápio</a>
-</div>
-
-<script>
-    function toggleMeioAMeio() {
-        const tipo = document.getElementById('tipo-sabor').value;
-        const sabor2 = document.getElementById('sabor2-container');
-        const label1 = document.getElementById('label
+            max-height: 220px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow:
