@@ -230,6 +230,17 @@
         }
         .btn-buy-drink:hover { background-color: #218838; }
 
+        /* CATEGORIAS DENTRO DO MODAL */
+        .drink-category {
+            font-size: 1.2rem;
+            color: #d9534f;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ffc107;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
         /* ESTILOS DE LOGIN (Mantidos) */
         .tabs { display: flex; justify-content: center; margin-bottom: 25px; border-bottom: 2px solid #eee; }
         .tab-link { background: none; border: none; padding: 10px 20px; font-size: 1rem; font-weight: bold; cursor: pointer; color: #777; border-bottom: 3px solid transparent; width: 50%; }
@@ -330,4 +341,52 @@
     <div id="drinksModal" class="modal">
         <div class="modal-content wide">
             <span class="close-btn" onclick="fecharModal('drinksModal')">&times;</span>
-            <h2
+            <h2 style="color:#28a745; margin-top:0;">Bebidas & Refrescos</h2>
+            
+            <div class="drink-category">Refrigerantes 2L</div>
+            <div class="drinks-grid">
+                <div class="drink-card">
+                    <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=200&auto=format&fit=crop" alt="Coca Cola">
+                    <h4>Coca-Cola 2L</h4>
+                    <span class="price">R$ 14,00</span>
+                    <a href="pagamento.html?valor=14,00" class="btn-buy-drink">Pedir</a>
+                </div>
+                <div class="drink-card">
+                    <img src="https://images.unsplash.com/photo-1581006852262-e4307cf6283a?q=80&w=200&auto=format&fit=crop" alt="Guaraná">
+                    <h4>Guaraná 2L</h4>
+                    <span class="price">R$ 12,00</span>
+                    <a href="pagamento.html?valor=12,00" class="btn-buy-drink">Pedir</a>
+                </div>
+                <div class="drink-card">
+                    <img src="https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?q=80&w=200&auto=format&fit=crop" alt="Fanta">
+                    <h4>Fanta Laranja 2L</h4>
+                    <span class="price">R$ 12,00</span>
+                    <a href="pagamento.html?valor=12,00" class="btn-buy-drink">Pedir</a>
+                </div>
+                <div class="drink-card">
+                    <img src="https://images.unsplash.com/photo-1624517452488-04869289c4ca?q=80&w=200&auto=format&fit=crop" alt="Sprite">
+                    <h4>Sprite 2L</h4>
+                    <span class="price">R$ 12,00</span>
+                    <a href="pagamento.html?valor=12,00" class="btn-buy-drink">Pedir</a>
+                </div>
+            </div>
+
+            <div class="drink-category">Sucos & Água</div>
+            <div class="drinks-grid">
+                <div class="drink-card">
+                    <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=200&auto=format&fit=crop" alt="Suco de Uva">
+                    <h4>Suco de Uva Integral 1L</h4>
+                    <span class="price">R$ 18,00</span>
+                    <a href="pagamento.html?valor=18,00" class="btn-buy-drink">Pedir</a>
+                </div>
+                <div class="drink-card">
+                    <img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?q=80&w=200&auto=format&fit=crop" alt="Suco Laranja">
+                    <h4>Suco Laranja Natural 500ml</h4>
+                    <span class="price">R$ 12,00</span>
+                    <a href="pagamento.html?valor=12,00" class="btn-buy-drink">Pedir</a>
+                </div>
+                <div class="drink-card">
+                    <img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=200&auto=format&fit=crop" alt="Água Mineral">
+                    <h4>Água Mineral 500ml</h4>
+                    <span class="price">R$ 4,00</span>
+                    <a href="pagamento.html?valor=
