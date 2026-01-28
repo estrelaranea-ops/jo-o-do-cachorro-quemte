@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pizzaria do Ranea</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    
+    <title>Cardápio de Pizzas</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            /* Imagem de fundo realista */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=2070&auto=format&fit=crop');
+            /* Imagem de fundo realista (Exemplo do Unsplash) */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=2070&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -19,31 +17,8 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            padding: 20px;
-            position: relative; /* Necessário para posicionar a logo */
+            padding: 20px; /* Adicionado padding para não colar nas bordas em telas pequenas */
         }
-
-        /* --- ESTILO DA LOGO --- */
-        .logo-container {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(0, 0, 0, 0.8); /* Fundo preto semitransparente */
-            padding: 10px 20px;
-            border-radius: 50px;
-            border: 2px solid #ffc107; /* Borda amarela */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            z-index: 10;
-        }
-
-        .logo-text {
-            font-family: 'Pacifico', cursive; /* Fonte estilo "Pizzaria" */
-            font-size: 1.8rem;
-            color: #d9534f; /* Vermelho */
-            text-shadow: 1px 1px 0px #ffc107; /* Sombra amarela */
-            margin: 0;
-        }
-        /* ---------------------- */
 
         .container {
             display: grid;
@@ -51,35 +26,169 @@
             gap: 25px;
             max-width: 900px;
             width: 100%;
-            margin-top: 60px; /* Espaço para a logo não ficar em cima no celular */
         }
 
         .card {
+            /* Fundo branco ligeiramente transparente para destacar do fundo */
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 8px;
+            padding: 25px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            border-bottom: 5px solid #d9534f; /* Detalhe vermelho na base do card */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             transition: transform 0.3s;
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px); /* Efeito de "levantar" ao passar o mouse */
         }
 
         .card h2 {
             font-size: 1.3rem;
-            color: #222;
+            color: #333;
             text-transform: uppercase;
             margin-bottom: 15px;
-            font-weight: 800;
+            font-weight: bold;
         }
 
         .card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
+            width: 100%; /* Imagem ocupa a largura do card */
+            height: 180px; /* Altura fixa para manter padrão */
+            object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
             border-radius: 8px;
             margin-bottom: 15px;
-            box-shadow: 0 2px 5px
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .btn-qty {
+            border: 1px solid #ccc;
+            background: #f0f0f0;
+            width: 35px; /* Botões um pouco maiores */
+            height: 35px;
+            cursor: pointer;
+            color: #333;
+            font-size: 1.2rem;
+            border-radius: 50%; /* Botões redondos */
+            transition: background 0.2s;
+        }
+        
+        .btn-qty:hover {
+            background: #e0e0e0;
+        }
+
+        /* NOVO ESTILO: Botão Amarelo */
+        .btn-select {
+            display: inline-block;
+            background-color: #ffc107; /* Amarelo vibrante */
+            color: #212529; /* Texto escuro para contraste */
+            padding: 12px 35px;
+            text-decoration: none;
+            border-radius: 30px; /* Bordas mais arredondadas */
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+            border: none; /* Remove borda padrão de links */
+        }
+
+        .btn-select:hover {
+            background-color: #e0a800; /* Amarelo mais escuro ao passar o mouse */
+            transform: scale(1.05);
+        }
+
+        /* Estilo responsivo para celular */
+        @media (max-width: 700px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <h2>Pizza Pequena</h2>
+            <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=1000&auto=format&fit=crop" alt="Pizza Pequena">
+            <div class="controls">
+                <button class="btn-qty btn-minus">-</button>
+                <span class="qty-display">1</span> <button class="btn-qty btn-plus">+</button>
+            </div>
+            <a href="pequena.html" class="btn-select">Selecionar</a>
+        </div>
+
+        <div class="card">
+            <h2>Pizza Média</h2>
+            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1000&auto=format&fit=crop" alt="Pizza Média">
+            <div class="controls">
+                <button class="btn-qty btn-minus">-</button>
+                <span class="qty-display">1</span>
+                <button class="btn-qty btn-plus">+</button>
+            </div>
+            <a href="media.html" class="btn-select">Selecionar</a>
+        </div>
+
+        <div class="card">
+            <h2>Pizza Grande</h2>
+            <img src="https://images.unsplash.com/photo-1593560708920-631629e9d113?q=80&w=1000&auto=format&fit=crop" alt="Pizza Grande">
+            <div class="controls">
+                <button class="btn-qty btn-minus">-</button>
+                <span class="qty-display">1</span>
+                <button class="btn-qty btn-plus">+</button>
+            </div>
+            <a href="grande.html" class="btn-select">Selecionar</a>
+        </div>
+
+        <div class="card">
+            <h2>Tamanho Família</h2>
+            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=1000&auto=format&fit=crop" alt="Pizza Família">
+            <div class="controls">
+                <button class="btn-qty btn-minus">-</button>
+                <span class="qty-display">1</span>
+                <button class="btn-qty btn-plus">+</button>
+            </div>
+            <a href="familia.html" class="btn-select">Selecionar</a>
+        </div>
+    </div>
+
+    <script>
+        // Seleciona todos os botões de menos e mais
+        const minusButtons = document.querySelectorAll('.btn-minus');
+        const plusButtons = document.querySelectorAll('.btn-plus');
+
+        // Função para diminuir a quantidade
+        minusButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Encontra o "span" que mostra o número dentro do mesmo card
+                const display = this.parentElement.querySelector('.qty-display');
+                let currentQty = parseInt(display.innerText);
+
+                // Só diminui se for maior que 0
+                if (currentQty > 0) {
+                    display.innerText = currentQty - 1;
+                }
+            });
+        });
+
+        // Função para aumentar a quantidade
+        plusButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Encontra o "span" que mostra o número dentro do mesmo card
+                const display = this.parentElement.querySelector('.qty-display');
+                let currentQty = parseInt(display.innerText);
+
+                // Aumenta o número
+                display.innerText = currentQty + 1;
+            });
+        });
+    </script>
+
+</body>
+</html>
