@@ -53,41 +53,44 @@
             gap: 30px;
             margin-bottom: 20px;
             text-align: left;
-            background: #f9f9f9;
+            background-color: #f9f9f9; /* Fundo leve para destacar a área */
             padding: 20px;
             border-radius: 15px;
             border: 1px solid #eee;
         }
 
-        /* Coluna da Esquerda (QR Code) */
+        /* Área da Imagem (Esquerda) */
         .qr-side {
-            flex: 0 0 auto; /* Não estica nem encolhe */
+            flex: 0 0 auto;
+            display: flex;
+            justify-content: center;
         }
 
         .qr-container {
             border: 4px solid #ffc107;
             padding: 5px;
-            border-radius: 10px;
+            border-radius: 15px;
             background: white;
             line-height: 0;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .qr-container img {
-            width: 180px; /* Tamanho fixo do QR Code */
-            height: 180px;
-            object-fit: contain;
+            width: 200px; /* Tamanho controlado da imagem */
+            height: auto;
+            border-radius: 10px;
         }
 
-        /* Coluna da Direita (Infos) */
+        /* Área dos Dados (Direita) */
         .info-side {
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
+            justify-content: center;
         }
 
-        /* Responsividade para Celular */
+        /* Responsividade: Celular fica um embaixo do outro */
         @media (max-width: 650px) {
             .payment-layout {
                 flex-direction: column;
@@ -109,12 +112,12 @@
 
         .chave-wrapper {
             background: #fff;
-            padding: 10px;
+            padding: 10px 15px;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border: 2px solid #ddd;
+            border: 2px solid #ddd; /* Borda mais visível */
         }
 
         .chave-pix {
@@ -197,14 +200,14 @@
             
             <div class="qr-side">
                 <div class="qr-container">
-                    <img src="QRcode.jpeg" alt="QR Code Pix">
+                    <img src="WhatsApp Image 2026-01-28 at 02.59.09.jpeg" alt="QR Code Pix">
                 </div>
             </div>
 
             <div class="info-side">
                 
                 <div>
-                    <span class="chave-label">Chave Pix (Celular):</span>
+                    <span class="chave-label">Chave Pix (Telefone):</span>
                     <div class="chave-wrapper">
                         <span class="chave-pix" id="textoChave">1134349960</span>
                         <button class="btn-copiar" onclick="copiarChave(this)">
@@ -225,6 +228,7 @@
     </div>
 
     <script>
+        // Pega o valor da URL
         function carregarValor() {
             const urlParams = new URLSearchParams(window.location.search);
             let valor = urlParams.get('valor');
@@ -232,6 +236,7 @@
             document.getElementById('display-valor').innerText = "R$ " + valor;
         }
 
+        // Função de Copiar
         function copiarChave(botao) {
             const chave = document.getElementById('textoChave').innerText;
             const tempInput = document.createElement("input");
