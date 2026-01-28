@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagamento Pix</title>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
-            /* Mesmo fundo de pizza realista */
             background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?q=80&w=2560&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
@@ -24,72 +24,154 @@
 
         .card-pagamento {
             background: #fff;
-            padding: 40px;
+            padding: 30px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             text-align: center;
-            max-width: 400px;
+            max-width: 700px; /* Aumentei a largura para caber lado a lado */
             width: 100%;
         }
 
         h1 {
             font-family: 'Pacifico', cursive;
-            color: #d9534f; /* Vermelho */
+            color: #d9534f;
             margin-top: 0;
             font-size: 2rem;
+            margin-bottom: 5px;
         }
 
         .instrucao {
             color: #555;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        /* Moldura do QR Code */
-        .qr-container {
-            border: 4px solid #ffc107; /* Borda Amarela */
-            padding: 10px;
-            border-radius: 15px;
-            display: inline-block;
-            background: white;
+        /* --- LAYOUT LADO A LADO --- */
+        .payment-layout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px; /* Espaço entre o QR Code e o Valor */
             margin-bottom: 20px;
+            text-align: left; /* Alinha texto da direita */
+        }
+
+        /* Coluna da Esquerda (QR Code) */
+        .qr-side {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .qr-container {
+            border: 4px solid #ffc107;
+            padding: 5px;
+            border-radius: 15px;
+            background: white;
+            line-height: 0; /* Remove espaço extra embaixo da imagem */
         }
 
         .qr-container img {
             width: 100%;
-            max-width: 250px;
+            max-width: 200px; /* Ajustei tamanho */
             height: auto;
-            display: block;
         }
 
-        /* --- TEXTO DO VALOR AUTOMÁTICO --- */
+        /* Coluna da Direita (Infos) */
+        .info-side {
+            flex: 1.2; /* Um pouco maior que o QR */
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Responsividade para Celular */
+        @media (max-width: 600px) {
+            .payment-layout {
+                flex-direction: column; /* Volta a ficar um embaixo do outro */
+                text-align: center;
+            }
+            .info-side {
+                width: 100%;
+            }
+        }
+        /* -------------------------- */
+
+        /* Estilo da Chave Pix */
+        .chave-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 5px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .chave-wrapper {
+            background: #f1f1f1;
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #ccc;
+        }
+
+        .chave-pix {
+            font-family: monospace;
+            font-size: 1rem;
+            color: #333;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin-right: 10px;
+        }
+
+        .btn-copiar {
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: background 0.3s;
+        }
+
+        .btn-copiar:hover {
+            background: #555;
+        }
+
+        .btn-copiar.copiado {
+            background: #28a745;
+        }
+
+        /* Box do Valor */
         .box-valor {
-            background-color: #f8f9fa;
+            background-color: #fff3cd; /* Fundo amarelinho */
             border: 2px dashed #d9534f;
             padding: 15px;
             border-radius: 10px;
-            margin-top: 10px;
+            text-align: center;
         }
 
         .label-total {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             color: #777;
             font-weight: bold;
             display: block;
-            margin-bottom: 5px;
         }
 
         .valor-final {
-            font-size: 2.2rem;
-            color: #28a745; /* Verde Dinheiro */
+            font-size: 2rem;
+            color: #28a745;
             font-weight: 800;
             margin: 0;
         }
-        /* --------------------------------- */
 
         .btn-voltar {
             display: inline-block;
-            margin-top: 30px;
+            margin-top: 10px;
             color: #777;
             text-decoration: none;
             font-weight: bold;
@@ -105,37 +187,66 @@
 
     <div class="card-pagamento">
         <h1>Hora do Pix!</h1>
-        <p class="instrucao">Escaneie o QR Code abaixo para pagar.</p>
+        <p class="instrucao">Finalize seu pagamento com segurança.</p>
 
-        <div class="qr-container">
-            <img src="WhatsApp Image 2026-01-28 at 00.58.55.jpeg" alt="QR Code Pix">
-        </div>
+        <div class="payment-layout">
+            
+            <div class="qr-side">
+                <div class="qr-container">
+                    <img src="QRcode.jpeg" alt="QR Code Pix">
+                </div>
+            </div>
 
-        <div class="box-valor">
-            <span class="label-total">Total a Pagar</span>
-            <p class="valor-final" id="display-valor">R$ --,--</p>
+            <div class="info-side">
+                
+                <div>
+                    <span class="chave-label">Chave Pix (Telefone/CPF/Aleatória):</span>
+                    <div class="chave-wrapper">
+                        <span class="chave-pix" id="textoChave">11243449960</span>
+                        <button class="btn-copiar" onclick="copiarChave(this)">
+                            <i class="far fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="box-valor">
+                    <span class="label-total">Total a Pagar</span>
+                    <p class="valor-final" id="display-valor">R$ --,--</p>
+                </div>
+
+            </div>
         </div>
 
         <a href="index.html" class="btn-voltar">Voltar ao Início</a>
     </div>
 
     <script>
-        // Função para pegar o valor da URL
         function carregarValor() {
-            // Pega os parâmetros da URL (ex: ?valor=50,00)
             const urlParams = new URLSearchParams(window.location.search);
             let valor = urlParams.get('valor');
-
-            // Se não tiver valor na URL, coloca um padrão
-            if (!valor) {
-                valor = "0,00"; 
-            }
-
-            // Escreve o valor na tela
+            if (!valor) valor = "0,00"; 
             document.getElementById('display-valor').innerText = "R$ " + valor;
         }
 
-        // Roda a função assim que a página abre
+        function copiarChave(botao) {
+            const chave = document.getElementById('textoChave').innerText;
+            const tempInput = document.createElement("input");
+            tempInput.value = chave;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            const htmlOriginal = botao.innerHTML;
+            botao.innerHTML = '<i class="fas fa-check"></i>';
+            botao.classList.add('copiado');
+
+            setTimeout(() => {
+                botao.innerHTML = htmlOriginal;
+                botao.classList.remove('copiado');
+            }, 2000);
+        }
+
         carregarValor();
     </script>
 
