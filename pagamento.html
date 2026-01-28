@@ -3,14 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagamento Pix</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
-    
+    <title>Pizza Pequena - Finalizar Pedido</title>
     <style>
         body {
-            font-family: 'Segoe UI', sans-serif;
-            /* Mesmo fundo de pizza realista */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?q=80&w=2560&auto=format&fit=crop');
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?q=80&w=2560&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -22,122 +19,275 @@
             padding: 20px;
         }
 
-        .card-pagamento {
-            background: #fff;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            text-align: center;
-            max-width: 400px;
+        .container {
+            background: rgba(255, 255, 255, 0.98);
+            max-width: 450px;
             width: 100%;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            text-align: center;
+            box-sizing: border-box;
         }
 
         h1 {
-            font-family: 'Pacifico', cursive;
-            color: #d9534f; /* Vermelho */
+            color: #d9534f;
+            margin-bottom: 5px;
             margin-top: 0;
-            font-size: 2rem;
         }
 
-        .instrucao {
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        /* Moldura do QR Code */
-        .qr-container {
-            border: 4px solid #ffc107; /* Borda Amarela */
+        .info-pizza {
+            background: #ffe6e6;
+            color: #cc0000;
+            font-weight: 800;
             padding: 10px;
-            border-radius: 15px;
+            border-radius: 20px;
+            font-size: 1rem;
             display: inline-block;
-            background: white;
+            margin-bottom: 25px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ffcccc;
+        }
+
+        .form-group {
+            text-align: left;
             margin-bottom: 20px;
         }
 
-        .qr-container img {
-            width: 100%;
-            max-width: 250px;
-            height: auto;
+        label {
+            font-weight: bold;
             display: block;
+            margin-bottom: 8px;
+            color: #333;
         }
 
-        /* --- TEXTO DO VALOR AUTOMÁTICO --- */
-        .box-valor {
-            background-color: #f8f9fa;
-            border: 2px dashed #d9534f;
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #fff;
+            outline: none;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        
+        select:focus {
+            border-color: #ffc107;
+        }
+
+        .half-option {
+            display: none;
+            margin-top: 15px;
+            border-top: 1px dashed #ccc;
+            padding-top: 15px;
+        }
+
+        /* --- CONTROLE DE QUANTIDADE --- */
+        .qtd-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8f9fa;
             padding: 15px;
             border-radius: 10px;
-            margin-top: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
         }
 
-        .label-total {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            color: #777;
+        .btn-qtd {
+            width: 40px;
+            height: 40px;
+            background: #ffc107;
+            border: none;
+            border-radius: 50%;
             font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.2s;
         }
 
-        .valor-final {
-            font-size: 2.2rem;
-            color: #28a745; /* Verde Dinheiro */
+        .btn-qtd:hover {
+            background: #e0a800;
+            transform: scale(1.1);
+        }
+
+        #qtd-numero {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* --- EXIBIÇÃO DO TOTAL --- */
+        .total-box {
+            font-size: 1.4rem;
+            color: #28a745;
             font-weight: 800;
-            margin: 0;
+            margin-bottom: 20px;
+            border-top: 2px dashed #ddd;
+            padding-top: 15px;
         }
-        /* --------------------------------- */
+        /* ------------------------- */
 
-        .btn-voltar {
-            display: inline-block;
-            margin-top: 30px;
-            color: #777;
+        .pizza-preview {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .pizza-preview img {
+            width: 100%;
+            max-height: 220px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .btn-confirmar {
+            display: block;
+            width: 100%;
+            background-color: #ffc107;
+            color: #000;
             text-decoration: none;
+            padding: 15px;
+            font-size: 1.2rem;
             font-weight: bold;
-            transition: color 0.3s;
+            border-radius: 10px;
+            transition: transform 0.2s, background 0.3s;
+            border: none;
+            cursor: pointer;
+            box-sizing: border-box;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .btn-voltar:hover {
+        .btn-confirmar:hover {
+            background-color: #e0a800;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
+        }
+
+        .footer-link {
+            display: block;
+            margin-top: 20px;
+            color: #555;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        
+        .footer-link:hover {
             color: #d9534f;
         }
     </style>
 </head>
 <body>
 
-    <div class="card-pagamento">
-        <h1>Hora do Pix!</h1>
-        <p class="instrucao">Escaneie o QR Code abaixo para pagar.</p>
+<div class="container">
+    <h1>Pizza Pequena</h1>
+    <div class="info-pizza">Tamanho: 25cm (4 fatias) - R$ 25,00</div>
 
-        <div class="qr-container">
-            <img src="WhatsApp Image 2026-01-28 at 00.58.55.jpeg" alt="QR Code Pix">
+    <form>
+        <div class="form-group">
+            <label>Deseja dividir o sabor?</label>
+            <select id="tipo-sabor" onchange="toggleMeioAMeio()">
+                <option value="inteiro">Sabor Inteiro</option>
+                <option value="meio">Meio a Meio</option>
+            </select>
         </div>
 
-        <div class="box-valor">
-            <span class="label-total">Total a Pagar</span>
-            <p class="valor-final" id="display-valor">R$ --,--</p>
+        <div class="form-group">
+            <label id="label-sabor1">Escolha o Sabor:</label>
+            <select>
+                <option>Calabresa Clássica</option>
+                <option>Frango com Catupiry</option>
+                <option>Chocolate Belga</option>
+                <option>Americana</option>
+            </select>
         </div>
 
-        <a href="index.html" class="btn-voltar">Voltar ao Início</a>
-    </div>
+        <div class="form-group half-option" id="sabor2-container">
+            <label>Escolha o 2º Sabor:</label>
+            <select>
+                <option>Calabresa Clássica</option>
+                <option>Frango com Catupiry</option>
+                <option>Chocolate Belga</option>
+                <option>Americana</option>
+            </select>
+        </div>
 
-    <script>
-        // Função para pegar o valor da URL
-        function carregarValor() {
-            // Pega os parâmetros da URL (ex: ?valor=25,00)
-            const urlParams = new URLSearchParams(window.location.search);
-            let valor = urlParams.get('valor');
+        <div class="form-group">
+            <label>Quantidade de Pizzas:</label>
+            <div class="qtd-wrapper">
+                <button type="button" class="btn-qtd" onclick="mudarQtd(-1)">-</button>
+                <span id="qtd-numero">1</span>
+                <button type="button" class="btn-qtd" onclick="mudarQtd(1)">+</button>
+            </div>
+        </div>
 
-            // Se não tiver valor na URL, coloca um padrão ou avisa
-            if (!valor) {
-                valor = "0,00"; 
-            }
+        <div class="pizza-preview">
+            <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=1000&auto=format&fit=crop" alt="Pizza Realista Pequena">
+        </div>
 
-            // Escreve o valor na tela
-            document.getElementById('display-valor').innerText = "R$ " + valor;
+        <div class="total-box">
+            Total: R$ <span id="valor-total">25,00</span>
+        </div>
+
+        <a href="#" id="link-confirmar" class="btn-confirmar">
+            Confirmar Pedido
+        </a>
+    </form>
+
+    <a href="index.html" class="footer-link">← Voltar ao cardápio</a>
+</div>
+
+<script>
+    // PREÇO DA PIZZA PEQUENA
+    const precoUnitario = 25.00;
+    let quantidade = 1;
+
+    function toggleMeioAMeio() {
+        const tipo = document.getElementById('tipo-sabor').value;
+        const sabor2 = document.getElementById('sabor2-container');
+        const label1 = document.getElementById('label-sabor1');
+
+        if (tipo === 'meio') {
+            sabor2.style.display = 'block';
+            label1.innerText = 'Escolha o 1º Sabor:';
+        } else {
+            sabor2.style.display = 'none';
+            label1.innerText = 'Escolha o Sabor:';
         }
+    }
 
-        // Roda a função assim que a página abre
-        carregarValor();
-    </script>
+    // Função para alterar quantidade e recalcular preço
+    function mudarQtd(delta) {
+        quantidade += delta;
+        if (quantidade < 1) quantidade = 1; // Não deixa baixar de 1
+        atualizarTotal();
+    }
+
+    function atualizarTotal() {
+        // Calcula o novo total
+        let total = quantidade * precoUnitario;
+        
+        // Formata para o padrão brasileiro (ex: 50,00)
+        let totalFormatado = total.toFixed(2).replace('.', ',');
+
+        // Atualiza o texto na tela
+        document.getElementById('qtd-numero').innerText = quantidade;
+        document.getElementById('valor-total').innerText = totalFormatado;
+
+        // Atualiza o link do botão "Confirmar" para levar o preço certo
+        let linkBtn = document.getElementById('link-confirmar');
+        linkBtn.href = "pagamento.html?valor=" + totalFormatado;
+    }
+
+    // Roda uma vez ao abrir a página para garantir que o link esteja certo
+    atualizarTotal();
+</script>
 
 </body>
 </html>
