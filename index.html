@@ -98,9 +98,9 @@
             border-color: #ffc107;
         }
 
-        /* BOTÃO CARRINHO (DESTAQUE) */
+        /* --- BOTÃO CARRINHO (NOVO) --- */
         .btn-cart {
-            background-color: #28a745;
+            background-color: #28a745; /* Verde para destacar */
             border-color: #28a745;
             position: relative;
         }
@@ -109,8 +109,10 @@
             border-color: #1e7e34;
             color: #fff;
         }
+        
+        /* Bolinha vermelha com numero de itens */
         .cart-badge {
-            background-color: #d9534f;
+            background-color: #d9534f; 
             color: white;
             border-radius: 50%;
             padding: 4px 8px;
@@ -259,10 +261,17 @@
         .btn-remove { color: red; cursor: pointer; font-size: 1.2rem; background: none; border: none; }
 
         /* ÁREA DE PAGAMENTO PIX */
-        #pix-area { display: none; text-align: center; animation: fadeIn 0.5s; }
-        .pix-key { background: #eee; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 1.1rem; margin: 10px 0; word-break: break-all; }
-        .qr-code-placeholder { width: 200px; height: 200px; background-color: #fff; margin: 0 auto 15px auto; border: 1px solid #ddd; padding: 10px; }
+        #pix-area { display: none; text-align: center; animation: fadeIn 0.5s; background: #f9f9f9; padding: 15px; border-radius: 10px; margin-top: 15px; }
+        .pix-key { background: #fff; padding: 10px; border: 1px dashed #333; font-family: monospace; font-size: 1rem; margin: 10px 0; word-break: break-all; }
+        .qr-code-placeholder { width: 180px; height: 180px; margin: 0 auto 10px auto; display: block; }
         
         /* LOGIN STYLES */
         .tabs { display: flex; justify-content: center; margin-bottom: 25px; border-bottom: 2px solid #eee; }
-        .tab-link { background: none; border: none;
+        .tab-link { background: none; border: none; padding: 10px 20px; font-size: 1rem; font-weight: bold; cursor: pointer; color: #777; border-bottom: 3px solid transparent; width: 50%; }
+        .tab-link.active { color: #d9534f; border-bottom: 3px solid #d9534f; }
+        .auth-form { display: flex; flex-direction: column; gap: 15px; text-align: left; }
+        .input-group label { font-size: 0.9rem; font-weight: bold; color: #555; margin-bottom: 5px; display: block; }
+        .input-group input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 1rem; }
+        .btn-submit { background-color: #ffc107; color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 1rem; }
+        .form-section { display: none; }
+        .
