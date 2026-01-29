@@ -98,7 +98,7 @@
             border-color: #ffc107;
         }
 
-        /* --- BOTÃO CARRINHO --- */
+        /* BOTÃO CARRINHO (NOVO) */
         .btn-cart {
             background-color: #28a745;
             border-color: #28a745;
@@ -171,7 +171,7 @@
             font-size: 1.5rem;
             color: #111;
             text-transform: uppercase;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             font-weight: 800;
         }
 
@@ -180,18 +180,18 @@
             height: 220px;
             object-fit: cover;
             border-radius: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        /* ESTILO DO SELETOR DE SABOR */
+        /* SELECT DE SABORES */
         .flavor-select {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
             border-radius: 20px;
             border: 2px solid #ffc107;
-            background-color: #fff;
+            background: #fff;
             font-size: 1rem;
             color: #333;
             font-weight: bold;
@@ -277,8 +277,8 @@
         #pix-area { display: none; text-align: center; animation: fadeIn 0.5s; background: #f9f9f9; padding: 15px; border-radius: 10px; margin-top: 15px; }
         .pix-key { background: #fff; padding: 10px; border: 1px dashed #333; font-family: monospace; font-size: 1rem; margin: 10px 0; word-break: break-all; }
         .qr-code-placeholder { width: 180px; height: 180px; margin: 0 auto 10px auto; display: block; }
-
-        /* LOGIN */
+        
+        /* LOGIN STYLES */
         .tabs { display: flex; justify-content: center; margin-bottom: 25px; border-bottom: 2px solid #eee; }
         .tab-link { background: none; border: none; padding: 10px 20px; font-size: 1rem; font-weight: bold; cursor: pointer; color: #777; border-bottom: 3px solid transparent; width: 50%; }
         .tab-link.active { color: #d9534f; border-bottom: 3px solid #d9534f; }
@@ -291,7 +291,7 @@
 
         @media (max-width: 900px) {
             .pizza-grid { grid-template-columns: 1fr; }
-            .drinks-grid { grid-template-columns: 1fr; } 
+            .drinks-grid { grid-template-columns: 1fr; }
             .logo-container { position: relative; top: auto; left: auto; margin-bottom: 30px; width: 90%; }
             .main-container { margin-top: 0; }
             body { flex-direction: column; padding-top: 30px; }
@@ -327,10 +327,9 @@
         </div>
 
         <div class="pizza-grid">
-            <div class="card" id="pizza-pequena">
+            <div class="card" data-base-price="30.00">
                 <h2>Pizza Pequena</h2>
                 <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=600&auto=format&fit=crop" alt="Pizza Pequena">
-                
                 <select class="flavor-select">
                     <option value="Calabresa">Calabresa</option>
                     <option value="Mussarela">Mussarela</option>
@@ -338,19 +337,17 @@
                     <option value="Frango c/ Catupiry">Frango c/ Catupiry</option>
                     <option value="Quatro Queijos">Quatro Queijos</option>
                 </select>
-
                 <div class="controls">
-                    <button class="btn-qty" onclick="updateQty(this, -1)">-</button>
+                    <button class="btn-qty" onclick="updatePizzaPrice(this, -1)">-</button>
                     <span class="qty-display">1</span>
-                    <button class="btn-qty" onclick="updateQty(this, 1)">+</button>
+                    <button class="btn-qty" onclick="updatePizzaPrice(this, 1)">+</button>
                 </div>
-                <button class="btn-add-cart" onclick="addToCart('Pizza Pequena', 30.00, this)">Adicionar - R$ 30,00</button>
+                <button class="btn-add-cart" onclick="addPizzaToCart(this)">Adicionar - R$ <span class="price-text">30,00</span></button>
             </div>
 
-            <div class="card" id="pizza-media">
+            <div class="card" data-base-price="45.00">
                 <h2>Pizza Média</h2>
                 <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=600&auto=format&fit=crop" alt="Pizza Média">
-                
                 <select class="flavor-select">
                     <option value="Calabresa">Calabresa</option>
                     <option value="Mussarela">Mussarela</option>
@@ -358,19 +355,17 @@
                     <option value="Frango c/ Catupiry">Frango c/ Catupiry</option>
                     <option value="Quatro Queijos">Quatro Queijos</option>
                 </select>
-
                 <div class="controls">
-                    <button class="btn-qty" onclick="updateQty(this, -1)">-</button>
+                    <button class="btn-qty" onclick="updatePizzaPrice(this, -1)">-</button>
                     <span class="qty-display">1</span>
-                    <button class="btn-qty" onclick="updateQty(this, 1)">+</button>
+                    <button class="btn-qty" onclick="updatePizzaPrice(this, 1)">+</button>
                 </div>
-                <button class="btn-add-cart" onclick="addToCart('Pizza Média', 45.00, this)">Adicionar - R$ 45,00</button>
+                <button class="btn-add-cart" onclick="addPizzaToCart(this)">Adicionar - R$ <span class="price-text">45,00</span></button>
             </div>
 
-            <div class="card" id="pizza-grande">
+            <div class="card" data-base-price="60.00">
                 <h2>Pizza Grande</h2>
                 <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=600&auto=format&fit=crop" alt="Pizza Grande">
-                
                 <select class="flavor-select">
                     <option value="Calabresa">Calabresa</option>
                     <option value="Mussarela">Mussarela</option>
@@ -378,19 +373,17 @@
                     <option value="Frango c/ Catupiry">Frango c/ Catupiry</option>
                     <option value="Quatro Queijos">Quatro Queijos</option>
                 </select>
-
                 <div class="controls">
-                    <button class="btn-qty" onclick="updateQty(this, -1)">-</button>
+                    <button class="btn-qty" onclick="updatePizzaPrice(this, -1)">-</button>
                     <span class="qty-display">1</span>
-                    <button class="btn-qty" onclick="updateQty(this, 1)">+</button>
+                    <button class="btn-qty" onclick="updatePizzaPrice(this, 1)">+</button>
                 </div>
-                <button class="btn-add-cart" onclick="addToCart('Pizza Grande', 60.00, this)">Adicionar - R$ 60,00</button>
+                <button class="btn-add-cart" onclick="addPizzaToCart(this)">Adicionar - R$ <span class="price-text">60,00</span></button>
             </div>
 
-            <div class="card" id="pizza-familia">
+            <div class="card" data-base-price="75.00">
                 <h2>Tamanho Família</h2>
                 <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=600&auto=format&fit=crop" alt="Pizza Família">
-                
                 <select class="flavor-select">
                     <option value="Calabresa">Calabresa</option>
                     <option value="Mussarela">Mussarela</option>
@@ -398,13 +391,12 @@
                     <option value="Frango c/ Catupiry">Frango c/ Catupiry</option>
                     <option value="Quatro Queijos">Quatro Queijos</option>
                 </select>
-
                 <div class="controls">
-                    <button class="btn-qty" onclick="updateQty(this, -1)">-</button>
+                    <button class="btn-qty" onclick="updatePizzaPrice(this, -1)">-</button>
                     <span class="qty-display">1</span>
-                    <button class="btn-qty" onclick="updateQty(this, 1)">+</button>
+                    <button class="btn-qty" onclick="updatePizzaPrice(this, 1)">+</button>
                 </div>
-                <button class="btn-add-cart" onclick="addToCart('Pizza Família', 75.00, this)">Adicionar - R$ 75,00</button>
+                <button class="btn-add-cart" onclick="addPizzaToCart(this)">Adicionar - R$ <span class="price-text">75,00</span></button>
             </div>
         </div>
     </div>
@@ -509,172 +501,3 @@
                 <p>Escaneie o QR Code ou copie a chave abaixo:</p>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" class="qr-code-placeholder" alt="QR Code Pix">
                 <div class="pix-key">00020126360014BR.GOV.BCB.PIX...</div>
-                <button class="btn-submit" style="background-color:#28a745;" onclick="alert('Pagamento Confirmado! Seu pedido está sendo preparado.')">Confirmar Pagamento</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="authModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="fecharModal('authModal')">&times;</span>
-            <div class="tabs">
-                <button class="tab-link active" onclick="mostrarForm('login', this)">Já tenho conta</button>
-                <button class="tab-link" onclick="mostrarForm('cadastro', this)">Cadastrar</button>
-            </div>
-            <div id="login" class="form-section active">
-                <form class="auth-form" onsubmit="event.preventDefault(); alert('Login realizado!'); fecharModal('authModal');">
-                    <div class="input-group"><label>E-mail</label><input type="email" required></div>
-                    <div class="input-group"><label>Senha</label><input type="password" required></div>
-                    <button type="submit" class="btn-submit">Entrar</button>
-                </form>
-            </div>
-            <div id="cadastro" class="form-section">
-                <form class="auth-form" onsubmit="event.preventDefault(); alert('Conta criada!'); fecharModal('authModal');">
-                    <div class="input-group"><label>Seu Gmail</label><input type="email" required></div>
-                    <div class="input-group"><label>Seu Telefone</label><input type="tel" required></div>
-                    <div class="input-group"><label>Crie uma Senha</label><input type="password" required></div>
-                    <div class="input-group"><label>Confirme a Senha</label><input type="password" required></div>
-                    <button type="submit" class="btn-submit">Criar Conta</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // --- LÓGICA DO CARRINHO ---
-        let cart = [];
-
-        function updateCartCount() {
-            const count = cart.reduce((total, item) => total + item.qty, 0);
-            const badge = document.getElementById('cart-count');
-            badge.innerText = count;
-            if(count > 0) badge.style.display = 'inline-block';
-            else badge.style.display = 'none';
-        }
-
-        function renderCart() {
-            const cartContainer = document.getElementById('cart-items');
-            const totalElement = document.getElementById('cart-total-value');
-            
-            document.getElementById('pix-area').style.display = 'none';
-
-            if (cart.length === 0) {
-                cartContainer.innerHTML = '<p style="text-align:center; color:#777;">Seu carrinho está vazio.</p>';
-                totalElement.innerText = '0,00';
-                return;
-            }
-
-            let html = '';
-            let total = 0;
-
-            cart.forEach((item, index) => {
-                const itemTotal = item.price * item.qty;
-                total += itemTotal;
-                html += `
-                    <div class="cart-item">
-                        <div class="cart-item-info">
-                            <span class="cart-item-title">${item.qty}x ${item.name}</span>
-                            <span class="cart-item-price">R$ ${itemTotal.toFixed(2).replace('.', ',')}</span>
-                        </div>
-                        <button class="btn-remove" onclick="removeFromCart(${index})"><i class="fas fa-trash"></i></button>
-                    </div>
-                `;
-            });
-
-            cartContainer.innerHTML = html;
-            totalElement.innerText = total.toFixed(2).replace('.', ',');
-        }
-
-        function addToCart(name, price, element) {
-            let qty = 1;
-            const card = element.closest('.card');
-            
-            // Pega a quantidade
-            if(card) {
-                const qtyDisplay = card.querySelector('.qty-display');
-                if(qtyDisplay) qty = parseInt(qtyDisplay.innerText);
-            
-                // Pega o sabor escolhido
-                const flavorSelect = card.querySelector('.flavor-select');
-                if(flavorSelect) {
-                    name = `${name} (${flavorSelect.value})`;
-                }
-            }
-
-            const existingItem = cart.find(item => item.name === name);
-            if (existingItem) {
-                existingItem.qty += qty;
-            } else {
-                cart.push({ name, price, qty });
-            }
-
-            updateCartCount();
-            renderCart();
-            alert(`${qty}x ${name} adicionado ao carrinho!`);
-        }
-
-        function addDrinkToCart(name, price, element) {
-            const card = element.closest('.drink-card');
-            const qtyDisplay = card.querySelector('.qty-display-drink');
-            let qty = parseInt(qtyDisplay.innerText);
-
-            const existingItem = cart.find(item => item.name === name);
-            if (existingItem) {
-                existingItem.qty += qty;
-            } else {
-                cart.push({ name, price, qty });
-            }
-            
-            updateCartCount();
-            renderCart();
-            qtyDisplay.innerText = 1; 
-            alert(`${qty}x ${name} adicionado ao carrinho!`);
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartCount();
-            renderCart();
-        }
-
-        function showPayment() {
-            if(cart.length === 0) {
-                alert("Seu carrinho está vazio!");
-                return;
-            }
-            document.getElementById('pix-area').style.display = 'block';
-            const modalContent = document.querySelector('#cartModal .modal-content');
-            modalContent.scrollTop = modalContent.scrollHeight;
-        }
-
-        // --- CONTROLES DE QUANTIDADE PIZZA ---
-        function updateQty(btn, change) {
-            const display = btn.parentElement.querySelector('.qty-display');
-            let val = parseInt(display.innerText) + change;
-            if (val < 1) val = 1;
-            display.innerText = val;
-        }
-
-        // --- CONTROLES DE QUANTIDADE BEBIDA ---
-        function updateDrinkQty(btn, change) {
-            const display = btn.parentElement.querySelector('.qty-display-drink');
-            let val = parseInt(display.innerText) + change;
-            if (val < 1) val = 1;
-            display.innerText = val;
-        }
-
-        // --- SISTEMA DE MODAIS ---
-        function abrirModal(id) { document.getElementById(id).style.display = 'flex'; }
-        function fecharModal(id) { document.getElementById(id).style.display = 'none'; }
-        window.onclick = function(event) { if (event.target.classList.contains('modal')) event.target.style.display = 'none'; }
-        
-        function mostrarForm(nomeForm, btn) {
-            document.querySelectorAll('.form-section').forEach(f => f.classList.remove('active'));
-            document.querySelectorAll('.tab-link').forEach(t => t.classList.remove('active'));
-            document.getElementById(nomeForm).classList.add('active');
-            btn.classList.add('active');
-        }
-    </script>
-</body>
-</html>
-       
