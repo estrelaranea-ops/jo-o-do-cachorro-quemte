@@ -168,7 +168,7 @@
         .btn-select { display: inline-block; background-color: #d9534f; color: #fff; padding: 14px 40px; text-decoration: none; border-radius: 30px; font-weight: bold; text-transform: uppercase; box-shadow: 0 4px 6px rgba(217, 83, 79, 0.3); border: 2px solid #b52b27; transition: 0.3s; }
         .btn-select:hover { background-color: #c9302c; color: #ffc107; }
 
-        /* --- MODAIS --- */
+        /* --- MODAIS GERAIS --- */
         .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); justify-content: center; align-items: center; }
         .modal-content { background-color: #fff; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; text-align: center; position: relative; animation: slideDown 0.3s ease; max-height: 85vh; overflow-y: auto; }
         .modal-content.wide { max-width: 800px; }
@@ -176,7 +176,35 @@
         @keyframes slideDown { from {transform: translateY(-50px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
         .close-btn { position: absolute; top: 10px; right: 15px; font-size: 28px; cursor: pointer; color: #aaa; z-index: 10; }
 
-        /* CARDÁPIO DE BEBIDAS */
+        /* --- ESTILOS EXCLUSIVOS DO CARDÁPIO DE BEBIDAS (DARK MODE) --- */
+        #drinksModal .modal-content {
+            background-color: #1a1a1a; /* Fundo Preto/Cinza Escuro */
+            color: #fff;
+            border: 2px solid #333;
+        }
+
+        #drinksModal .close-btn {
+            color: #fff;
+        }
+        
+        #drinksModal h2 {
+            color: #ffc107 !important; /* Título Amarelo */
+            text-shadow: 1px 1px 0 #000;
+        }
+
+        .drink-category {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ffc107;
+            display: inline-block;
+            padding-bottom: 5px;
+            width: 100%;
+            text-align: left;
+            font-family: 'Pacifico', cursive;
+        }
+
         .drinks-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -185,8 +213,8 @@
         }
 
         .drink-card {
-            background: #f8f9fa;
-            border: 1px solid #ddd;
+            background: #2b2b2b; /* Card Cinza Escuro */
+            border: 1px solid #444;
             border-radius: 10px;
             padding: 15px;
             text-align: center;
@@ -195,11 +223,11 @@
             flex-direction: column;
             align-items: center;
         }
-        .drink-card:hover { border-color: #28a745; transform: scale(1.02); }
+        .drink-card:hover { border-color: #ffc107; transform: scale(1.02); }
 
-        .drink-card img { width: 100px; height: 100px; object-fit: contain; margin-bottom: 10px; }
-        .drink-card h4 { margin: 5px 0; font-size: 1.1rem; color: #333; }
-        .drink-card .price { color: #28a745; font-weight: 800; font-size: 1.2rem; display: block; margin-bottom: 10px; }
+        .drink-card img { width: 90px; height: 90px; object-fit: contain; margin-bottom: 10px; }
+        .drink-card h4 { margin: 5px 0; font-size: 1.1rem; color: #fff; } /* Texto Branco */
+        .drink-card .price { color: #ffc107; font-weight: 800; font-size: 1.2rem; display: block; margin-bottom: 10px; }
         
         .btn-buy-drink {
             display: block;
@@ -214,19 +242,6 @@
             transition: background 0.3s;
         }
         .btn-buy-drink:hover { background-color: #218838; }
-
-        .drink-category {
-            font-size: 1.3rem;
-            color: #d9534f;
-            margin-top: 25px;
-            margin-bottom: 10px;
-            border-bottom: 2px solid #ffc107;
-            display: inline-block;
-            padding-bottom: 5px;
-            width: 100%;
-            text-align: left;
-            font-family: 'Pacifico', cursive;
-        }
 
         /* LOGIN STYLES */
         .tabs { display: flex; justify-content: center; margin-bottom: 25px; border-bottom: 2px solid #eee; }
@@ -328,8 +343,9 @@
     <div id="drinksModal" class="modal">
         <div class="modal-content wide">
             <span class="close-btn" onclick="fecharModal('drinksModal')">&times;</span>
-            <h2 style="color:#d9534f; margin-top:0; font-family:'Pacifico', cursive;">Bebidas Geladas</h2>
-            <div class="drink-category">Refrigerantes</div>
+            <h2>Bebidas & Refrescos</h2>
+            
+            <div class="drink-category">Refrigerantes 2L</div>
             <div class="drinks-grid">
                 <div class="drink-card">
                     <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=200&auto=format&fit=crop" alt="Coca Cola">
@@ -355,20 +371,73 @@
                     <span class="price">R$ 12,00</span>
                     <a href="pagamento.html?valor=12,00" class="btn-buy-drink">Pedir</a>
                 </div>
+                <div class="drink-card">
+                    <img src="https://images.unsplash.com/photo-1566846128021-b940b0e763e8?q=80&w=200&auto=format&fit=crop" alt="Fanta Uva">
+                    <h4>Fanta Uva 2L</h4>
+                    <span class="price">R$ 12,00</span>
+                    <a href="pagamento.html?valor=12,00" class="btn-buy-drink">Pedir</a>
+                </div>
+                <div class="drink-card">
+                    <img src="https://images.unsplash.com/photo-1625772299767-a00e62c23fa9?q=80&w=200&auto=format&fit=crop" alt="Schweppes">
+                    <h4>Schweppes 1.5L</h4>
+                    <span class="price">R$ 13,00</span>
+                    <a href="pagamento.html?valor=13,00" class="btn-buy-drink">Pedir</a>
+                </div>
             </div>
-            <div class="drink-category">Sucos & Cervejas</div>
+
+            <div class="drink-category">Sucos & Água</div>
             <div class="drinks-grid">
                 <div class="drink-card">
                     <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=200&auto=format&fit=crop" alt="Suco de Uva">
-                    <h4>Suco de Uva 1L</h4>
+                    <h4>Suco de Uva Integral 1L</h4>
                     <span class="price">R$ 18,00</span>
                     <a href="pagamento.html?valor=18,00" class="btn-buy-drink">Pedir</a>
                 </div>
+                <div class="drink-card">
+                    <img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?q=80&w=200&auto=format&fit=crop" alt="Suco Laranja">
+                    <h4>Suco Laranja Natural 500ml</h4>
+                    <span class="price">R$ 12,00</span>
+                    <a href="pagamento.html?valor=12,00" class="btn-buy-drink">Pedir</a>
+                </div>
+                <div class="drink-card">
+                    <img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=200&auto=format&fit=crop" alt="Água Mineral">
+                    <h4>Água Mineral 500ml</h4>
+                    <span class="price">R$ 4,00</span>
+                    <a href="pagamento.html?valor=4,00" class="btn-buy-drink">Pedir</a>
+                </div>
+                <div class="drink-card">
+                    <img src="https://images.unsplash.com/photo-1560611588-1fc0f0745421?q=80&w=200&auto=format&fit=crop" alt="Água com Gás">
+                    <h4>Água com Gás 500ml</h4>
+                    <span class="price">R$ 5,00</span>
+                    <a href="pagamento.html?valor=5,00" class="btn-buy-drink">Pedir</a>
+                </div>
+            </div>
+
+            <div class="drink-category">Cervejas</div>
+            <div class="drinks-grid">
                 <div class="drink-card">
                     <img src="https://images.unsplash.com/photo-1618885481221-ef050069b273?q=80&w=200&auto=format&fit=crop" alt="Heineken">
                     <h4>Heineken (Long)</h4>
                     <span class="price">R$ 12,00</span>
                     <a href="pagamento.html?valor=12,00" class="btn-buy-drink">Pedir</a>
+                </div>
+                <div class="drink-card">
+                    <img src="https://images.unsplash.com/photo-1629202586433-2895a0dd343b?q=80&w=200&auto=format&fit=crop" alt="Budweiser">
+                    <h4>Budweiser (Long)</h4>
+                    <span class="price">R$ 10,00</span>
+                    <a href="pagamento.html?valor=10,00" class="btn-buy-drink">Pedir</a>
+                </div>
+                <div class="drink-card">
+                    <img src="https://images.unsplash.com/photo-1608270586620-248524c67de9?q=80&w=200&auto=format&fit=crop" alt="Stella">
+                    <h4>Stella Artois (Long)</h4>
+                    <span class="price">R$ 11,00</span>
+                    <a href="pagamento.html?valor=11,00" class="btn-buy-drink">Pedir</a>
+                </div>
+                <div class="drink-card">
+                    <img src="https://images.unsplash.com/photo-1606735584923-87d588e27d42?q=80&w=200&auto=format&fit=crop" alt="Original">
+                    <h4>Cerveja Original 600ml</h4>
+                    <span class="price">R$ 15,00</span>
+                    <a href="pagamento.html?valor=15,00" class="btn-buy-drink">Pedir</a>
                 </div>
             </div>
         </div>
