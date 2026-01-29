@@ -1,532 +1,1547 @@
 <!DOCTYPE html>
+
 <html lang="pt-br">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Pizzaria do Ranea</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     
+
     <style>
+
         body {
+
             font-family: 'Arial', sans-serif;
+
             background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1974&auto=format&fit=crop');
+
             background-size: cover;
+
             background-position: center;
+
             background-attachment: fixed;
+
             display: flex;
+
             justify-content: center;
+
             align-items: flex-start;
+
             min-height: 100vh;
+
             margin: 0;
+
             padding: 20px;
+
             position: relative;
+
         }
+
+
 
         /* --- LOGO E CONTATO (CAIXA PRETA) --- */
+
         .logo-container {
+
             position: absolute;
+
             top: 30px;
+
             left: 30px;
+
             background: rgba(0, 0, 0, 0.95);
+
             padding: 30px 40px;
+
             border-radius: 30px;
+
             border: 3px solid #ffc107;
+
             box-shadow: 0 8px 30px rgba(0,0,0,0.8);
+
             z-index: 20;
+
             display: flex;
+
             flex-direction: column;
+
             align-items: center;
+
             text-align: center;
+
             min-width: 280px;
+
         }
+
+
 
         .logo-text {
+
             font-family: 'Pacifico', cursive;
+
             font-size: 2.2rem;
+
             color: #d9534f;
+
             text-shadow: 2px 2px 0px #000;
+
             margin: 0;
+
             border-bottom: 3px solid #ffc107;
+
             padding-bottom: 10px;
+
             margin-bottom: 20px;
+
         }
+
+
 
         .contact-info {
+
             display: flex;
+
             flex-direction: column;
+
             gap: 12px;
+
             font-size: 1.1rem;
+
             color: #fff;
+
             width: 100%;
+
         }
+
+
 
         .contact-item {
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             gap: 10px;
+
             text-decoration: none;
+
             color: #fff;
+
             font-weight: bold;
+
             transition: color 0.3s;
+
         }
+
         .contact-item:hover { color: #ffc107; }
+
         .contact-item i { color: #ffc107; font-size: 1.3rem; }
 
+
+
         /* BOTÕES DO CABEÇALHO */
+
         .btn-account {
+
             margin-top: 10px;
+
             background-color: transparent;
+
             border: 2px solid #fff;
+
             color: #fff;
+
             padding: 10px 0;
+
             border-radius: 25px;
+
             cursor: pointer;
+
             font-size: 1rem;
+
             font-weight: bold;
+
             transition: all 0.3s;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             gap: 8px;
+
             width: 100%; 
-        }
-        .btn-account:hover {
-            background-color: #ffc107;
-            color: #000;
-            border-color: #ffc107;
+
         }
 
-        /* BOTÃO CARRINHO (NOVO) */
+        .btn-account:hover {
+
+            background-color: #ffc107;
+
+            color: #000;
+
+            border-color: #ffc107;
+
+        }
+
+
+
+        /* BOTÃO CARRINHO */
+
         .btn-cart {
+
             background-color: #28a745;
+
             border-color: #28a745;
+
             position: relative;
+
             margin: 0;
+
             padding: 10px 20px;
+
             width: auto;
+
             min-width: 150px;
+
         }
+
         .btn-cart:hover {
+
             background-color: #218838;
+
             border-color: #1e7e34;
+
             color: #fff;
+
         }
+
         .cart-badge {
+
             background-color: #d9534f;
+
             color: white;
+
             border-radius: 50%;
+
             padding: 4px 8px;
+
             font-size: 0.8rem;
+
             position: absolute;
+
             top: -10px;
+
             right: -5px;
+
             border: 2px solid #fff;
+
         }
+
+
 
         /* --- CART CONTAINER (DIREITA) --- */
+
         .cart-container {
+
             position: absolute;
+
             top: 30px;
+
             right: 30px;
+
             background: rgba(0, 0, 0, 0.95);
+
             padding: 20px 30px;
+
             border-radius: 30px;
+
             border: 3px solid #ffc107;
+
             box-shadow: 0 8px 30px rgba(0,0,0,0.8);
+
             z-index: 20;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
         }
+
+
 
         /* --- CONTAINER PRINCIPAL --- */
+
         .main-container {
+
             max-width: 1000px;
+
             width: 100%;
+
             margin-top: 100px; 
+
             padding-bottom: 50px;
+
         }
+
+
 
         /* TÍTULO DA SEÇÃO */
+
         .menu-header {
+
             display: flex;
+
             justify-content: center;
+
             align-items: center;
-            margin-bottom: 40px;
+
+            margin-bottom: 30px;
+
             background: rgba(255, 255, 255, 0.95);
-            padding: 20px;
+
+            padding: 15px;
+
             border-radius: 20px;
+
             box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+
+            margin-top: 30px;
+
         }
+
+
 
         .section-title {
+
             color: #d9534f;
+
             font-family: 'Pacifico', cursive;
-            font-size: 2.5rem;
+
+            font-size: 2.2rem;
+
             margin: 0;
+
         }
+
+
 
         /* GRID DE PIZZAS */
+
         .pizza-grid {
+
             display: grid;
+
             grid-template-columns: repeat(2, 1fr);
+
             gap: 30px;
+
         }
+
+
 
         /* CARD GERAL */
+
         .card {
+
             background: rgba(255, 255, 255, 0.95);
+
             border-radius: 20px;
+
             padding: 25px;
+
             text-align: center;
+
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+
             border-bottom: 6px solid #d9534f;
+
             transition: transform 0.3s ease;
+
+            position: relative; /* Para a tag de oferta */
+
         }
+
         .card:hover { transform: translateY(-10px); }
 
-        .card h2 {
-            font-size: 1.5rem;
-            color: #111;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            font-weight: 800;
+
+
+        /* TAG DE OFERTA */
+
+        .promo-tag {
+
+            position: absolute;
+
+            top: -10px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            background-color: #ffc107;
+
+            color: #d9534f;
+
+            padding: 5px 15px;
+
+            border-radius: 20px;
+
+            font-weight: bold;
+
+            font-size: 1rem;
+
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+
+            border: 2px solid #d9534f;
+
+            z-index: 10;
+
         }
+
+
+
+        .card h2 {
+
+            font-size: 1.5rem;
+
+            color: #111;
+
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
+
+            font-weight: 800;
+
+        }
+
+
 
         .card img {
+
             width: 100%;
+
             height: 220px;
+
             object-fit: cover;
+
             border-radius: 15px;
-            margin-bottom: 15px;
+
+            margin-bottom: 20px;
+
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+
         }
+
+
 
         /* SELECT DE SABORES */
+
         .flavor-select {
+
             width: 100%;
+
             padding: 10px;
+
             margin-bottom: 15px;
+
             border-radius: 20px;
+
             border: 2px solid #ffc107;
+
             background: #fff;
+
             font-size: 1rem;
+
             color: #333;
+
             font-weight: bold;
+
             outline: none;
+
             cursor: pointer;
+
         }
+
+
 
         .controls { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 20px; font-size: 1.4rem; font-weight: bold; color: #222; }
+
         
+
         .btn-qty { 
+
             background-color: #ffc107; color: #000; border: 2px solid #000; width: 40px; height: 40px; 
+
             cursor: pointer; font-size: 1.4rem; font-weight: bold; border-radius: 50%; 
+
             display: flex; align-items: center; justify-content: center; transition: all 0.2s; 
+
         }
+
         .btn-qty:hover { background-color: #e0a800; transform: scale(1.1); }
 
+
+
         .btn-add-cart { 
+
             display: block; width: 100%; background-color: #d9534f; color: #fff; padding: 15px 0; 
+
             text-decoration: none; border-radius: 30px; font-weight: bold; text-transform: uppercase; 
+
             box-shadow: 0 4px 6px rgba(217, 83, 79, 0.3); border: none; cursor: pointer; transition: 0.3s; font-size: 1rem;
+
         }
+
         .btn-add-cart:hover { background-color: #c9302c; color: #ffc107; }
 
+
+
         /* --- MODAIS GERAIS --- */
+
         .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(5px); justify-content: center; align-items: center; }
+
         .modal-content { background-color: #fff; padding: 30px; border-radius: 20px; width: 90%; max-width: 450px; text-align: center; position: relative; animation: slideDown 0.3s ease; max-height: 90vh; overflow-y: auto; }
+
         .modal-content.wide { max-width: 900px; }
+
         
+
         @keyframes slideDown { from {transform: translateY(-50px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
+
         .close-btn { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; color: #aaa; z-index: 10; transition: color 0.2s; }
+
         .close-btn:hover { color: #d9534f; }
 
+
+
         /* --- ESTILOS CARDÁPIO DE BEBIDAS (DARK MODE) --- */
+
         #drinksModal .modal-content {
+
             background-color: #1a1a1a; 
+
             color: #fff;
+
             border: 2px solid #333;
+
         }
+
         #drinksModal h2 { color: #ffc107; text-shadow: 1px 1px 0 #000; font-family: 'Pacifico', cursive; font-size: 2rem; margin-bottom: 30px; }
 
+
+
         .drink-category {
+
             font-size: 1.5rem; color: #fff; margin: 30px 0 15px 0; border-bottom: 2px solid #ffc107;
+
             display: inline-block; padding-bottom: 5px; width: 100%; text-align: left; font-family: 'Pacifico', cursive;
+
         }
 
-        .drinks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+
+        .drinks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; } 
+
+
 
         .drink-card {
+
             background: #2b2b2b; border: 1px solid #444; border-radius: 15px; padding: 15px;
+
             text-align: center; transition: transform 0.2s; display: flex; flex-direction: column;
+
             align-items: center; justify-content: space-between; position: relative;
+
         }
+
         .drink-card:hover { border-color: #ffc107; transform: translateY(-5px); background: #333; }
 
+
+
         .drink-card img { 
+
             width: 120px; height: 120px; object-fit: contain; margin-bottom: 10px;
+
             filter: drop-shadow(0 5px 10px rgba(0,0,0,0.8)); 
+
         }
+
         
+
         .drink-card h4 { margin: 5px 0; font-size: 1.1rem; color: #fff; font-weight: bold; }
+
         .drink-card .price { color: #28a745; font-weight: 800; font-size: 1.3rem; display: block; margin-bottom: 10px; }
 
+
+
         .drink-controls { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+
         .btn-qty-sm { background-color: #ffc107; border: none; width: 30px; height: 30px; border-radius: 50%; font-weight: bold; cursor: pointer; }
+
         .qty-display-drink { font-size: 1.2rem; font-weight: bold; color: #fff; width: 20px; }
+
         
+
         .btn-add-drink {
+
             background-color: #ffc107; color: #000; border: none; padding: 8px 20px;
+
             border-radius: 20px; font-weight: bold; cursor: pointer; width: 100%;
+
             transition: background 0.3s;
+
         }
+
         .btn-add-drink:hover { background-color: #e0a800; }
 
+
+
         /* --- ESTILOS DO CARRINHO --- */
+
         .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #eee; }
+
         .cart-item-info { text-align: left; }
+
         .cart-item-title { font-weight: bold; display: block; }
+
         .cart-item-price { color: #666; font-size: 0.9rem; }
+
         .cart-total { font-size: 1.5rem; font-weight: bold; margin: 20px 0; color: #28a745; }
+
         .btn-remove { color: red; cursor: pointer; font-size: 1.2rem; background: none; border: none; }
 
+
+
         /* ÁREA DE PAGAMENTO PIX */
+
         #pix-area { display: none; text-align: center; animation: fadeIn 0.5s; background: #f9f9f9; padding: 15px; border-radius: 10px; margin-top: 15px; }
+
         .pix-key { background: #fff; padding: 10px; border: 1px dashed #333; font-family: monospace; font-size: 1rem; margin: 10px 0; word-break: break-all; }
+
         .qr-code-placeholder { width: 180px; height: 180px; margin: 0 auto 10px auto; display: block; }
 
+
+
         /* LOGIN */
+
         .tabs { display: flex; justify-content: center; margin-bottom: 25px; border-bottom: 2px solid #eee; }
+
         .tab-link { background: none; border: none; padding: 10px 20px; font-size: 1rem; font-weight: bold; cursor: pointer; color: #777; border-bottom: 3px solid transparent; width: 50%; }
+
         .tab-link.active { color: #d9534f; border-bottom: 3px solid #d9534f; }
+
         .auth-form { display: flex; flex-direction: column; gap: 15px; text-align: left; }
+
         .input-group label { font-size: 0.9rem; font-weight: bold; color: #555; margin-bottom: 5px; display: block; }
+
         .input-group input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 1rem; }
+
         .btn-submit { background-color: #ffc107; color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 1rem; }
+
         .form-section { display: none; }
+
         .form-section.active { display: block; }
 
+
+
         @media (max-width: 900px) {
+
             .pizza-grid { grid-template-columns: 1fr; }
+
             .drinks-grid { grid-template-columns: 1fr; } 
-            .logo-container { position: relative; top: auto; left: auto; margin-bottom: 30px; width: 90%; }
+
+            
+
+            /* Ajuste para Mobile: Caixas voltam ao fluxo normal */
+
+            .logo-container { position: relative; top: auto; left: auto; margin-bottom: 20px; width: 90%; }
+
+            .cart-container { position: relative; top: auto; right: auto; margin-bottom: 20px; width: 90%; }
+
+            
+
             .main-container { margin-top: 0; }
+
             body { flex-direction: column; padding-top: 30px; }
+
         }
+
     </style>
+
 </head>
+
 <body>
 
+
+
     <div class="logo-container">
+
         <h1 class="logo-text">Pizzaria do Ranea</h1>
+
         <div class="contact-info">
+
             <div class="contact-item"><i class="fas fa-phone-alt"></i> <span>(41) 98788-4999</span></div>
+
             <a href="https://instagram.com/gaabbzyx" target="_blank" class="contact-item"><i class="fab fa-instagram"></i> <span>@gaabbzyx</span></a>
+
             
+
             <button class="btn-account" onclick="abrirModal('authModal')">
+
                 <i class="fas fa-user-circle"></i> Entrar / Cadastrar
+
             </button>
+
+
 
             <button class="btn-account" onclick="abrirModal('drinksModal')">
+
                 <i class="fas fa-glass-cheers"></i> Cardápio de Bebidas
+
             </button>
 
-            <button class="btn-account btn-cart" onclick="abrirModal('cartModal')">
-                <i class="fas fa-shopping-cart"></i> Carrinho
-                <span id="cart-count" class="cart-badge">0</span>
-            </button>
         </div>
+
     </div>
+
+
+
+    <div class="cart-container">
+
+        <button class="btn-account btn-cart" onclick="abrirModal('cartModal')">
+
+            <i class="fas fa-shopping-cart"></i> Carrinho
+
+            <span id="cart-count" class="cart-badge">0</span>
+
+        </button>
+
+    </div>
+
+
 
     <div class="main-container">
-        <div class="menu-header">
-            <h2 class="section-title">Nossas Pizzas</h2>
+
+
+
+        <div class="menu-header" style="border: 2px solid #ffc107;">
+
+            <h2 class="section-title">🔥 Ofertas do Dia</h2>
+
         </div>
+
+
+
+        <div class="pizza-grid" style="margin-bottom: 50px;">
+
+            <div class="card" data-base-price="19.99">
+
+                <span class="promo-tag">OFERTA!</span>
+
+                <h2>Pizza de Milho</h2>
+
+                <img src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?q=80&w=600&auto=format&fit=crop" alt="Pizza de Milho">
+
+                <select class="flavor-select">
+
+                    <option value="Milho c/ Mussarela">Milho c/ Mussarela</option>
+
+                    <option value="Milho c/ Bacon">Milho c/ Bacon (+R$ 2,00)</option>
+
+                </select>
+
+                <div class="controls">
+
+                    <button class="btn-qty" onclick="updatePizzaPrice(this, -1)">-</button>
+
+                    <span class="qty-display">1</span>
+
+                    <button class="btn-qty" onclick="updatePizzaPrice(this, 1)">+</button>
+
+                </div>
+
+                <button class="btn-add-cart" onclick="addPizzaToCart(this)">Adicionar - R$ <span class="price-text">19,99</span></button>
+
+            </div>
+
+
+
+            <div class="card" data-base-price="19.99">
+
+                <span class="promo-tag">OFERTA!</span>
+
+                <h2>Calabresa Simples</h2>
+
+                <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=600&auto=format&fit=crop" alt="Calabresa">
+
+                <select class="flavor-select">
+
+                    <option value="Calabresa Acebolada">Calabresa Acebolada</option>
+
+                </select>
+
+                <div class="controls">
+
+                    <button class="btn-qty" onclick="updatePizzaPrice(this, -1)">-</button>
+
+                    <span class="qty-display">1</span>
+
+                    <button class="btn-qty" onclick="updatePizzaPrice(this, 1)">+</button>
+
+                </div>
+
+                <button class="btn-add-cart" onclick="addPizzaToCart(this)">Adicionar - R$ <span class="price-text">19,99</span></button>
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <div class="menu-header">
+
+            <h2 class="section-title">Pizzas Tradicionais</h2>
+
+        </div>
+
+
 
         <div class="pizza-grid">
+
             <div class="card" data-base-price="30.00">
+
                 <h2>Pizza Pequena</h2>
+
                 <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=600&auto=format&fit=crop" alt="Pizza Pequena">
+
                 <select class="flavor-select">
+
                     <option value="Calabresa">Calabresa</option>
+
                     <option value="Mussarela">Mussarela</option>
+
                     <option value="Portuguesa">Portuguesa</option>
+
                     <option value="Frango c/ Catupiry">Frango c/ Catupiry</option>
+
                     <option value="Quatro Queijos">Quatro Queijos</option>
+
                 </select>
+
                 <div class="controls">
+
                     <button class="btn-qty" onclick="updatePizzaPrice(this, -1)">-</button>
+
                     <span class="qty-display">1</span>
+
                     <button class="btn-qty" onclick="updatePizzaPrice(this, 1)">+</button>
+
                 </div>
+
                 <button class="btn-add-cart" onclick="addPizzaToCart(this)">Adicionar - R$ <span class="price-text">30,00</span></button>
+
             </div>
+
+
 
             <div class="card" data-base-price="45.00">
+
                 <h2>Pizza Média</h2>
+
                 <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=600&auto=format&fit=crop" alt="Pizza Média">
+
                 <select class="flavor-select">
+
                     <option value="Calabresa">Calabresa</option>
+
                     <option value="Mussarela">Mussarela</option>
+
                     <option value="Portuguesa">Portuguesa</option>
+
                     <option value="Frango c/ Catupiry">Frango c/ Catupiry</option>
+
                     <option value="Quatro Queijos">Quatro Queijos</option>
+
                 </select>
+
                 <div class="controls">
+
                     <button class="btn-qty" onclick="updatePizzaPrice(this, -1)">-</button>
+
                     <span class="qty-display">1</span>
+
                     <button class="btn-qty" onclick="updatePizzaPrice(this, 1)">+</button>
+
                 </div>
+
                 <button class="btn-add-cart" onclick="addPizzaToCart(this)">Adicionar - R$ <span class="price-text">45,00</span></button>
+
             </div>
+
+
 
             <div class="card" data-base-price="60.00">
+
                 <h2>Pizza Grande</h2>
+
                 <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=600&auto=format&fit=crop" alt="Pizza Grande">
+
                 <select class="flavor-select">
+
                     <option value="Calabresa">Calabresa</option>
+
                     <option value="Mussarela">Mussarela</option>
+
                     <option value="Portuguesa">Portuguesa</option>
+
                     <option value="Frango c/ Catupiry">Frango c/ Catupiry</option>
+
                     <option value="Quatro Queijos">Quatro Queijos</option>
+
                 </select>
+
                 <div class="controls">
+
                     <button class="btn-qty" onclick="updatePizzaPrice(this, -1)">-</button>
+
                     <span class="qty-display">1</span>
+
                     <button class="btn-qty" onclick="updatePizzaPrice(this, 1)">+</button>
+
                 </div>
+
                 <button class="btn-add-cart" onclick="addPizzaToCart(this)">Adicionar - R$ <span class="price-text">60,00</span></button>
+
             </div>
+
+
 
             <div class="card" data-base-price="75.00">
+
                 <h2>Tamanho Família</h2>
+
                 <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=600&auto=format&fit=crop" alt="Pizza Família">
+
                 <select class="flavor-select">
+
                     <option value="Calabresa">Calabresa</option>
+
                     <option value="Mussarela">Mussarela</option>
+
                     <option value="Portuguesa">Portuguesa</option>
+
                     <option value="Frango c/ Catupiry">Frango c/ Catupiry</option>
+
                     <option value="Quatro Queijos">Quatro Queijos</option>
+
                 </select>
+
                 <div class="controls">
+
                     <button class="btn-qty" onclick="updatePizzaPrice(this, -1)">-</button>
+
                     <span class="qty-display">1</span>
+
                     <button class="btn-qty" onclick="updatePizzaPrice(this, 1)">+</button>
+
                 </div>
+
                 <button class="btn-add-cart" onclick="addPizzaToCart(this)">Adicionar - R$ <span class="price-text">75,00</span></button>
+
             </div>
+
         </div>
+
     </div>
 
+
+
     <div id="drinksModal" class="modal">
+
         <div class="modal-content wide">
+
             <span class="close-btn" onclick="fecharModal('drinksModal')">&times;</span>
+
             <h2>Bebidas & Refrescos</h2>
+
             
+
             <div class="drink-category">Refrigerantes</div>
+
             <div class="drinks-grid">
+
                 <div class="drink-card">
+
                     <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=400&auto=format&fit=crop" alt="Coca Cola">
+
                     <h4>Coca-Cola 2L</h4>
+
                     <span class="price">R$ 14,00</span>
+
                     <div class="drink-controls">
+
                         <button class="btn-qty-sm" onclick="updateDrinkQty(this, -1)">-</button>
+
                         <span class="qty-display-drink">1</span>
+
                         <button class="btn-qty-sm" onclick="updateDrinkQty(this, 1)">+</button>
+
                     </div>
+
                     <button class="btn-add-drink" onclick="addDrinkToCart('Coca-Cola 2L', 14.00, this)">Adicionar</button>
+
                 </div>
+
                 <div class="drink-card">
-                    <img src="https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?q=80&w=400&auto=format&fit=crop" alt="Guaraná">
+
+                    <img src="https://images.unsplash.com/photo-1581006852262-e4307cf6283a?q=80&w=400&auto=format&fit=crop" alt="Guaraná">
+
                     <h4>Guaraná 2L</h4>
+
                     <span class="price">R$ 12,00</span>
+
                     <div class="drink-controls">
+
                         <button class="btn-qty-sm" onclick="updateDrinkQty(this, -1)">-</button>
+
                         <span class="qty-display-drink">1</span>
+
                         <button class="btn-qty-sm" onclick="updateDrinkQty(this, 1)">+</button>
+
                     </div>
+
                     <button class="btn-add-drink" onclick="addDrinkToCart('Guaraná 2L', 12.00, this)">Adicionar</button>
+
                 </div>
+
                 <div class="drink-card">
+
                     <img src="https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?q=80&w=400&auto=format&fit=crop" alt="Fanta">
-                    <h4>Fanta Laranja 2L</h4>
+
+                    <h4>Fanta 2L</h4>
+
                     <span class="price">R$ 12,00</span>
+
                     <div class="drink-controls">
+
                         <button class="btn-qty-sm" onclick="updateDrinkQty(this, -1)">-</button>
+
                         <span class="qty-display-drink">1</span>
+
                         <button class="btn-qty-sm" onclick="updateDrinkQty(this, 1)">+</button>
+
                     </div>
-                    <button class="btn-add-drink" onclick="addDrinkToCart('Fanta Laranja 2L', 12.00, this)">Adicionar</button>
+
+                    <button class="btn-add-drink" onclick="addDrinkToCart('Fanta 2L', 12.00, this)">Adicionar</button>
+
                 </div>
+
                 <div class="drink-card">
+
                     <img src="https://images.unsplash.com/photo-1624517452488-04869289c4ca?q=80&w=400&auto=format&fit=crop" alt="Sprite">
+
                     <h4>Sprite 2L</h4>
+
                     <span class="price">R$ 12,00</span>
+
                     <div class="drink-controls">
+
                         <button class="btn-qty-sm" onclick="updateDrinkQty(this, -1)">-</button>
+
                         <span class="qty-display-drink">1</span>
+
                         <button class="btn-qty-sm" onclick="updateDrinkQty(this, 1)">+</button>
+
                     </div>
+
                     <button class="btn-add-drink" onclick="addDrinkToCart('Sprite 2L', 12.00, this)">Adicionar</button>
+
                 </div>
-                <div class="drink-card">
-                    <img src="https://images.unsplash.com/photo-1566846128021-b940b0e763e8?q=80&w=400&auto=format&fit=crop" alt="Fanta Uva">
-                    <h4>Fanta Uva 2L</h4>
-                    <span class="price">R$ 12,00</span>
-                    <div class="drink-controls">
-                        <button class="btn-qty-sm" onclick="updateDrinkQty(this, -1)">-</button>
-                        <span class="qty-display-drink">1</span>
-                        <button class="btn-qty-sm" onclick="updateDrinkQty(this, 1)">+</button>
-                    </div>
-                    <button class="btn-add-drink" onclick="addDrinkToCart('Fanta Uva 2L', 12.00, this)">Adicionar</button>
-                </div>
-                <div class="drink-card">
-                    <img src="https://images.unsplash.com/photo-1625772299767-a00e62c23fa9?q=80&w=400&auto=format&fit=crop" alt="Schweppes">
-                    <h4>Schweppes Citrus</h4>
-                    <span class="price">R$ 14,00</span>
-                    <div class="drink-controls">
-                        <button class="btn-qty-sm" onclick="updateDrinkQty(this, -1)">-</button>
-                        <span class="qty-display-drink">1</span>
-                        <button class="btn-qty-sm" onclick="updateDrinkQty(this, 1)">+</button>
-                    </div>
-                    <button class="btn-add-drink" onclick="addDrinkToCart('Schweppes Citrus', 14.00, this)">Adicionar</button>
-                </div>
+
             </div>
 
-            <div class="drink-category">Refrigerantes Lata (350ml)</div>
-            <div class="drinks-grid">
-                 <div class="drink-card">
-                    <img src="https://images.unsplash.com/photo-1622483767128-3f66f32aef97?q=80&w=400&auto=format&fit=crop" alt="Coca Lata">
-                    <h4>Coca-Cola Lata</h4>
-                    <span class="price">R$ 6,00</span>
-                    <div class="drink-controls">
-                        <button class="btn-qty-sm" onclick="updateDrinkQty(this, -1)">-</button>
-                        <span class="qty-display-drink">1</span>
-                        <button class="btn-qty-sm" onclick="updateDrinkQty(this, 1)">+</button>
-                    </div>
-                    <button class="btn-add-drink" onclick="addDrinkToCart('Coca-Cola Lata', 6.00, this)">Adicionar</button>
-                </div>
-                <div class="drink-card">
-                    <img src="https://images.unsplash.com/photo-1596803244618-8d6e5a1ebd1c?q=80&w=400&auto=format&fit=crop" alt="Guaraná Lata">
-                    <h4>Guaraná Lata</h4>
-                    <span class="price">R$ 6,00</span>
-                    <div class="drink-controls">
-                        <button class="btn-qty-sm" onclick="updateDrinkQty(this, -1)">-</button>
-                        <span class="qty-display-drink">1</span>
-                        <button class="btn-qty-sm" onclick="updateDrinkQty(this, 1)">+</button>
-                    </div>
-                    <button class="btn-add-drink" onclick="addDrinkToCart('Guaraná Lata', 6.00, this)">Adicionar</button>
-                </div>
-            </div>
+
 
             <div class="drink-category">Cervejas</div>
+
             <div class="drinks-grid">
+
                 <div class="drink-card">
+
                     <img src="https://images.unsplash.com/photo-1618885481221-ef050069b273?q=80&w=400&auto=format&fit=crop" alt="Heineken">
+
                     <h4>Heineken</h4>
+
                     <span class="price">R$ 12,00</span>
+
                     <div class="drink-controls">
-                        <button class="btn-qty-sm" onclick
+
+                        <button class="btn-qty-sm" onclick="updateDrinkQty(this, -1)">-</button>
+
+                        <span class="qty-display-drink">1</span>
+
+                        <button class="btn-qty-sm" onclick="updateDrinkQty(this, 1)">+</button>
+
+                    </div>
+
+                    <button class="btn-add-drink" onclick="addDrinkToCart('Heineken', 12.00, this)">Adicionar</button>
+
+                </div>
+
+                <div class="drink-card">
+
+                    <img src="https://images.unsplash.com/photo-1629202586433-2895a0dd343b?q=80&w=400&auto=format&fit=crop" alt="Budweiser">
+
+                    <h4>Budweiser</h4>
+
+                    <span class="price">R$ 10,00</span>
+
+                    <div class="drink-controls">
+
+                        <button class="btn-qty-sm" onclick="updateDrinkQty(this, -1)">-</button>
+
+                        <span class="qty-display-drink">1</span>
+
+                        <button class="btn-qty-sm" onclick="updateDrinkQty(this, 1)">+</button>
+
+                    </div>
+
+                    <button class="btn-add-drink" onclick="addDrinkToCart('Budweiser', 10.00, this)">Adicionar</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div id="cartModal" class="modal">
+
+        <div class="modal-content">
+
+            <span class="close-btn" onclick="fecharModal('cartModal')">&times;</span>
+
+            <h2 style="color:#d9534f; margin-bottom:20px;">Seu Carrinho <i class="fas fa-shopping-cart"></i></h2>
+
+            
+
+            <div id="cart-items" style="max-height: 300px; overflow-y: auto; text-align: left;">
+
+                <p style="text-align:center; color:#777;">Seu carrinho está vazio.</p>
+
+            </div>
+
+
+
+            <div class="cart-total">Total: R$ <span id="cart-total-value">0,00</span></div>
+
+            
+
+            <button class="btn-submit" onclick="showPayment()">Finalizar Pedido</button>
+
+            
+
+            <div id="pix-area">
+
+                <hr>
+
+                <h3 style="color:#28a745;">Pagamento via PIX</h3>
+
+                <p>Escaneie o QR Code ou copie a chave abaixo:</p>
+
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" class="qr-code-placeholder" alt="QR Code Pix">
+
+                <div class="pix-key">00020126360014BR.GOV.BCB.PIX...</div>
+
+                <button class="btn-submit" style="background-color:#28a745;" onclick="alert('Pagamento Confirmado! Seu pedido está sendo preparado.')">Confirmar Pagamento</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div id="authModal" class="modal">
+
+        <div class="modal-content">
+
+            <span class="close-btn" onclick="fecharModal('authModal')">&times;</span>
+
+            <div class="tabs">
+
+                <button class="tab-link active" onclick="mostrarForm('login', this)">Já tenho conta</button>
+
+                <button class="tab-link" onclick="mostrarForm('cadastro', this)">Cadastrar</button>
+
+            </div>
+
+            <div id="login" class="form-section active">
+
+                <form class="auth-form" onsubmit="event.preventDefault(); alert('Login realizado!'); fecharModal('authModal');">
+
+                    <div class="input-group"><label>E-mail</label><input type="email" required></div>
+
+                    <div class="input-group"><label>Senha</label><input type="password" required></div>
+
+                    <button type="submit" class="btn-submit">Entrar</button>
+
+                </form>
+
+            </div>
+
+            <div id="cadastro" class="form-section">
+
+                <form class="auth-form" onsubmit="event.preventDefault(); alert('Conta criada!'); fecharModal('authModal');">
+
+                    <div class="input-group"><label>Seu Gmail</label><input type="email" required></div>
+
+                    <div class="input-group"><label>Seu Telefone</label><input type="tel" required></div>
+
+                    <div class="input-group"><label>Crie uma Senha</label><input type="password" required></div>
+
+                    <div class="input-group"><label>Confirme a Senha</label><input type="password" required></div>
+
+                    <button type="submit" class="btn-submit">Criar Conta</button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        // --- LÓGICA DO CARRINHO ---
+
+        let cart = [];
+
+
+
+        function updateCartCount() {
+
+            const count = cart.reduce((total, item) => total + item.qty, 0);
+
+            const badge = document.getElementById('cart-count');
+
+            badge.innerText = count;
+
+            if(count > 0) badge.style.display = 'inline-block';
+
+            else badge.style.display = 'none';
+
+        }
+
+
+
+        function renderCart() {
+
+            const cartContainer = document.getElementById('cart-items');
+
+            const totalElement = document.getElementById('cart-total-value');
+
+            
+
+            document.getElementById('pix-area').style.display = 'none';
+
+
+
+            if (cart.length === 0) {
+
+                cartContainer.innerHTML = '<p style="text-align:center; color:#777;">Seu carrinho está vazio.</p>';
+
+                totalElement.innerText = '0,00';
+
+                return;
+
+            }
+
+
+
+            let html = '';
+
+            let total = 0;
+
+
+
+            cart.forEach((item, index) => {
+
+                const itemTotal = item.price * item.qty;
+
+                total += itemTotal;
+
+                html += `
+
+                    <div class="cart-item">
+
+                        <div class="cart-item-info">
+
+                            <span class="cart-item-title">${item.qty}x ${item.name}</span>
+
+                            <span class="cart-item-price">R$ ${itemTotal.toFixed(2).replace('.', ',')}</span>
+
+                        </div>
+
+                        <button class="btn-remove" onclick="removeFromCart(${index})"><i class="fas fa-trash"></i></button>
+
+                    </div>
+
+                `;
+
+            });
+
+
+
+            cartContainer.innerHTML = html;
+
+            totalElement.innerText = total.toFixed(2).replace('.', ',');
+
+        }
+
+
+
+        // --- NOVA FUNÇÃO: ATUALIZAR PREÇO NO BOTÃO ---
+
+        function updatePizzaPrice(btn, change) {
+
+            const card = btn.closest('.card');
+
+            const qtySpan = card.querySelector('.qty-display');
+
+            const priceSpan = card.querySelector('.price-text');
+
+            const basePrice = parseFloat(card.getAttribute('data-base-price'));
+
+
+
+            let qty = parseInt(qtySpan.innerText) + change;
+
+            if (qty < 1) qty = 1;
+
+
+
+            qtySpan.innerText = qty;
+
+            
+
+            // Calcula o novo total para o botão
+
+            let total = (qty * basePrice).toFixed(2).replace('.', ',');
+
+            priceSpan.innerText = total;
+
+        }
+
+
+
+        function addPizzaToCart(btn) {
+
+            const card = btn.closest('.card');
+
+            const name = card.querySelector('h2').innerText;
+
+            
+
+            // Tenta pegar o sabor do seletor, se não existir (promoções), usa o nome padrão
+
+            const flavorSelect = card.querySelector('.flavor-select');
+
+            let flavor = "";
+
+            if (flavorSelect) {
+
+                 flavor = flavorSelect.value;
+
+            }
+
+
+
+            const qty = parseInt(card.querySelector('.qty-display').innerText);
+
+            const basePrice = parseFloat(card.getAttribute('data-base-price'));
+
+
+
+            // Cria o nome composto
+
+            let fullName = name;
+
+            if (flavor) {
+
+                fullName = `${name} (${flavor})`;
+
+            }
+
+
+
+            // Verifica se já existe esse item exato no carrinho
+
+            const existingItem = cart.find(item => item.name === fullName);
+
+            if (existingItem) {
+
+                existingItem.qty += qty;
+
+            } else {
+
+                cart.push({ name: fullName, price: basePrice, qty });
+
+            }
+
+
+
+            updateCartCount();
+
+            renderCart();
+
+            
+
+            // Reseta a quantidade para 1 visualmente
+
+            card.querySelector('.qty-display').innerText = 1;
+
+            card.querySelector('.price-text').innerText = basePrice.toFixed(2).replace('.', ',');
+
+            
+
+            alert(`${qty}x ${fullName} adicionado ao carrinho!`);
+
+        }
+
+
+
+        // --- LÓGICA DE BEBIDAS (MANTIDA) ---
+
+        function addDrinkToCart(name, price, element) {
+
+            const card = element.closest('.drink-card');
+
+            const qtyDisplay = card.querySelector('.qty-display-drink');
+
+            let qty = parseInt(qtyDisplay.innerText);
+
+
+
+            const existingItem = cart.find(item => item.name === name);
+
+            if (existingItem) {
+
+                existingItem.qty += qty;
+
+            } else {
+
+                cart.push({ name, price, qty });
+
+            }
+
+            
+
+            updateCartCount();
+
+            renderCart();
+
+            qtyDisplay.innerText = 1; 
+
+            alert(`${qty}x ${name} adicionado ao carrinho!`);
+
+        }
+
+
+
+        function updateDrinkQty(btn, change) {
+
+            const display = btn.parentElement.querySelector('.qty-display-drink');
+
+            let val = parseInt(display.innerText) + change;
+
+            if (val < 1) val = 1;
+
+            display.innerText = val;
+
+        }
+
+
+
+        function removeFromCart(index) {
+
+            cart.splice(index, 1);
+
+            updateCartCount();
+
+            renderCart();
+
+        }
+
+
+
+        function showPayment() {
+
+            if(cart.length === 0) {
+
+                alert("Seu carrinho está vazio!");
+
+                return;
+
+            }
+
+            document.getElementById('pix-area').style.display = 'block';
+
+            const modalContent = document.querySelector('#cartModal .modal-content');
+
+            modalContent.scrollTop = modalContent.scrollHeight;
+
+        }
+
+
+
+        // --- SISTEMA DE MODAIS ---
+
+        function abrirModal(id) { document.getElementById(id).style.display = 'flex'; }
+
+        function fecharModal(id) { document.getElementById(id).style.display = 'none'; }
+
+        window.onclick = function(event) { if (event.target.classList.contains('modal')) event.target.style.display = 'none'; }
+
+        
+
+        function mostrarForm(nomeForm, btn) {
+
+            document.querySelectorAll('.form-section').forEach(f => f.classList.remove('active'));
+
+            document.querySelectorAll('.tab-link').forEach(t => t.classList.remove('active'));
+
+            document.getElementById(nomeForm).classList.add('active');
+
+            btn.classList.add('active');
+
+        }
+
+    </script>
+
+</body>
+
+</html>
