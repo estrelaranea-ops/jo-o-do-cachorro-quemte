@@ -98,11 +98,15 @@
             border-color: #ffc107;
         }
 
-        /* BOTÃO CARRINHO (NOVO) */
+        /* BOTÃO CARRINHO */
         .btn-cart {
             background-color: #28a745;
             border-color: #28a745;
             position: relative;
+            margin: 0;
+            padding: 10px 20px;
+            width: auto;
+            min-width: 150px;
         }
         .btn-cart:hover {
             background-color: #218838;
@@ -116,9 +120,25 @@
             padding: 4px 8px;
             font-size: 0.8rem;
             position: absolute;
-            top: -5px;
-            right: 10px;
+            top: -10px;
+            right: -5px;
             border: 2px solid #fff;
+        }
+
+        /* --- CART CONTAINER (DIREITA) --- */
+        .cart-container {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 20px 30px;
+            border-radius: 30px;
+            border: 3px solid #ffc107;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.8);
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* --- CONTAINER PRINCIPAL --- */
@@ -129,24 +149,49 @@
             padding-bottom: 50px;
         }
 
-        /* TÍTULO DA SEÇÃO */
+        /* TÍTULO DA SEÇÃO + BOTÃO PROMOÇÃO */
         .menu-header {
             display: flex;
-            justify-content: center;
+            justify-content: space-between; /* Espaça titulo e botão */
             align-items: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             background: rgba(255, 255, 255, 0.95);
-            padding: 20px;
+            padding: 15px 30px;
             border-radius: 20px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            margin-top: 30px;
+            flex-wrap: wrap; /* Para mobile */
+            gap: 15px;
         }
 
         .section-title {
             color: #d9534f;
             font-family: 'Pacifico', cursive;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin: 0;
         }
+
+        /* BOTÃO PIZZAS EM PROMOÇÃO (NOVO) */
+        .btn-promo {
+            background-color: #ffc107;
+            color: #000;
+            border: 2px solid #000;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .btn-promo:hover {
+            transform: scale(1.05);
+            background-color: #e0a800;
+        }
+        .btn-promo i { font-size: 1.3rem; color: #d9534f; }
 
         /* GRID DE PIZZAS */
         .pizza-grid {
@@ -164,6 +209,7 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
             border-bottom: 6px solid #d9534f;
             transition: transform 0.3s ease;
+            position: relative;
         }
         .card:hover { transform: translateY(-10px); }
 
@@ -171,7 +217,7 @@
             font-size: 1.5rem;
             color: #111;
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-weight: 800;
         }
 
@@ -180,7 +226,7 @@
             height: 220px;
             object-fit: cover;
             border-radius: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
@@ -224,13 +270,13 @@
         .close-btn { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; color: #aaa; z-index: 10; transition: color 0.2s; }
         .close-btn:hover { color: #d9534f; }
 
-        /* --- ESTILOS CARDÁPIO DE BEBIDAS (DARK MODE) --- */
-        #drinksModal .modal-content {
+        /* --- ESTILOS CARDÁPIO DE BEBIDAS E PROMOÇÕES (DARK MODE) --- */
+        #drinksModal .modal-content, #promosModal .modal-content {
             background-color: #1a1a1a; 
             color: #fff;
             border: 2px solid #333;
         }
-        #drinksModal h2 { color: #ffc107; text-shadow: 1px 1px 0 #000; font-family: 'Pacifico', cursive; font-size: 2rem; margin-bottom: 30px; }
+        #drinksModal h2, #promosModal h2 { color: #ffc107; text-shadow: 1px 1px 0 #000; font-family: 'Pacifico', cursive; font-size: 2rem; margin-bottom: 30px; }
 
         .drink-category {
             font-size: 1.5rem; color: #fff; margin: 30px 0 15px 0; border-bottom: 2px solid #ffc107;
@@ -239,20 +285,23 @@
 
         .drinks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; } 
 
-        .drink-card {
+        .drink-card, .promo-card {
             background: #2b2b2b; border: 1px solid #444; border-radius: 15px; padding: 15px;
             text-align: center; transition: transform 0.2s; display: flex; flex-direction: column;
             align-items: center; justify-content: space-between; position: relative;
         }
-        .drink-card:hover { border-color: #ffc107; transform: translateY(-5px); background: #333; }
+        .drink-card:hover, .promo-card:hover { border-color: #ffc107; transform: translateY(-5px); background: #333; }
 
-        .drink-card img { 
+        .drink-card img, .promo-card img { 
             width: 120px; height: 120px; object-fit: contain; margin-bottom: 10px;
             filter: drop-shadow(0 5px 10px rgba(0,0,0,0.8)); 
         }
         
-        .drink-card h4 { margin: 5px 0; font-size: 1.1rem; color: #fff; font-weight: bold; }
-        .drink-card .price { color: #28a745; font-weight: 800; font-size: 1.3rem; display: block; margin-bottom: 10px; }
+        /* Ajuste imagem promo */
+        .promo-card img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; }
+
+        .drink-card h4, .promo-card h4 { margin: 5px 0; font-size: 1.1rem; color: #fff; font-weight: bold; }
+        .drink-card .price, .promo-card .price { color: #28a745; font-weight: 800; font-size: 1.3rem; display: block; margin-bottom: 10px; }
 
         .drink-controls { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
         .btn-qty-sm { background-color: #ffc107; border: none; width: 30px; height: 30px; border-radius: 50%; font-weight: bold; cursor: pointer; }
@@ -277,8 +326,8 @@
         #pix-area { display: none; text-align: center; animation: fadeIn 0.5s; background: #f9f9f9; padding: 15px; border-radius: 10px; margin-top: 15px; }
         .pix-key { background: #fff; padding: 10px; border: 1px dashed #333; font-family: monospace; font-size: 1rem; margin: 10px 0; word-break: break-all; }
         .qr-code-placeholder { width: 180px; height: 180px; margin: 0 auto 10px auto; display: block; }
-        
-        /* LOGIN STYLES */
+
+        /* LOGIN */
         .tabs { display: flex; justify-content: center; margin-bottom: 25px; border-bottom: 2px solid #eee; }
         .tab-link { background: none; border: none; padding: 10px 20px; font-size: 1rem; font-weight: bold; cursor: pointer; color: #777; border-bottom: 3px solid transparent; width: 50%; }
         .tab-link.active { color: #d9534f; border-bottom: 3px solid #d9534f; }
@@ -291,10 +340,12 @@
 
         @media (max-width: 900px) {
             .pizza-grid { grid-template-columns: 1fr; }
-            .drinks-grid { grid-template-columns: 1fr; }
+            .drinks-grid { grid-template-columns: 1fr; } 
             .logo-container { position: relative; top: auto; left: auto; margin-bottom: 30px; width: 90%; }
+            .cart-container { position: relative; top: auto; right: auto; margin-bottom: 20px; width: 90%; }
             .main-container { margin-top: 0; }
             body { flex-direction: column; padding-top: 30px; }
+            .menu-header { flex-direction: column; text-align: center; } /* Ajuste mobile */
         }
     </style>
 </head>
@@ -313,17 +364,23 @@
             <button class="btn-account" onclick="abrirModal('drinksModal')">
                 <i class="fas fa-glass-cheers"></i> Cardápio de Bebidas
             </button>
-
-            <button class="btn-account btn-cart" onclick="abrirModal('cartModal')">
-                <i class="fas fa-shopping-cart"></i> Carrinho
-                <span id="cart-count" class="cart-badge">0</span>
-            </button>
         </div>
+    </div>
+
+    <div class="cart-container">
+        <button class="btn-account btn-cart" onclick="abrirModal('cartModal')">
+            <i class="fas fa-shopping-cart"></i> Carrinho
+            <span id="cart-count" class="cart-badge">0</span>
+        </button>
     </div>
 
     <div class="main-container">
         <div class="menu-header">
             <h2 class="section-title">Nossas Pizzas</h2>
+            
+            <button class="btn-promo" onclick="abrirModal('promosModal')">
+                <i class="fas fa-fire"></i> PIZZAS EM PROMOÇÃO
+            </button>
         </div>
 
         <div class="pizza-grid">
@@ -397,6 +454,88 @@
                     <button class="btn-qty" onclick="updatePizzaPrice(this, 1)">+</button>
                 </div>
                 <button class="btn-add-cart" onclick="addPizzaToCart(this)">Adicionar - R$ <span class="price-text">75,00</span></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="promosModal" class="modal">
+        <div class="modal-content wide">
+            <span class="close-btn" onclick="fecharModal('promosModal')">&times;</span>
+            <h2 style="color:#ffc107;">🔥 Pizzas em Promoção</h2>
+            <p style="color:#ccc; margin-bottom:20px;">Qualquer sabor abaixo por apenas R$ 19,99 (Tamanho Broto)</p>
+            
+            <div class="drinks-grid">
+                <div class="promo-card" data-name="Pizza de Milho (Promo)" data-price="19.99">
+                    <img src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?q=80&w=400&auto=format&fit=crop" alt="Milho">
+                    <h4>Pizza de Milho</h4>
+                    <span class="price">R$ 19,99</span>
+                    <div class="drink-controls">
+                        <button class="btn-qty-sm" onclick="updatePromoQty(this, -1)">-</button>
+                        <span class="qty-display-drink">1</span>
+                        <button class="btn-qty-sm" onclick="updatePromoQty(this, 1)">+</button>
+                    </div>
+                    <button class="btn-add-drink" onclick="addPromoToCart(this)">Adicionar</button>
+                </div>
+
+                <div class="promo-card" data-name="Calabresa Simples (Promo)" data-price="19.99">
+                    <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=400&auto=format&fit=crop" alt="Calabresa">
+                    <h4>Calabresa Simples</h4>
+                    <span class="price">R$ 19,99</span>
+                    <div class="drink-controls">
+                        <button class="btn-qty-sm" onclick="updatePromoQty(this, -1)">-</button>
+                        <span class="qty-display-drink">1</span>
+                        <button class="btn-qty-sm" onclick="updatePromoQty(this, 1)">+</button>
+                    </div>
+                    <button class="btn-add-drink" onclick="addPromoToCart(this)">Adicionar</button>
+                </div>
+
+                <div class="promo-card" data-name="Frango Simples (Promo)" data-price="19.99">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=400&auto=format&fit=crop" alt="Frango">
+                    <h4>Frango Simples</h4>
+                    <span class="price">R$ 19,99</span>
+                    <div class="drink-controls">
+                        <button class="btn-qty-sm" onclick="updatePromoQty(this, -1)">-</button>
+                        <span class="qty-display-drink">1</span>
+                        <button class="btn-qty-sm" onclick="updatePromoQty(this, 1)">+</button>
+                    </div>
+                    <button class="btn-add-drink" onclick="addPromoToCart(this)">Adicionar</button>
+                </div>
+
+                <div class="promo-card" data-name="Napolitana (Promo)" data-price="19.99">
+                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=400&auto=format&fit=crop" alt="Napolitana">
+                    <h4>Napolitana</h4>
+                    <span class="price">R$ 19,99</span>
+                    <div class="drink-controls">
+                        <button class="btn-qty-sm" onclick="updatePromoQty(this, -1)">-</button>
+                        <span class="qty-display-drink">1</span>
+                        <button class="btn-qty-sm" onclick="updatePromoQty(this, 1)">+</button>
+                    </div>
+                    <button class="btn-add-drink" onclick="addPromoToCart(this)">Adicionar</button>
+                </div>
+
+                <div class="promo-card" data-name="Marguerita (Promo)" data-price="19.99">
+                    <img src="https://images.unsplash.com/photo-1595854341625-f71831d39e71?q=80&w=400&auto=format&fit=crop" alt="Marguerita">
+                    <h4>Marguerita</h4>
+                    <span class="price">R$ 19,99</span>
+                    <div class="drink-controls">
+                        <button class="btn-qty-sm" onclick="updatePromoQty(this, -1)">-</button>
+                        <span class="qty-display-drink">1</span>
+                        <button class="btn-qty-sm" onclick="updatePromoQty(this, 1)">+</button>
+                    </div>
+                    <button class="btn-add-drink" onclick="addPromoToCart(this)">Adicionar</button>
+                </div>
+
+                <div class="promo-card" data-name="Brigadeiro (Promo)" data-price="19.99">
+                    <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=400&auto=format&fit=crop" alt="Brigadeiro">
+                    <h4>Brigadeiro (Doce)</h4>
+                    <span class="price">R$ 19,99</span>
+                    <div class="drink-controls">
+                        <button class="btn-qty-sm" onclick="updatePromoQty(this, -1)">-</button>
+                        <span class="qty-display-drink">1</span>
+                        <button class="btn-qty-sm" onclick="updatePromoQty(this, 1)">+</button>
+                    </div>
+                    <button class="btn-add-drink" onclick="addPromoToCart(this)">Adicionar</button>
+                </div>
             </div>
         </div>
     </div>
@@ -597,12 +736,22 @@
         function addPizzaToCart(btn) {
             const card = btn.closest('.card');
             const name = card.querySelector('h2').innerText;
-            const flavor = card.querySelector('.flavor-select').value;
+            
+            // Tenta pegar o sabor do seletor, se não existir (promoções), usa o nome padrão
+            const flavorSelect = card.querySelector('.flavor-select');
+            let flavor = "";
+            if (flavorSelect) {
+                 flavor = flavorSelect.value;
+            }
+
             const qty = parseInt(card.querySelector('.qty-display').innerText);
             const basePrice = parseFloat(card.getAttribute('data-base-price'));
 
-            // Cria o nome composto (Ex: Pizza Grande (Calabresa))
-            const fullName = `${name} (${flavor})`;
+            // Cria o nome composto
+            let fullName = name;
+            if (flavor) {
+                fullName = `${name} (${flavor})`;
+            }
 
             // Verifica se já existe esse item exato no carrinho
             const existingItem = cart.find(item => item.name === fullName);
@@ -614,11 +763,40 @@
 
             updateCartCount();
             renderCart();
+            
             // Reseta a quantidade para 1 visualmente
             card.querySelector('.qty-display').innerText = 1;
             card.querySelector('.price-text').innerText = basePrice.toFixed(2).replace('.', ',');
             
             alert(`${qty}x ${fullName} adicionado ao carrinho!`);
+        }
+
+        // --- LÓGICA DE PROMOÇÕES (NOVA) ---
+        function updatePromoQty(btn, change) {
+            const card = btn.closest('.promo-card');
+            const qtySpan = card.querySelector('.qty-display-drink');
+            let val = parseInt(qtySpan.innerText) + change;
+            if (val < 1) val = 1;
+            qtySpan.innerText = val;
+        }
+
+        function addPromoToCart(btn) {
+            const card = btn.closest('.promo-card');
+            const name = card.getAttribute('data-name');
+            const price = parseFloat(card.getAttribute('data-price'));
+            const qty = parseInt(card.querySelector('.qty-display-drink').innerText);
+
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.qty += qty;
+            } else {
+                cart.push({ name, price, qty });
+            }
+            
+            updateCartCount();
+            renderCart();
+            card.querySelector('.qty-display-drink').innerText = 1;
+            alert(`${qty}x ${name} adicionado ao carrinho!`);
         }
 
         // --- LÓGICA DE BEBIDAS (MANTIDA) ---
