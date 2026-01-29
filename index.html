@@ -76,7 +76,7 @@
 
         /* BOTÕES DO CABEÇALHO */
         .btn-account {
-            margin-top: 10px;
+            margin-top: 5px;
             background-color: transparent;
             border: 2px solid #fff;
             color: #fff;
@@ -98,9 +98,9 @@
             border-color: #ffc107;
         }
 
-        /* --- BOTÃO CARRINHO (NOVO) --- */
+        /* BOTÃO CARRINHO (DESTAQUE) */
         .btn-cart {
-            background-color: #28a745; /* Verde para destacar */
+            background-color: #28a745;
             border-color: #28a745;
             position: relative;
         }
@@ -109,10 +109,8 @@
             border-color: #1e7e34;
             color: #fff;
         }
-        
-        /* Bolinha vermelha com numero de itens */
         .cart-badge {
-            background-color: #d9534f; 
+            background-color: #d9534f;
             color: white;
             border-radius: 50%;
             padding: 4px 8px;
@@ -204,74 +202,4 @@
 
         /* --- MODAIS GERAIS --- */
         .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(5px); justify-content: center; align-items: center; }
-        .modal-content { background-color: #fff; padding: 30px; border-radius: 20px; width: 90%; max-width: 450px; text-align: center; position: relative; animation: slideDown 0.3s ease; max-height: 90vh; overflow-y: auto; }
-        .modal-content.wide { max-width: 900px; }
-        
-        @keyframes slideDown { from {transform: translateY(-50px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
-        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; color: #aaa; z-index: 10; transition: color 0.2s; }
-        .close-btn:hover { color: #d9534f; }
-
-        /* --- ESTILOS CARDÁPIO DE BEBIDAS (DARK MODE) --- */
-        #drinksModal .modal-content {
-            background-color: #1a1a1a; 
-            color: #fff;
-            border: 2px solid #333;
-        }
-        #drinksModal h2 { color: #ffc107; text-shadow: 1px 1px 0 #000; font-family: 'Pacifico', cursive; font-size: 2rem; margin-bottom: 30px; }
-
-        .drink-category {
-            font-size: 1.5rem; color: #fff; margin: 30px 0 15px 0; border-bottom: 2px solid #ffc107;
-            display: inline-block; padding-bottom: 5px; width: 100%; text-align: left; font-family: 'Pacifico', cursive;
-        }
-
-        .drinks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; } /* 3 por linha em telas grandes */
-
-        .drink-card {
-            background: #2b2b2b; border: 1px solid #444; border-radius: 15px; padding: 15px;
-            text-align: center; transition: transform 0.2s; display: flex; flex-direction: column;
-            align-items: center; justify-content: space-between; position: relative;
-        }
-        .drink-card:hover { border-color: #ffc107; transform: translateY(-5px); background: #333; }
-
-        /* IMAGEM DA BEBIDA EM CIMA DO VALOR */
-        .drink-card img { 
-            width: 120px; height: 120px; object-fit: contain; margin-bottom: 10px;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.8)); 
-        }
-        
-        .drink-card h4 { margin: 5px 0; font-size: 1.1rem; color: #fff; font-weight: bold; }
-        .drink-card .price { color: #28a745; font-weight: 800; font-size: 1.3rem; display: block; margin-bottom: 10px; }
-
-        .drink-controls { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-        .qty-display-drink { font-size: 1.2rem; font-weight: bold; color: #fff; width: 20px; }
-        
-        .btn-add-drink {
-            background-color: #ffc107; color: #000; border: none; padding: 8px 20px;
-            border-radius: 20px; font-weight: bold; cursor: pointer; width: 100%;
-            transition: background 0.3s;
-        }
-        .btn-add-drink:hover { background-color: #e0a800; }
-
-        /* --- ESTILOS DO CARRINHO --- */
-        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #eee; }
-        .cart-item-info { text-align: left; }
-        .cart-item-title { font-weight: bold; display: block; }
-        .cart-item-price { color: #666; font-size: 0.9rem; }
-        .cart-total { font-size: 1.5rem; font-weight: bold; margin: 20px 0; color: #28a745; }
-        .btn-remove { color: red; cursor: pointer; font-size: 1.2rem; background: none; border: none; }
-
-        /* ÁREA DE PAGAMENTO PIX */
-        #pix-area { display: none; text-align: center; animation: fadeIn 0.5s; background: #f9f9f9; padding: 15px; border-radius: 10px; margin-top: 15px; }
-        .pix-key { background: #fff; padding: 10px; border: 1px dashed #333; font-family: monospace; font-size: 1rem; margin: 10px 0; word-break: break-all; }
-        .qr-code-placeholder { width: 180px; height: 180px; margin: 0 auto 10px auto; display: block; }
-        
-        /* LOGIN STYLES */
-        .tabs { display: flex; justify-content: center; margin-bottom: 25px; border-bottom: 2px solid #eee; }
-        .tab-link { background: none; border: none; padding: 10px 20px; font-size: 1rem; font-weight: bold; cursor: pointer; color: #777; border-bottom: 3px solid transparent; width: 50%; }
-        .tab-link.active { color: #d9534f; border-bottom: 3px solid #d9534f; }
-        .auth-form { display: flex; flex-direction: column; gap: 15px; text-align: left; }
-        .input-group label { font-size: 0.9rem; font-weight: bold; color: #555; margin-bottom: 5px; display: block; }
-        .input-group input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 1rem; }
-        .btn-submit { background-color: #ffc107; color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 1rem; }
-        .form-section { display: none; }
-        .
+        .modal-content { background-color: #fff; padding: 30px; border-
