@@ -3,121 +3,453 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Login - Pizzaria do Ranea</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Pizzaria do Ranea</title>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        :root {
-            --primary: #ea1d2c; /* Vermelho iFood */
-            --background: #f7f7f7;
-            --text-dark: #3e3e3e;
-            --text-gray: #717171;
-            --white: #ffffff;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+        
+        body {
+            background-color: #121212; 
+            color: #fff; 
+            overflow-x: hidden; 
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--white); height: 100vh; overflow: hidden; }
 
         /* --- TELA 1: LOGIN / CADASTRO --- */
         #login-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--white); z-index: 10;
+            background: #121212; z-index: 3000;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             padding: 30px; text-align: center;
-            animation: fadeIn 0.5s ease;
         }
+
+        .login-logo h1 { 
+            color: #ffc107; font-family: 'Pacifico', cursive; font-size: 3rem; margin-bottom: 10px; text-shadow: 2px 2px 0px #000;
+        }
+        .login-logo p { color: #aaa; margin-bottom: 40px; font-size: 1.1rem; }
         
-        .logo-area { margin-bottom: 50px; }
-        .logo-area h1 { 
-            color: var(--primary); font-family: 'Pacifico', cursive; font-size: 2.8rem; 
-        }
-        .logo-area p { color: var(--text-gray); font-size: 0.9rem; margin-top: 5px; }
-
-        .form-container { width: 100%; max-width: 400px; }
+        .login-form { width: 100%; max-width: 350px; background: #1e1e1e; padding: 30px; border-radius: 20px; border: 1px solid #333; }
         
-        .input-group { margin-bottom: 15px; text-align: left; }
-        .input-group label { 
-            display: block; font-size: 0.85rem; color: var(--text-gray); 
-            margin-bottom: 5px; font-weight: 500;
+        .login-input {
+            width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #444;
+            border-radius: 10px; font-size: 1rem; background-color: #2a2a2a; color: #fff; outline: none;
         }
-        .input-field {
-            width: 100%; padding: 16px; border: 1px solid #ddd;
-            border-radius: 12px; font-size: 1rem; background-color: #fcfcfc;
-            color: var(--text-dark); transition: 0.3s; outline: none;
+        .login-input::placeholder { color: #888; }
+        
+        .btn-login {
+            width: 100%; padding: 15px; background-color: #ffc107; color: #000;
+            border: none; border-radius: 10px; font-size: 1.1rem; font-weight: bold; cursor: pointer;
+            transition: 0.3s; margin-top: 10px;
         }
-        .input-field:focus { border-color: var(--primary); background-color: #fff; }
+        .btn-login:hover { background-color: #e0a800; transform: scale(1.02); }
 
-        .btn-continue {
-            width: 100%; padding: 18px; background-color: var(--primary); color: white;
-            border: none; border-radius: 12px; font-size: 1rem; font-weight: 700;
-            cursor: pointer; margin-top: 20px; transition: 0.2s;
-            box-shadow: 0 4px 10px rgba(234, 29, 44, 0.2);
-        }
-        .btn-continue:active { transform: scale(0.98); }
-
-        .footer-text { margin-top: 30px; font-size: 0.8rem; color: #999; }
-        .footer-text a { color: var(--primary); text-decoration: none; font-weight: bold; }
-
-        /* --- TELA 2: LOADING (iFood Style) --- */
+        /* --- TELA 2: LOADING --- */
         #loading-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: var(--primary); z-index: 20;
-            display: none; /* Oculto inicialmente */
-            flex-direction: column; align-items: center; justify-content: center;
+            background: #121212; z-index: 2000;
+            display: none; align-items: center; justify-content: center; flex-direction: column;
         }
-
         .spinner {
-            width: 60px; height: 60px; border: 6px solid rgba(255,255,255,0.3);
-            border-radius: 50%; border-top-color: white;
-            animation: spin 1s linear infinite; margin-bottom: 20px;
+            width: 50px; height: 50px; border: 5px solid rgba(255,193,7,0.2);
+            border-radius: 50%; border-top-color: #ffc107; animation: spin 1s ease-in-out infinite;
         }
-        
         @keyframes spin { to { transform: rotate(360deg); } }
-        
-        .loading-msg { color: white; font-size: 1.2rem; font-weight: 500; }
-        .brand-msg { color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-top: 5px; }
+        .loading-text { color: #ffc107; margin-top: 20px; font-weight: bold; font-size: 1.2rem; }
 
-        /* --- TELA 3: SUCESSO (Apenas para demonstração) --- */
-        #success-screen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #fff; z-index: 5; display: none;
-            align-items: center; justify-content: center; flex-direction: column;
+        /* --- TELA 3: APP PRINCIPAL (MENU) --- */
+        #app-container { display: none; padding-bottom: 80px; }
+
+        /* HEADER FIXO */
+        .app-header {
+            background: #1e1e1e; padding: 15px 20px; position: sticky; top: 0; z-index: 100;
+            border-bottom: 1px solid #333; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .header-logo { font-family: 'Pacifico', cursive; font-size: 1.5rem; color: #ffc107; }
+        
+        .btn-cart-header {
+            background: #28a745; color: white; border: none; padding: 8px 15px;
+            border-radius: 20px; font-weight: bold; cursor: pointer; position: relative;
+        }
+        .cart-badge {
+            position: absolute; top: -5px; right: -5px; background: #ea1d2c; color: white;
+            border-radius: 50%; padding: 3px 6px; font-size: 0.75rem; border: 2px solid #fff;
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        /* CONTEÚDO PRINCIPAL */
+        .main-content { padding: 20px; max-width: 1000px; margin: 0 auto; }
+        
+        .section-title { 
+            color: #ffc107; font-family: 'Pacifico', cursive; font-size: 2rem; 
+            margin: 30px 0 20px 0; text-align: center; border-bottom: 1px solid #333; padding-bottom: 10px;
+        }
+
+        .pizza-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;
+        }
+
+        /* CARD DE PRODUTO */
+        .card {
+            background: #1e1e1e; border-radius: 15px; padding: 20px; text-align: center;
+            border: 1px solid #333; transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); border-color: #ffc107; }
+
+        .card h2 { font-size: 1.3rem; margin-bottom: 10px; color: #fff; }
+        .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
+
+        .flavor-select {
+            width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px;
+            border: 1px solid #ffc107; background: #2a2a2a; color: #fff; font-size: 0.9rem; outline: none;
+        }
+
+        .controls { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 15px; font-size: 1.2rem; font-weight: bold; }
+        .btn-qty { 
+            background: #ffc107; border: none; width: 35px; height: 35px; border-radius: 50%; 
+            font-weight: bold; cursor: pointer; color: #000;
+        }
+
+        .btn-add {
+            width: 100%; padding: 12px; background: transparent; border: 2px solid #ffc107;
+            color: #ffc107; font-weight: bold; border-radius: 8px; cursor: pointer; transition: 0.3s;
+        }
+        .btn-add:hover { background: #ffc107; color: #000; }
+
+        /* Botão para abrir menu de bebidas */
+        .btn-drinks-menu {
+            display: block; width: 100%; max-width: 300px; margin: 40px auto; 
+            background: #2a2a2a; border: 1px solid #444; color: #fff; padding: 15px;
+            border-radius: 10px; font-size: 1.1rem; cursor: pointer; text-align: center;
+        }
+        .btn-drinks-menu:hover { background: #333; border-color: #ffc107; }
+
+        /* --- MODAIS --- */
+        .modal { display: none; position: fixed; z-index: 200; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+        .modal-content { background: #1e1e1e; padding: 25px; border-radius: 15px; width: 90%; max-width: 500px; max-height: 85vh; overflow-y: auto; position: relative; border: 1px solid #333; }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: #fff; }
+
+        /* Cardápio de Bebidas no Modal */
+        .drink-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #333; }
+        .drink-info h4 { font-size: 1rem; margin-bottom: 5px; }
+        .drink-info span { color: #28a745; font-weight: bold; }
+        .drink-actions { display: flex; align-items: center; gap: 10px; }
+
+        /* Carrinho Modal */
+        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #333; }
+        .cart-total { font-size: 1.3rem; font-weight: bold; color: #ffc107; margin-top: 20px; text-align: right; }
+        
+        .pix-area { display: none; background: #2a2a2a; padding: 15px; border-radius: 10px; margin-top: 15px; text-align: center; }
+        .pix-key { background: #121212; padding: 10px; font-family: monospace; word-break: break-all; margin: 10px 0; border: 1px dashed #ffc107; color: #ffc107; }
+
     </style>
 </head>
 <body>
 
     <div id="login-screen">
-        <div class="logo-area">
+        <div class="login-logo">
             <h1>Pizzaria do Ranea</h1>
-            <p>A melhor pizza da região, agora no app.</p>
+            <p>Faça seu login para continuar</p>
+        </div>
+        <div class="login-form">
+            <input type="email" class="login-input" id="login-email" placeholder="Seu E-mail" required>
+            <input type="password" class="login-input" id="login-pass" placeholder="Sua Senha" required>
+            <button class="btn-login" onclick="startApp()">ENTRAR NO CARDÁPIO</button>
+        </div>
+    </div>
+
+    <div id="loading-screen">
+        <div class="spinner"></div>
+        <div class="loading-text">Carregando cardápio...</div>
+    </div>
+
+    <div id="app-container">
+        <div class="app-header">
+            <div class="header-logo">Pizzaria do Ranea</div>
+            <button class="btn-cart-header" onclick="openModal('cartModal')">
+                <i class="fas fa-shopping-cart"></i> <span id="cart-count" class="cart-badge">0</span>
+            </button>
         </div>
 
-        <div class="form-container">
-            <div class="input-group">
-                <label>Seu E-mail</label>
-                <input type="email" class="input-field" placeholder="exemplo@email.com" id="email">
-            </div>
+        <div class="main-content">
+            <h2 class="section-title">Nossas Pizzas</h2>
             
-            <div class="input-group">
-                <label>WhatsApp / Celular</label>
-                <input type="tel" class="input-field" placeholder="(00) 00000-0000" id="phone">
+            <div class="pizza-grid">
+                <div class="card" data-base-price="30.00">
+                    <h2>Pizza Pequena</h2>
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=400&auto=format&fit=crop">
+                    
+                    <select class="flavor-select">
+                        <option>Calabresa</option>
+                        <option>Mussarela</option>
+                        <option>Portuguesa</option>
+                        <option>Frango c/ Catupiry</option>
+                    </select>
+
+                    <div class="controls">
+                        <button class="btn-qty" onclick="updatePizzaPrice(this, -1)">-</button>
+                        <span class="qty-display">1</span>
+                        <button class="btn-qty" onclick="updatePizzaPrice(this, 1)">+</button>
+                    </div>
+                    <button class="btn-add" onclick="addPizzaToCart(this)">Adicionar - R$ <span class="price-text">30,00</span></button>
+                </div>
+
+                <div class="card" data-base-price="45.00">
+                    <h2>Pizza Média</h2>
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=400&auto=format&fit=crop">
+                    
+                    <select class="flavor-select">
+                        <option>Calabresa</option>
+                        <option>Mussarela</option>
+                        <option>Portuguesa</option>
+                        <option>Frango c/ Catupiry</option>
+                    </select>
+
+                    <div class="controls">
+                        <button class="btn-qty" onclick="updatePizzaPrice(this, -1)">-</button>
+                        <span class="qty-display">1</span>
+                        <button class="btn-qty" onclick="updatePizzaPrice(this, 1)">+</button>
+                    </div>
+                    <button class="btn-add" onclick="addPizzaToCart(this)">Adicionar - R$ <span class="price-text">45,00</span></button>
+                </div>
+
+                 <div class="card" data-base-price="60.00">
+                    <h2>Pizza Grande</h2>
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=400&auto=format&fit=crop">
+                    
+                    <select class="flavor-select">
+                        <option>Calabresa</option>
+                        <option>Mussarela</option>
+                        <option>Portuguesa</option>
+                        <option>Frango c/ Catupiry</option>
+                    </select>
+
+                    <div class="controls">
+                        <button class="btn-qty" onclick="updatePizzaPrice(this, -1)">-</button>
+                        <span class="qty-display">1</span>
+                        <button class="btn-qty" onclick="updatePizzaPrice(this, 1)">+</button>
+                    </div>
+                    <button class="btn-add" onclick="addPizzaToCart(this)">Adicionar - R$ <span class="price-text">60,00</span></button>
+                </div>
+
+                 <div class="card" data-base-price="75.00">
+                    <h2>Pizza Família</h2>
+                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=400&auto=format&fit=crop">
+                    
+                    <select class="flavor-select">
+                        <option>Calabresa</option>
+                        <option>Mussarela</option>
+                        <option>Portuguesa</option>
+                        <option>Frango c/ Catupiry</option>
+                    </select>
+
+                    <div class="controls">
+                        <button class="btn-qty" onclick="updatePizzaPrice(this, -1)">-</button>
+                        <span class="qty-display">1</span>
+                        <button class="btn-qty" onclick="updatePizzaPrice(this, 1)">+</button>
+                    </div>
+                    <button class="btn-add" onclick="addPizzaToCart(this)">Adicionar - R$ <span class="price-text">75,00</span></button>
+                </div>
             </div>
 
-            <div class="input-group">
-                <label>Senha de Acesso</label>
-                <input type="password" class="input-field" placeholder="Crie uma senha" id="password">
+            <button class="btn-drinks-menu" onclick="openModal('drinksModal')">
+                <i class="fas fa-wine-bottle"></i> Ver Bebidas e Refrescos
+            </button>
+        </div>
+    </div>
+
+    <div id="drinksModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('drinksModal')">&times;</span>
+            <h2 style="color:#ffc107; margin-bottom:15px;">Bebidas</h2>
+            
+            <div class="drink-item">
+                <div class="drink-info">
+                    <h4>Coca-Cola 2L</h4>
+                    <span>R$ 14,00</span>
+                </div>
+                <div class="drink-actions">
+                    <button class="btn-qty" onclick="this.nextElementSibling.innerText++">+</button>
+                    <span class="qty-display-drink">1</span>
+                    <button class="btn-add" style="padding: 5px 15px;" onclick="addDrinkToCart('Coca-Cola 2L', 14.00, this)">Add</button>
+                </div>
             </div>
 
-            <button class="btn-continue" onclick="startLoading()">CONTINUAR</button>
+            <div class="drink-item">
+                <div class="drink-info">
+                    <h4>Guaraná 2L</h4>
+                    <span>R$ 12,00</span>
+                </div>
+                <div class="drink-actions">
+                    <button class="btn-qty" onclick="this.nextElementSibling.innerText++">+</button>
+                    <span class="qty-display-drink">1</span>
+                    <button class="btn-add" style="padding: 5px 15px;" onclick="addDrinkToCart('Guaraná 2L', 12.00, this)">Add</button>
+                </div>
+            </div>
 
-            <div class="footer-text">
-                Ao continuar, você concorda com nossos <a href="#">Termos de Uso</a>.
+            <div class="drink-item">
+                <div class="drink-info">
+                    <h4>Heineken Long Neck</h4>
+                    <span>R$ 12,00</span>
+                </div>
+                <div class="drink-actions">
+                    <button class="btn-qty" onclick="this.nextElementSibling.innerText++">+</button>
+                    <span class="qty-display-drink">1</span>
+                    <button class="btn-add" style="padding: 5px 15px;" onclick="addDrinkToCart('Heineken', 12.00, this)">Add</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <div id="loading-
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('cartModal')">&times;</span>
+            <h2 style="color:#ffc107; margin-bottom:20px;">Seu Carrinho</h2>
+            
+            <div id="cart-items">
+                <p style="color:#777; text-align:center;">Carrinho vazio.</p>
+            </div>
+
+            <div class="cart-total">Total: R$ <span id="cart-total-value">0,00</span></div>
+            
+            <button class="btn-login" onclick="showPix()">Finalizar Pedido</button>
+            
+            <div id="pix-area" class="pix-area">
+                <h4 style="color:#28a745; margin-bottom:10px;">Pagamento PIX</h4>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" style="width:150px; background:white; padding:10px;">
+                <div class="pix-key">00020126360014BR.GOV.BCB.PIX...</div>
+                <button class="btn-login" style="background:#28a745;" onclick="alert('Pedido Enviado!')">Já paguei</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- NAVEGAÇÃO ---
+        function startApp() {
+            const email = document.getElementById('login-email').value;
+            const pass = document.getElementById('login-pass').value;
+
+            if(!email || !pass) {
+                alert('Por favor, preencha todos os campos!');
+                return;
+            }
+
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('loading-screen').style.display = 'flex';
+
+            setTimeout(() => {
+                document.getElementById('loading-screen').style.display = 'none';
+                document.getElementById('app-container').style.display = 'block';
+            }, 2000);
+        }
+
+        // --- CARRINHO ---
+        let cart = [];
+
+        function updatePizzaPrice(btn, change) {
+            const card = btn.closest('.card');
+            const qtySpan = card.querySelector('.qty-display');
+            const priceSpan = card.querySelector('.price-text');
+            const basePrice = parseFloat(card.getAttribute('data-base-price'));
+
+            let qty = parseInt(qtySpan.innerText) + change;
+            if (qty < 1) qty = 1;
+
+            qtySpan.innerText = qty;
+            let total = (qty * basePrice).toFixed(2).replace('.', ',');
+            priceSpan.innerText = total;
+        }
+
+        function addPizzaToCart(btn) {
+            const card = btn.closest('.card');
+            const name = card.querySelector('h2').innerText;
+            const flavor = card.querySelector('.flavor-select').value;
+            const qty = parseInt(card.querySelector('.qty-display').innerText);
+            const basePrice = parseFloat(card.getAttribute('data-base-price'));
+
+            const fullName = `${name} (${flavor})`;
+            const existing = cart.find(item => item.name === fullName);
+
+            if(existing) existing.qty += qty;
+            else cart.push({ name: fullName, price: basePrice, qty });
+
+            updateCartUI();
+            alert(`${qty}x ${fullName} adicionado!`);
+            
+            // Reset
+            card.querySelector('.qty-display').innerText = 1;
+            card.querySelector('.price-text').innerText = basePrice.toFixed(2).replace('.', ',');
+        }
+
+        function addDrinkToCart(name, price, btn) {
+            const qtySpan = btn.previousElementSibling;
+            const qty = parseInt(qtySpan.innerText);
+
+            const existing = cart.find(item => item.name === name);
+            if(existing) existing.qty += qty;
+            else cart.push({ name, price, qty });
+
+            updateCartUI();
+            qtySpan.innerText = 1;
+            alert(`${qty}x ${name} adicionado!`);
+        }
+
+        function updateCartUI() {
+            const totalQty = cart.reduce((acc, item) => acc + item.qty, 0);
+            const badge = document.getElementById('cart-count');
+            badge.innerText = totalQty;
+            badge.style.display = totalQty > 0 ? 'block' : 'none';
+        }
+
+        function renderCart() {
+            const list = document.getElementById('cart-items');
+            const totalDisplay = document.getElementById('cart-total-value');
+            let total = 0;
+
+            if(cart.length === 0) {
+                list.innerHTML = '<p style="text-align:center; color:#777;">Carrinho vazio.</p>';
+                totalDisplay.innerText = '0,00';
+                return;
+            }
+
+            list.innerHTML = '';
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.qty;
+                total += itemTotal;
+                list.innerHTML += `
+                    <div style="display:flex; justify-content:space-between; margin-bottom:10px; border-bottom:1px solid #333; padding-bottom:10px;">
+                        <div>
+                            <div style="font-weight:bold; color:#fff;">${item.qty}x ${item.name}</div>
+                            <div style="color:#aaa; font-size:0.9rem;">R$ ${itemTotal.toFixed(2).replace('.', ',')}</div>
+                        </div>
+                        <i class="fas fa-trash" style="color:#ea1d2c; cursor:pointer;" onclick="removeItem(${index})"></i>
+                    </div>
+                `;
+            });
+            totalDisplay.innerText = total.toFixed(2).replace('.', ',');
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+            renderCart();
+        }
+
+        function showPayment() {
+            if(cart.length === 0) return alert('Carrinho vazio!');
+            document.getElementById('pix-area').style.display = 'block';
+        }
+
+        // --- MODAIS ---
+        function openModal(id) { 
+            document.getElementById(id).style.display = 'flex'; 
+            if(id === 'cartModal') {
+                renderCart();
+                document.getElementById('pix-area').style.display = 'none';
+            }
+        }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+    </script>
+</body>
+</html>
