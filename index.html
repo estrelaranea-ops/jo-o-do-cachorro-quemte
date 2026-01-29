@@ -3,363 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pizzaria do Ranea - Delivery</title>
+    <title>Login - Pizzaria do Ranea</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         :root {
-            /* Paleta Dark Premium */
-            --bg-main: #121212;
-            --bg-card: #1e1e1e;
-            --primary: #ffc107;      /* Amarelo */
-            --secondary: #ea1d2c;    /* Vermelho iFood */
-            --text-white: #ffffff;
-            --text-gray: #b3b3b3;
-            --border: #333333;
+            --primary: #ea1d2c; /* Vermelho iFood */
+            --background: #f7f7f7;
+            --text-dark: #3e3e3e;
+            --text-gray: #717171;
+            --white: #ffffff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--bg-main); color: var(--text-white); overflow-x: hidden; padding-bottom: 90px; }
+        body { background-color: var(--white); height: 100vh; overflow: hidden; }
 
-        /* --- 1. TELA DE LOGIN --- */
+        /* --- TELA 1: LOGIN / CADASTRO --- */
         #login-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-main); z-index: 5000;
+            background: var(--white); z-index: 10;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             padding: 30px; text-align: center;
+            animation: fadeIn 0.5s ease;
         }
         
-        .login-logo h1 { 
-            color: var(--primary); font-size: 3rem; margin-bottom: 40px; 
-            font-family: 'Pacifico', cursive; text-shadow: 2px 2px 0px #000;
+        .logo-area { margin-bottom: 50px; }
+        .logo-area h1 { 
+            color: var(--primary); font-family: 'Pacifico', cursive; font-size: 2.8rem; 
         }
-        
-        .login-form { width: 100%; max-width: 400px; background: var(--bg-card); padding: 30px; border-radius: 15px; border: 1px solid var(--border); }
-        .login-input {
-            width: 100%; padding: 15px; margin-bottom: 15px; 
-            border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; 
-            background-color: #2a2a2a; color: var(--text-white); outline: none;
-        }
-        
-        .btn-large {
-            width: 100%; padding: 15px; background-color: var(--primary); 
-            color: #000; border: none; border-radius: 8px; font-size: 1.1rem; 
-            font-weight: bold; cursor: pointer; transition: 0.2s;
-        }
-        .btn-large:active { transform: scale(0.98); }
+        .logo-area p { color: var(--text-gray); font-size: 0.9rem; margin-top: 5px; }
 
-        /* --- 2. TELA DE LOADING --- */
+        .form-container { width: 100%; max-width: 400px; }
+        
+        .input-group { margin-bottom: 15px; text-align: left; }
+        .input-group label { 
+            display: block; font-size: 0.85rem; color: var(--text-gray); 
+            margin-bottom: 5px; font-weight: 500;
+        }
+        .input-field {
+            width: 100%; padding: 16px; border: 1px solid #ddd;
+            border-radius: 12px; font-size: 1rem; background-color: #fcfcfc;
+            color: var(--text-dark); transition: 0.3s; outline: none;
+        }
+        .input-field:focus { border-color: var(--primary); background-color: #fff; }
+
+        .btn-continue {
+            width: 100%; padding: 18px; background-color: var(--primary); color: white;
+            border: none; border-radius: 12px; font-size: 1rem; font-weight: 700;
+            cursor: pointer; margin-top: 20px; transition: 0.2s;
+            box-shadow: 0 4px 10px rgba(234, 29, 44, 0.2);
+        }
+        .btn-continue:active { transform: scale(0.98); }
+
+        .footer-text { margin-top: 30px; font-size: 0.8rem; color: #999; }
+        .footer-text a { color: var(--primary); text-decoration: none; font-weight: bold; }
+
+        /* --- TELA 2: LOADING (iFood Style) --- */
         #loading-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-main); z-index: 4000;
-            display: none; align-items: center; justify-content: center; flex-direction: column;
+            background-color: var(--primary); z-index: 20;
+            display: none; /* Oculto inicialmente */
+            flex-direction: column; align-items: center; justify-content: center;
         }
+
         .spinner {
-            width: 50px; height: 50px; border: 5px solid rgba(255,193,7,0.2); 
-            border-radius: 50%; border-top-color: var(--primary); 
-            animation: spin 1s ease-in-out infinite;
+            width: 60px; height: 60px; border: 6px solid rgba(255,255,255,0.3);
+            border-radius: 50%; border-top-color: white;
+            animation: spin 1s linear infinite; margin-bottom: 20px;
         }
+        
         @keyframes spin { to { transform: rotate(360deg); } }
-        .loading-text { color: var(--primary); margin-top: 20px; font-weight: 500; }
-
-        /* --- 3. APP PRINCIPAL --- */
-        #app-container { display: none; width: 100%; max-width: 600px; margin: 0 auto; }
-
-        /* Header */
-        .app-header {
-            background: var(--bg-card); padding: 15px 20px; position: sticky; top: 0; z-index: 100;
-            border-bottom: 1px solid var(--border); box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        .address-bar { font-size: 0.9rem; font-weight: bold; color: var(--text-white); margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; }
-        .address-text i { color: var(--secondary); margin-right: 8px; }
         
-        .search-box { position: relative; }
-        .search-box input {
-            width: 100%; padding: 12px 12px 12px 40px; background: #2a2a2a; 
-            border: 1px solid var(--border); border-radius: 8px; color: white; outline: none;
-        }
-        .search-box i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--secondary); }
+        .loading-msg { color: white; font-size: 1.2rem; font-weight: 500; }
+        .brand-msg { color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-top: 5px; }
 
-        /* Banners (Estilo iFood) */
-        .banners-container {
-            display: flex; gap: 10px; padding: 20px; overflow-x: auto; scrollbar-width: none;
-        }
-        .banner-item {
-            min-width: 280px; height: 130px; background-color: #333; border-radius: 10px;
-            background-image: url('https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=600&auto=format&fit=crop');
-            background-size: cover; background-position: center; position: relative;
-        }
-        .banner-overlay {
-            position: absolute; bottom: 0; left: 0; width: 100%; padding: 10px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9)); border-radius: 0 0 10px 10px;
-        }
-        .banner-text { color: white; font-weight: bold; font-size: 1.1rem; }
-
-        /* Menu de Categorias */
-        .categories {
-            display: flex; gap: 10px; padding: 0 20px 20px 20px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--border);
-        }
-        .cat-btn {
-            background: var(--bg-card); border: 1px solid var(--border); color: var(--text-gray);
-            padding: 10px 20px; border-radius: 20px; font-weight: 500; white-space: nowrap; cursor: pointer; transition: 0.3s;
-        }
-        .cat-btn.active { background: var(--text-white); color: #000; border-color: var(--text-white); }
-
-        /* Listagem de Produtos */
-        .section-title { padding: 20px 20px 10px; font-size: 1.4rem; font-weight: bold; color: var(--text-white); font-family: 'Pacifico', cursive; }
-        
-        .product-card {
-            display: flex; justify-content: space-between; padding: 20px;
-            border-bottom: 1px solid var(--border); background: var(--bg-main);
-        }
-        
-        .prod-details { flex: 1; padding-right: 15px; display: flex; flex-direction: column; justify-content: center; }
-        .prod-name { font-size: 1.1rem; font-weight: 600; color: var(--text-white); margin-bottom: 5px; }
-        .prod-desc { font-size: 0.85rem; color: var(--text-gray); margin-bottom: 10px; line-height: 1.4; }
-        .prod-price { font-size: 1.1rem; color: var(--primary); font-weight: bold; margin-bottom: 10px; }
-
-        .prod-img { 
-            width: 110px; height: 110px; border-radius: 12px; object-fit: cover; 
-            background: #222; 
-        }
-
-        /* Controles dentro do card */
-        .flavor-select {
-            width: 100%; background: #2a2a2a; color: white; border: 1px solid #444;
-            padding: 8px; border-radius: 8px; margin-bottom: 10px; font-size: 0.85rem;
-        }
-
-        .btn-add {
-            background: transparent; color: var(--primary); border: 1px solid var(--primary);
-            padding: 6px 15px; border-radius: 4px; font-weight: bold; cursor: pointer; 
-            font-size: 0.9rem; align-self: flex-start; transition: 0.3s;
-        }
-        .btn-add:hover { background: rgba(255, 193, 7, 0.1); }
-        .btn-add.clicked { background: #28a745; border-color: #28a745; color: white; }
-
-        /* --- SACOLA FLUTUANTE (VERMELHA) --- */
-        .floating-cart {
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 500px;
-            background-color: var(--secondary); color: white;
-            padding: 15px 25px; border-radius: 30px;
-            display: none; /* Só aparece com itens */
-            justify-content: space-between; align-items: center;
-            box-shadow: 0 4px 20px rgba(234, 29, 44, 0.5); 
-            cursor: pointer; z-index: 1000; animation: slideUp 0.3s ease;
-        }
-        @keyframes slideUp { from { bottom: -60px; } to { bottom: 20px; } }
-        
-        .cart-summary { display: flex; flex-direction: column; }
-        .cart-summary span { font-size: 0.8rem; opacity: 0.9; }
-        .cart-total-text { font-weight: bold; font-size: 1rem; }
-        .view-cart-text { font-weight: bold; text-transform: uppercase; font-size: 0.9rem; }
-
-        /* --- MODAL DO CARRINHO (TELA CHEIA) --- */
-        .cart-modal {
+        /* --- TELA 3: SUCESSO (Apenas para demonstração) --- */
+        #success-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-main); z-index: 6000; display: none; flex-direction: column;
+            background: #fff; z-index: 5; display: none;
+            align-items: center; justify-content: center; flex-direction: column;
         }
-        .cart-header {
-            padding: 20px; border-bottom: 1px solid var(--border); 
-            display: flex; justify-content: space-between; align-items: center; background: var(--bg-card);
-        }
-        .cart-header h3 { color: var(--text-white); font-size: 1.2rem; }
-        .close-modal { color: var(--secondary); font-weight: bold; cursor: pointer; font-size: 1.2rem; }
 
-        .cart-content { flex: 1; padding: 20px; overflow-y: auto; }
-        
-        .cart-item {
-            display: flex; justify-content: space-between; align-items: center;
-            padding-bottom: 15px; margin-bottom: 15px; border-bottom: 1px solid #333;
-        }
-        .item-qty { background: #333; padding: 5px 10px; border-radius: 4px; font-weight: bold; margin-right: 10px; color: var(--primary); }
-        
-        .cart-footer { padding: 25px; border-top: 1px solid #333; background: var(--bg-card); }
-        .total-row { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; }
-        .cart-total-price { color: var(--primary); }
-
-        .pix-area { margin-top: 20px; text-align: center; display: none; background: #2a2a2a; padding: 20px; border-radius: 12px; border: 1px solid var(--primary); }
-        .pix-key { font-family: monospace; word-break: break-all; font-size: 0.85rem; background: #121212; color: var(--primary); padding: 10px; margin-top: 10px; border-radius: 4px; border: 1px dashed var(--primary); }
-
-        .btn-confirm-pix { background-color: #28a745; color: white; width: 100%; padding: 15px; border: none; border-radius: 8px; font-weight: bold; font-size: 1rem; margin-top: 15px; cursor: pointer; }
-
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
     <div id="login-screen">
-        <div class="login-logo">
+        <div class="logo-area">
             <h1>Pizzaria do Ranea</h1>
+            <p>A melhor pizza da região, agora no app.</p>
         </div>
-        <div class="login-form">
-            <h3><i class="fas fa-motorcycle" style="color:var(--primary)"></i> Entre para pedir</h3>
-            <input type="email" class="login-input" placeholder="E-mail" id="login-email">
-            <input type="password" class="login-input" placeholder="Senha" id="login-pass">
-            <input type="tel" class="login-input" placeholder="WhatsApp (Opcional)" id="login-tel">
-            <button class="btn-large" onclick="doLogin()">ACESSAR CARDÁPIO</button>
-            <p style="margin-top: 20px; color:#777; font-size: 0.9rem;">Não tem conta? Cadastre-se na hora!</p>
+
+        <div class="form-container">
+            <div class="input-group">
+                <label>Seu E-mail</label>
+                <input type="email" class="input-field" placeholder="exemplo@email.com" id="email">
+            </div>
+            
+            <div class="input-group">
+                <label>WhatsApp / Celular</label>
+                <input type="tel" class="input-field" placeholder="(00) 00000-0000" id="phone">
+            </div>
+
+            <div class="input-group">
+                <label>Senha de Acesso</label>
+                <input type="password" class="input-field" placeholder="Crie uma senha" id="password">
+            </div>
+
+            <button class="btn-continue" onclick="startLoading()">CONTINUAR</button>
+
+            <div class="footer-text">
+                Ao continuar, você concorda com nossos <a href="#">Termos de Uso</a>.
+            </div>
         </div>
     </div>
 
-    <div id="loading-screen">
-        <div class="spinner"></div>
-        <div class="loading-text">Carregando cardápio...</div>
-    </div>
-
-    <div id="app-container">
-        
-        <header class="app-header">
-            <div class="address-bar">
-                <div class="address-text">
-                    <span style="font-size:0.8rem; color:#999; display:block;">ENTREGAR EM</span>
-                    <strong>Rua das Pizzas, 100</strong> <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: var(--primary);"></i>
-                </div>
-                <div class="profile-icon">
-                    <i class="fas fa-user-circle" style="font-size: 2rem; color: #333;"></i>
-                </div>
-            </div>
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Buscar em Pizzaria do Ranea">
-            </div>
-        </header>
-
-        <div class="banners-container">
-            <div class="banner-item">
-                <div class="banner-overlay">
-                    <div class="banner-text">Entrega Grátis</div>
-                </div>
-            </div>
-            <div class="banner-item" style="background-image: url('https://images.unsplash.com/photo-1593560704563-f176a2eb61db?q=80&w=600&auto=format&fit=crop');">
-                <div class="banner-overlay">
-                    <div class="banner-text">Pizzas Doces</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="categories">
-            <button class="cat-btn active" onclick="scrollToSec('pizzas')">Pizzas</button>
-            <button class="cat-btn" onclick="scrollToSec('bebidas')">Bebidas</button>
-            <button class="cat-btn" onclick="scrollToSec('combos')">Combos</button>
-            <button class="cat-btn" onclick="scrollToSec('sobremesas')">Sobremesas</button>
-        </div>
-
-        <div id="pizzas">
-            <div class="section-title">Pizzas Salgadas</div>
-
-            <div class="product-card" data-name="Pizza Pequena" data-price="30.00">
-                <div class="prod-details">
-                    <div class="prod-name">Pizza Pequena</div>
-                    <div class="prod-desc">4 Fatias. Ideal para uma pessoa. Escolha seu sabor favorito.</div>
-                    <div class="prod-price">R$ 30,00</div>
-                    <select class="flavor-select">
-                        <option value="Calabresa">Sabor: Calabresa</option>
-                        <option value="Mussarela">Sabor: Mussarela</option>
-                        <option value="Portuguesa">Sabor: Portuguesa</option>
-                        <option value="Frango c/ Catupiry">Sabor: Frango c/ Catupiry</option>
-                    </select>
-                    <button class="btn-add" onclick="addItem(this)">ADICIONAR</button>
-                </div>
-                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=300&auto=format&fit=crop" class="prod-img">
-            </div>
-
-            <div class="product-card" data-name="Pizza Média" data-price="45.00">
-                <div class="prod-details">
-                    <div class="prod-name">Pizza Média</div>
-                    <div class="prod-desc">6 Fatias. Serve bem 2 pessoas.</div>
-                    <div class="prod-price">R$ 45,00</div>
-                    <select class="flavor-select">
-                        <option value="Calabresa">Sabor: Calabresa</option>
-                        <option value="Mussarela">Sabor: Mussarela</option>
-                        <option value="Portuguesa">Sabor: Portuguesa</option>
-                        <option value="Frango c/ Catupiry">Sabor: Frango c/ Catupiry</option>
-                    </select>
-                    <button class="btn-add" onclick="addItem(this)">ADICIONAR</button>
-                </div>
-                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=300&auto=format&fit=crop" class="prod-img">
-            </div>
-
-            <div class="product-card" data-name="Pizza Grande" data-price="60.00">
-                <div class="prod-details">
-                    <div class="prod-name">Pizza Grande</div>
-                    <div class="prod-desc">8 Fatias. A campeã de vendas!</div>
-                    <div class="prod-price">R$ 60,00</div>
-                    <select class="flavor-select">
-                        <option value="Calabresa">Sabor: Calabresa</option>
-                        <option value="Mussarela">Sabor: Mussarela</option>
-                        <option value="Portuguesa">Sabor: Portuguesa</option>
-                        <option value="Frango c/ Catupiry">Sabor: Frango c/ Catupiry</option>
-                    </select>
-                    <button class="btn-add" onclick="addItem(this)">ADICIONAR</button>
-                </div>
-                <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=300&auto=format&fit=crop" class="prod-img">
-            </div>
-
-            <div class="product-card" data-name="Pizza Família" data-price="75.00">
-                <div class="prod-details">
-                    <div class="prod-name">Pizza Família</div>
-                    <div class="prod-desc">12 Fatias. Para quem tem muita fome.</div>
-                    <div class="prod-price">R$ 75,00</div>
-                    <select class="flavor-select">
-                        <option value="Calabresa">Sabor: Calabresa</option>
-                        <option value="Mussarela">Sabor: Mussarela</option>
-                        <option value="Portuguesa">Sabor: Portuguesa</option>
-                        <option value="Frango c/ Catupiry">Sabor: Frango c/ Catupiry</option>
-                    </select>
-                    <button class="btn-add" onclick="addItem(this)">ADICIONAR</button>
-                </div>
-                <img src="https://images.unsplash.com/photo-1595854341625-f71831d39e71?q=80&w=300&auto=format&fit=crop" class="prod-img">
-            </div>
-        </div>
-
-        <div id="bebidas">
-            <div class="section-title">Bebidas</div>
-
-            <div class="product-card" data-name="Coca-Cola 2L" data-price="14.00">
-                <div class="prod-details">
-                    <div class="prod-name">Coca-Cola 2L</div>
-                    <div class="prod-desc">Refrigerante garrafa 2L.</div>
-                    <div class="prod-price">R$ 14,00</div>
-                    <button class="btn-add" onclick="addItem(this)">ADICIONAR</button>
-                </div>
-                <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=300&auto=format&fit=crop" class="prod-img">
-            </div>
-
-            <div class="product-card" data-name="Guaraná 2L" data-price="12.00">
-                <div class="prod-details">
-                    <div class="prod-name">Guaraná 2L</div>
-                    <div class="prod-desc">Refrigerante garrafa 2L.</div>
-                    <div class="prod-price">R$ 12,00</div>
-                    <button class="btn-add" onclick="addItem(this)">ADICIONAR</button>
-                </div>
-                <img src="https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?q=80&w=300&auto=format&fit=crop" class="prod-img">
-            </div>
-
-            <div class="product-card" data-name="Heineken Long Neck" data-price="12.00">
-                <div class="prod-details">
-                    <div class="prod-name">Heineken Long Neck</div>
-                    <div class="prod-desc">Cerveja 330ml.</div>
-                    <div class="prod-price">R$ 12,00</div>
-                    <button class="btn-add" onclick="addItem(this)">ADICIONAR</button>
-                </div>
-                <img src="https://images.unsplash.com/photo-1618885481221-ef050069b273?q=80&w=300&auto=format&fit=crop" class="prod-img">
-            </div>
-        </div>
-
-        <div id="combos">
-            <div class="section-title">Combos</div>
-            <div class="product-card" data-name="Combo Casal" data-price="65.00">
-                <div class="prod-details">
-                    <div class="prod-name">Combo Casal</div>
-                    <div class="prod-desc">1 Pizza Grande + 1 Coca-Cola 2L.</div>
-                    <div class="prod-price">R$ 65,00</div>
-                    <select class="flavor-select">
-                        <option value="Calabresa">Pizza: Calabresa</option>
-                        <option value="Mussarela">Pizza: Mussarela</option>
-                    </select>
-                    <button class="btn-add" onclick="addItem(this)">ADICIONAR</button>
-                </div>
-                <img src="
+    <div id="loading-
