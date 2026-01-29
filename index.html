@@ -222,22 +222,22 @@
 
         /* FOTOS DE BEBIDAS MAIORES E REALISTAS */
         .drink-card img { 
-            width: 140px; 
-            height: 140px; 
+            width: 150px; 
+            height: 150px; 
             object-fit: contain; 
             margin-bottom: 15px; 
-            filter: drop-shadow(0 5px 8px rgba(0,0,0,0.5)); 
+            filter: drop-shadow(0 5px 8px rgba(0,0,0,0.7)); 
         }
         
-        .drink-card h4 { margin: 5px 0; font-size: 1.2rem; color: #fff; }
-        .drink-card .price { color: #ffc107; font-weight: 800; font-size: 1.2rem; display: block; margin-bottom: 10px; }
+        .drink-card h4 { margin: 5px 0; font-size: 1.2rem; color: #fff; font-weight: bold; }
+        .drink-card .price { color: #ffc107; font-weight: 800; font-size: 1.3rem; display: block; margin-bottom: 10px; }
         
         /* Controles de Quantidade */
         .drink-controls {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin: 15px 0;
+            margin: 10px 0;
         }
         
         .btn-qty-sm {
@@ -299,135 +299,3 @@
     </style>
 </head>
 <body>
-
-    <div class="logo-container">
-        <h1 class="logo-text">Pizzaria do Ranea</h1>
-        <div class="contact-info">
-            <div class="contact-item">
-                <i class="fas fa-phone-alt"></i>
-                <span>(41) 98788-4999</span>
-            </div>
-            <a href="https://instagram.com/gaabbzyx" target="_blank" class="contact-item">
-                <i class="fab fa-instagram"></i>
-                <span>@gaabbzyx</span>
-            </a>
-            
-            <button class="btn-account" onclick="abrirModal('authModal')">
-                <i class="fas fa-user-circle"></i> Entrar / Cadastrar
-            </button>
-
-            <button class="btn-account" onclick="abrirModal('drinksModal')">
-                <i class="fas fa-glass-cheers"></i> Cardápio de Bebidas
-            </button>
-        </div>
-    </div>
-
-    <div class="main-container">
-        
-        <div class="menu-header">
-            <h2 class="section-title">Nossas Pizzas</h2>
-        </div>
-
-        <div class="pizza-grid">
-            <div class="card">
-                <h2>Pizza Pequena</h2>
-                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1000&auto=format&fit=crop" alt="Pizza Pequena">
-                <div class="controls">
-                    <button class="btn-qty btn-minus">-</button>
-                    <span class="qty-display">1</span>
-                    <button class="btn-qty btn-plus">+</button>
-                </div>
-                <a href="pequena.html" class="btn-select">Selecionar</a>
-            </div>
-
-            <div class="card">
-                <h2>Pizza Média</h2>
-                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1000&auto=format&fit=crop" alt="Pizza Média">
-                <div class="controls">
-                    <button class="btn-qty btn-minus">-</button>
-                    <span class="qty-display">1</span>
-                    <button class="btn-qty btn-plus">+</button>
-                </div>
-                <a href="media.html" class="btn-select">Selecionar</a>
-            </div>
-
-            <div class="card">
-                <h2>Pizza Grande</h2>
-                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1000&auto=format&fit=crop" alt="Pizza Grande">
-                <div class="controls">
-                    <button class="btn-qty btn-minus">-</button>
-                    <span class="qty-display">1</span>
-                    <button class="btn-qty btn-plus">+</button>
-                </div>
-                <a href="grande.html" class="btn-select">Selecionar</a>
-            </div>
-
-            <div class="card">
-                <h2>Tamanho Família</h2>
-                <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=1000&auto=format&fit=crop" alt="Pizza Família">
-                <div class="controls">
-                    <button class="btn-qty btn-minus">-</button>
-                    <span class="qty-display">1</span>
-                    <button class="btn-qty btn-plus">+</button>
-                </div>
-                <a href="familia.html" class="btn-select">Selecionar</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="drinksModal" class="modal">
-        <div class="modal-content wide">
-            <span class="close-btn" onclick="fecharModal('drinksModal')">&times;</span>
-            <h2>Bebidas & Refrescos</h2>
-            
-            <div class="drink-category">Refrigerantes 2L</div>
-            <div class="drinks-grid">
-                <div class="drink-card">
-                    [Image of Coca-Cola 2L bottle]
-                    <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=1000&auto=format&fit=crop" alt="Coca Cola">
-                    <h4>Coca-Cola 2L</h4>
-                    <span class="price">R$ 14,00</span>
-                    <div class="drink-controls">
-                        <button class="btn-qty-sm" onclick="updateDrink(this, -1, 14.00)">-</button>
-                        <span class="qty-display-drink">1</span>
-                        <button class="btn-qty-sm" onclick="updateDrink(this, 1, 14.00)">+</button>
-                    </div>
-                    <a href="pagamento.html?valor=14,00" class="btn-buy-drink">Pedir - R$ 14,00</a>
-                </div>
-
-                <div class="drink-card">
-                    [Image of Guaraná Antarctica 2L bottle]
-                    <img src="https://images.unsplash.com/photo-1581006852262-e4307cf6283a?q=80&w=1000&auto=format&fit=crop" alt="Guaraná">
-                    <h4>Guaraná 2L</h4>
-                    <span class="price">R$ 12,00</span>
-                    <div class="drink-controls">
-                        <button class="btn-qty-sm" onclick="updateDrink(this, -1, 12.00)">-</button>
-                        <span class="qty-display-drink">1</span>
-                        <button class="btn-qty-sm" onclick="updateDrink(this, 1, 12.00)">+</button>
-                    </div>
-                    <a href="pagamento.html?valor=12,00" class="btn-buy-drink">Pedir - R$ 12,00</a>
-                </div>
-
-                <div class="drink-card">
-                    [Image of Fanta Orange 2L bottle]
-                    <img src="https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?q=80&w=1000&auto=format&fit=crop" alt="Fanta">
-                    <h4>Fanta Laranja 2L</h4>
-                    <span class="price">R$ 12,00</span>
-                    <div class="drink-controls">
-                        <button class="btn-qty-sm" onclick="updateDrink(this, -1, 12.00)">-</button>
-                        <span class="qty-display-drink">1</span>
-                        <button class="btn-qty-sm" onclick="updateDrink(this, 1, 12.00)">+</button>
-                    </div>
-                    <a href="pagamento.html?valor=12,00" class="btn-buy-drink">Pedir - R$ 12,00</a>
-                </div>
-
-                <div class="drink-card">
-                    [Image of Sprite 2L bottle]
-                    <img src="https://images.unsplash.com/photo-1624517452488-04869289c4ca?q=80&w=1000&auto=format&fit=crop" alt="Sprite">
-                    <h4>Sprite 2L</h4>
-                    <span class="price">R$ 12,00</span>
-                    <div class="drink-controls">
-                        <button class="btn-qty-sm" onclick="updateDrink(this, -1, 12.00)">-</button>
-                        <span class="qty-display-drink">1</span>
-                        <button class="btn-qty-sm" onclick="updateDrink(this, 1, 12.00)">+</button>
-                    </div>
